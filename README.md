@@ -1,2 +1,2 @@
 # ft_printf
-Implementation of C library printf() functions
+Implementation of C library printf() function
