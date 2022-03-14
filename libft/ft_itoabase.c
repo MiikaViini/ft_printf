@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_intlen.c                                        :+:      :+:    :+:   */
+/*   ft_itoabase.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/10 14:30:47 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/10 14:31:07 by mviinika         ###   ########.fr       */
+/*   Created: 2022/03/14 11:30:23 by mviinika          #+#    #+#             */
+/*   Updated: 2022/03/14 14:39:58 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_intlen(int n)
+char	*ft_itoabase(int num, int base)
 {
-	int	len;
+	int	res;
+	int	count;
 
-	len = 0;
-	if (n < 0)
+	count = 0;
+	res = 0;
+	if ((base < 2 && base > 16) || num == 0)
+		return (ft_itoa(res));
+	while (num)
 	{
-		if (n == -2147483648)
-		{
-			n = n + 1;
-		}
-		len++;
-		n = n * -1;
+		res += num % base + ft_pow(base, count);
+		num /= base;
+		count += 10;
 	}
-	while (n > 0)
-	{
-		n = n / 10;
-		len++;
-	}
-	return (len);
+	return (ft_itoa(res));
 }

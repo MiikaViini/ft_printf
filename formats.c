@@ -1,35 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_intlen.c                                        :+:      :+:    :+:   */
+/*   formats.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/10 14:30:47 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/10 14:31:07 by mviinika         ###   ########.fr       */
+/*   Created: 2022/03/14 11:29:41 by mviinika          #+#    #+#             */
+/*   Updated: 2022/03/14 11:33:12 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int	ft_intlen(int n)
+int	s_converse(va_list args)
 {
-	int	len;
+	char	*string;
 
-	len = 0;
-	if (n < 0)
-	{
-		if (n == -2147483648)
-		{
-			n = n + 1;
-		}
-		len++;
-		n = n * -1;
-	}
-	while (n > 0)
-	{
-		n = n / 10;
-		len++;
-	}
-	return (len);
+	string = va_arg(args, char *);
+	ft_putstr(string);
+	return (ft_strlen(string));
+}
+
+int	d_converse(va_list args)
+{
+	int	num;
+
+	num = va_arg(args, int );
+	ft_putnbr(num);
+	return (ft_intlen(num));
+}
+
+int	c_converse(va_list args)
+{
+	int	c;
+
+	c = va_arg(args, int );
+	ft_putchar(c);
+	return (1);
 }

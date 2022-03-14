@@ -1,35 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_intlen.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/10 14:30:47 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/10 14:31:07 by mviinika         ###   ########.fr       */
+/*   Created: 2022/03/14 13:34:02 by mviinika          #+#    #+#             */
+/*   Updated: 2022/03/14 14:48:02 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int	ft_intlen(int n)
+#include "ft_printf.h"
+int main()
 {
-	int	len;
-
-	len = 0;
-	if (n < 0)
-	{
-		if (n == -2147483648)
-		{
-			n = n + 1;
-		}
-		len++;
-		n = n * -1;
-	}
-	while (n > 0)
-	{
-		n = n / 10;
-		len++;
-	}
-	return (len);
+	int	oct = 123;
+	//ft_printf("%o", str);
+	ft_printf("%s", "joo");
+	return 0;
 }
