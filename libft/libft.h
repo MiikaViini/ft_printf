@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 14:13:57 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/15 18:57:50 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/15 21:34:33 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,5 @@ double	ft_pow(double num, double pow);
 int		bintodec(signed long long bin);
 int		ft_intlen(int n);
 char	*ft_itoabase(int num, int base, int flag);
-
+char	*ft_ftoa(float num, int afterpoint);
 #endif

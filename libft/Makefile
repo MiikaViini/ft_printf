@@ -6,7 +6,7 @@
 #    By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/30 09:25:07 by mviinika          #+#    #+#              #
-#    Updated: 2022/03/14 21:24:40 by mviinika         ###   ########.fr        #
+#    Updated: 2022/03/15 21:34:17 by mviinika         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ SRCS = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c \
 	ft_lstdelone.c ft_lstdel.c ft_strrev.c ft_lstrev.c \
 	ft_lstaddlast.c ft_isspace.c ft_swap.c ft_strndup.c \
 	ft_pow.c ft_dectobin.c ft_bintodec.c ft_abs.c ft_intlen.c \
-	ft_itoabase.c
+	ft_itoabase.c ft_ftoa.c
 
 
 

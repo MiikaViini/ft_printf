@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_ftoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/14 13:34:02 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/15 23:30:44 by mviinika         ###   ########.fr       */
+/*   Created: 2022/03/15 20:54:44 by mviinika          #+#    #+#             */
+/*   Updated: 2022/03/15 22:23:16 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
+#include <stdio.h>
 
-int	main(void)
+char	*ft_ftoa(float num, int afterpoint)
 {
-	char *oct = "tvvr";
-	char *juu = "12345";
-	int ei = 1090909;
-	int *jo;
-	void * noh;
+	int		l_dot;
+	float	r_dot;
+	char	*res;
 
-	jo = &ei;
-
-	ft_printf("%s\n", oct);
-	printf("%s\n", oct);
-	printf("%p\n", oct);
-	printf("%s\n", juu);
-	printf("%p\n", juu);
-	printf("%d\n", ei);
-	printf("%p\n", jo);
-	printf("%d\n", (int)noh);
-	printf("%p\n", noh);
-	ft_printf("%p\n", juu);
-	return (0);
+	l_dot = (int)num;
+	r_dot = num - (float)l_dot;
+	res = ft_strnew(20);
+	res = ft_itoa(l_dot);
+	if (afterpoint != 0)
+		res[ft_strlen(res)] = '.';
+	r_dot = r_dot * ft_pow(10, afterpoint);
+	res = ft_strjoin(res, ft_itoa((int)r_dot));
+	return (res);
 }
