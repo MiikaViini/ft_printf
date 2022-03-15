@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 14:13:57 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/14 14:37:45 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/15 18:57:50 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
+# define CAPITAL 32
 
 typedef struct s_list
 {
@@ -92,6 +93,6 @@ int		ft_abs(int num);
 double	ft_pow(double num, double pow);
 int		bintodec(signed long long bin);
 int		ft_intlen(int n);
-char	*ft_itoabase(int num, int base);
+char	*ft_itoabase(int num, int base, int flag);
 
 #endif

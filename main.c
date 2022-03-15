@@ -6,15 +6,18 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 13:34:02 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/14 14:48:02 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/15 20:37:47 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-int main()
+
+int	main(void)
 {
-	int	oct = 123;
-	//ft_printf("%o", str);
-	ft_printf("%s", "joo");
-	return 0;
+	int	oct;
+
+	oct = 1111111;
+	ft_printf("%x\n", oct);
+	printf("%x", oct);
+	return (0);
 }

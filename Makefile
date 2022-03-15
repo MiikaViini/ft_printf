@@ -6,7 +6,7 @@
 #    By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/14 12:56:26 by mviinika          #+#    #+#              #
-#    Updated: 2022/03/14 13:41:35 by mviinika         ###   ########.fr        #
+#    Updated: 2022/03/14 21:26:01 by mviinika         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ NAME = libftprintf.a
 
 CC = clang
 
-FLAGS = -Wall -Werror -Wextra -c
+FLAGS = -Wall -Werror -Wextra -c -g
 
 INCLUDES = "ft_printf.h"
 
@@ -27,7 +27,7 @@ all: $(NAME)
 
 $(NAME):
 		$(CC) $(FLAGS) $(SRCS) $(INCLUDES)
-		ar rcs $(NAME) $(OBJS) 
+		ar rcs $(NAME) $(OBJS)
 clean:
 		rm -f $(OBJS)
 

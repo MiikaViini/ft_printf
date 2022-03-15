@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:06:29 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/14 13:26:32 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/14 22:08:30 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,16 @@ int	find_letter(char c, char *letters)
 int	conversion(va_list args, char *format)
 {
 	int		char_count;
-	char	*letter;
 
-	letter = ft_strdup("dis");
 	char_count = 0;
 	while (*format)
 	{
 		if (*format == '%' && format++)
-			char_count += g_dispatcher[find_letter(*format, letter)](args);
+			char_count += g_dispatcher[find_letter(*format, CONV)](args);
 		else if (*(format - 1) != '%')
 			ft_putchar(*format);
 		format++;
 	}
-	free(letter);
 	return (char_count);
 }
 
