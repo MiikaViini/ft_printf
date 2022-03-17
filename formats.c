@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 11:29:41 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/15 23:19:26 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/16 19:40:12 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,11 @@ int	x_converse(va_list args)
 
 int	p_converse(va_list args)
 {
-	int		num;
-	char	*string;
+	long long int	num;
+	char			*string;
 
-	num = va_arg(args, int );
-	string = ft_strjoin("0x", ft_itoabase(ft_abs(num), 16, 1));
+	num = va_arg(args, long long int );
+	string = ft_strjoin("0x", ft_itoabase(num, 16, 1));
 	ft_putstr(string);
 	return (ft_strlen(string));
 }

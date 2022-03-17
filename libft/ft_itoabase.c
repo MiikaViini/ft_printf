@@ -6,14 +6,14 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 11:30:23 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/15 20:41:22 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/16 17:15:42 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 
-static char	*ft_over_sixteen(int num, int base, int flag)
+static char	*ft_over_sixteen(long long int num, int base, int flag)
 {
 	char	*res;
 	int		remainder;
@@ -34,15 +34,17 @@ static char	*ft_over_sixteen(int num, int base, int flag)
 	return (ft_strrev(res));
 }
 
-char	*ft_itoabase(int num, int base, int flag)
+char	*ft_itoabase(long long int num, int base, int flag)
 {
-	int	res;
+	long long int	res;
 	int	count;
 	int	remainder;
 
 	res = 0;
 	count = 1;
 	remainder = 0;
+	if (num == 0)
+		return (ft_itoa(0));
 	if (base > 15)
 		return (ft_over_sixteen(num, base, flag));
 	while (num)
@@ -52,5 +54,5 @@ char	*ft_itoabase(int num, int base, int flag)
 		num /= base;
 		count *= 10;
 	}
-	return (ft_itoa(res));
+	return (ft_ltoa(res));
 }

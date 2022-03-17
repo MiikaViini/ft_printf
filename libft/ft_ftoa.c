@@ -6,12 +6,11 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 20:54:44 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/15 22:23:16 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/16 19:40:00 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 char	*ft_ftoa(float num, int afterpoint)
 {
