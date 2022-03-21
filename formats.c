@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 11:29:41 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/16 19:40:12 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/20 20:40:26 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,14 @@ int	s_converse(va_list args)
 
 int	d_converse(va_list args)
 {
-	int	num;
+	long long int	num;
+	char			*string;
 
-	num = va_arg(args, int );
-	ft_putnbr(num);
-	return (ft_intlen(num));
+	num = va_arg(args, long long int );
+	num = l_flag(num);
+	string = ft_itoabase(num, 10, 0);
+	ft_putstr(string);
+	return (1);
 }
 
 int	c_converse(va_list args)
@@ -78,7 +81,18 @@ int	f_converse(va_list args)
 	char	*string;
 
 	num = va_arg(args, double );
-	string = ft_ftoa(num, 6);
+	string = ft_ftoa(num, 2);
+	ft_putstr(string);
+	return (ft_strlen(string));
+}
+
+int	u_converse(va_list args)
+{
+	unsigned int	num;
+	char			*string;
+
+	num = va_arg(args, unsigned int);
+	string = ft_utoa(num);
 	ft_putstr(string);
 	return (ft_strlen(string));
 }

@@ -6,12 +6,12 @@
 #    By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/14 12:56:26 by mviinika          #+#    #+#              #
-#    Updated: 2022/03/14 21:26:01 by mviinika         ###   ########.fr        #
+#    Updated: 2022/03/20 20:35:14 by mviinika         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS = ft_printf.c \
-	formats.c
+	formats.c length.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -26,12 +26,12 @@ INCLUDES = "ft_printf.h"
 all: $(NAME)
 
 $(NAME):
-		$(CC) $(FLAGS) $(SRCS) $(INCLUDES)
-		ar rcs $(NAME) $(OBJS)
+		@$(CC) $(FLAGS) $(SRCS) $(INCLUDES)
+		@ar rcs $(NAME) $(OBJS)
 clean:
-		rm -f $(OBJS)
+		@rm -f $(OBJS)
 
 fclean: clean
-		rm -f $(NAME)
+		@rm -f $(NAME)
 
 re: fclean all

@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 09:58:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/15 22:48:38 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/20 20:39:47 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 # include <stdarg.h>
 # include <stdio.h>
 
-# define CONV "discoxfp"
+# define CONV "discoxfpu"
+# define LENGTH "lh"
 # define CAPITAL 32
 
 typedef struct s_flags
@@ -30,6 +31,7 @@ typedef struct s_flags
 }			t_flags;
 
 typedef int				(*t_converse)(va_list args);
+typedef void			*(*t_length)(long long int value);
 
 int						c_converse(va_list args);
 int						d_converse(va_list args);
@@ -41,8 +43,20 @@ int						conversion(va_list args, char *format);
 int						find_letter(char c, char *letters);
 int						f_converse(va_list args);
 int						p_converse(va_list args);
+int						u_converse(va_list args);
+long long int			l_flag(long long int value);
+void					*ll_flag(void *value);
+void					*h_flag(void *value);
+// void					*hh_flag(void *value);
 
-static const t_converse	g_dispatcher[8] = {
+//  static const t_flags 	g_length[5] = {
+// 	 l_flag,
+// 	 ll_flag,
+// 	 h_flag,
+// 	 hh_flag
+//  };
+
+static const t_converse	g_dispatcher[10] = {
 	d_converse,
 	d_converse,
 	s_converse,
@@ -50,7 +64,8 @@ static const t_converse	g_dispatcher[8] = {
 	o_converse,
 	x_converse,
 	f_converse,
-	p_converse
+	p_converse,
+	u_converse
 };
 
 #endif

@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   length.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/14 13:34:02 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/20 20:24:33 by mviinika         ###   ########.fr       */
+/*   Created: 2022/03/19 15:18:27 by mviinika          #+#    #+#             */
+/*   Updated: 2022/03/20 20:39:40 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	main(void)
+long long int	l_flag(long long int value)
 {
-	  long long int  joo = 1123123123123;
-	//unsigned long long int  joo= 123123123123;
-
-
-	printf("string %lld\n", joo);
-	ft_printf("joo %d", joo);
-
-	return (0);
+	return ((long int)value);
 }
+
+// long long int	ll_flag(long long int value)
+// {
+// 	return ((long long int) format);
+// }
+
+// void	*h_flag(long long int value)
+// {
+// 	return ((short int) format);
+// }
+
+// void	*hh_flag(long long int value)
+// {
+// 	return ((char) format);
+// }
