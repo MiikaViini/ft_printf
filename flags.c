@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   flags.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/14 13:34:02 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/17 10:32:18 by mviinika         ###   ########.fr       */
+/*   Created: 2022/03/17 09:48:27 by mviinika          #+#    #+#             */
+/*   Updated: 2022/03/17 10:31:13 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	main(void)
+int	precision(va_list args, char *format)
 {
-	char 	*str = "tvvr";
-	//int		i = 45;
-	//long int	li = 21123123123;
-	//long long int lli = 12312312313;
-	///char c = 'A';
-	//double flo = 1.565399;
+	char	*precision;
+	int		i;
+	int		prec_int;
 
-	printf("precision %.3s", str);
-
-	return (0);
+	i = 0;
+	precision = ft_strnew(21);
+	prec_int = 0;
+	while (*format >= '0' && *format <= '9')
+	{
+		precision[i] = format[i];
+		i++;
+	}
+	prec_int = ft_atoi(precision);
+	
 }
