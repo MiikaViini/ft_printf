@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 14:13:57 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/16 19:40:55 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/20 20:16:53 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char const *s, int fd);
 void	ft_putendl_fd(char const *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
-void	ft_putnbr(int n);
+void	ft_putnbr(long long int n);
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_atoi(const char *str);
@@ -96,4 +96,6 @@ int		ft_intlen(int n);
 char	*ft_itoabase(long long int num, int base, int flag);
 char	*ft_ftoa(float num, int afterpoint);
 char	*ft_ltoa(long long int n);
+char	*ft_utoa(unsigned int n);
+
 #endif

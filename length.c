@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flags.c                                            :+:      :+:    :+:   */
+/*   length.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/17 09:48:27 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/21 09:34:28 by mviinika         ###   ########.fr       */
+/*   Created: 2022/03/19 15:18:27 by mviinika          #+#    #+#             */
+/*   Updated: 2022/03/20 20:39:40 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	precision(va_list args, char *format)
+long long int	l_flag(long long int value)
 {
-	char	*precision;
-	int		i;
-	int		prec_int;
-
-	i = 0;
-	precision = ft_strnew(21);
-	prec_int = 0;
-	while (*format >= '0' && *format <= '9')
-	{
-		precision[i] = format[i];
-		i++;
-	}
-	prec_int = ft_atoi(precision);
+	return ((long int)value);
 }
+
+// long long int	ll_flag(long long int value)
+// {
+// 	return ((long long int) format);
+// }
+
+// void	*h_flag(long long int value)
+// {
+// 	return ((short int) format);
+// }
+
+// void	*hh_flag(long long int value)
+// {
+// 	return ((char) format);
+// }

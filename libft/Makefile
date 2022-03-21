@@ -6,7 +6,7 @@
 #    By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/30 09:25:07 by mviinika          #+#    #+#              #
-#    Updated: 2022/03/16 15:45:17 by mviinika         ###   ########.fr        #
+#    Updated: 2022/03/19 12:30:39 by mviinika         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ SRCS = ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c \
 	ft_lstdelone.c ft_lstdel.c ft_strrev.c ft_lstrev.c \
 	ft_lstaddlast.c ft_isspace.c ft_swap.c ft_strndup.c \
 	ft_pow.c ft_dectobin.c ft_bintodec.c ft_abs.c ft_intlen.c \
-	ft_itoabase.c ft_ftoa.c ft_ltoa.c
+	ft_itoabase.c ft_ftoa.c ft_ltoa.c ft_utoa.c
 
 
 
@@ -48,14 +48,14 @@ FLAGS = -Wall -Wextra -Werror -g
 all: $(NAME)
 
 $(NAME):
-	gcc -c $(FLAGS) $(SRCS)
-	ar rcs $(NAME) $(OBJ)
+	@gcc -c $(FLAGS) $(SRCS)
+	@ar rcs $(NAME) $(OBJ)
 clean:
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
-	rm -f $(NAME:.a=.so)
+	@rm -f $(NAME)
+	@rm -f $(NAME:.a=.so)
 
 re: fclean all
 
