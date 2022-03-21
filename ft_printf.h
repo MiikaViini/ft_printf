@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 09:58:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/20 20:39:47 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/21 09:41:48 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void					*h_flag(void *value);
 // void					*hh_flag(void *value);
 
 //  static const t_flags 	g_length[5] = {
-// 	 l_flag,
+// 	 l_flag,.
 // 	 ll_flag,
 // 	 h_flag,
 // 	 hh_flag
