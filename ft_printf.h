@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 09:58:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/22 09:55:28 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/22 11:12:16 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,51 +18,70 @@
 # include <stdio.h>
 
 # define CONV "discoxfpu"
-# define LEN "lh"
-# define MODS "-+.0# "
+//# define LEN "lh"
+# define MODS "-+.0#* lh"
 # define CAPITAL 32
 
 typedef struct s_modifiers
 {
-	int		plus;
-	int		minus;
-	int		dot;
-	int		hash;
-	int		space;
-	int		l;
-	int		h;
-}			t_modifiers;
+	int			plus;
+	int			minus;
+	int			dot;
+	int			hash;
+	int			space;
+	int			zero;
+	int			star;
+	int			l;
+	int			h;
+}				t_modifiers;
 
-typedef int				(*t_converse)(va_list args, char *format);
-typedef void			(*t_length)(char *format, t_modifiers *mods);
+typedef int				(*t_converse)(va_list args, t_modifiers *mods);
+//typedef void			(*t_length)(char *format, t_modifiers *mods);
 typedef void			(*t_mods)(char *format, t_modifiers *mods);
 
-int						c_converse(va_list args, char *format);
-int						d_converse(va_list args, char *format);
-int						s_converse(va_list args, char *format);
-int						o_converse(va_list args, char *format);
-int						x_converse(va_list args, char *format);
+
 int						ft_printf(char *format, ...);
 int						conversion(va_list args, char *format);
 int						find_letter(char c, char *letters);
-int						f_converse(va_list args, char *format);
-int						p_converse(va_list args, char *format);
-int						u_converse(va_list args, char *format);
+int						f_converse(va_list args, t_modifiers *mods);
+int						p_converse(va_list args, t_modifiers *mods);
+int						u_converse(va_list args, t_modifiers *mods);
+int						c_converse(va_list args, t_modifiers *mods);
+int						d_converse(va_list args, t_modifiers *mods);
+int						s_converse(va_list args, t_modifiers *mods);
+int						o_converse(va_list args, t_modifiers *mods);
+int						x_converse(va_list args, t_modifiers *mods);
+
 void					l_length(char *format, t_modifiers *mods);
 void					h_length(char *format, t_modifiers *mods);
+
+char					*check_modifiers(char *format, t_modifiers *mods);
+
+void					dot(char *format, t_modifiers *mods);
+void					star(char *format, t_modifiers *mods);
+void					minus(char *format, t_modifiers *mods);
+void					plus(char *format, t_modifiers *mods);
+void					space(char *format, t_modifiers *mods);
+void					hashtag(char *format, t_modifiers *mods);
+void					zero(char *format, t_modifiers *mods);
+long long int			cast_long(long long int num, t_modifiers *mods);
 //void					init_struct(t_modifiers *mods);
 
- static const t_length	g_length[5] = {
-	 l_length,
-	 h_length
- };
+//  static const t_length	g_length[5] = {
+// 	 l_length,
+// 	 h_length
+//  };
 
- static const t_mods	g_mods[5] = {
+ static const t_mods	g_mods[10] = {
 	 minus,
 	 plus,
 	 dot,
 	 zero,
-	 hashtag
+	 hashtag,
+	 star,
+	 space,
+	 l_length,
+	 h_length
  };
 
 static const t_converse	g_specif[10] = {

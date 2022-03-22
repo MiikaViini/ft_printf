@@ -6,12 +6,13 @@
 #    By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/14 12:56:26 by mviinika          #+#    #+#              #
-#    Updated: 2022/03/21 14:48:58 by mviinika         ###   ########.fr        #
+#    Updated: 2022/03/22 10:54:14 by mviinika         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS = ft_printf.c \
-	formats.c length.c
+	formats.c length.c \
+	flags.c
 
 OBJS = $(SRCS:.c=.o)
 
