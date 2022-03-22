@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 15:18:27 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/22 14:52:36 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/22 15:10:41 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,17 @@ void	h_length(char *format, t_modifiers *modifiers)
 		modifiers->h = 2;
 }
 
-void	*cast_long(long long int num, t_modifiers *mods, va_list args)
+char	*type_cast(unsigned long long int num, t_modifiers *mods)
 {
-	if (mods->l == 1)
-		num = va_arg(args, unsigned long int );
-	else if (mods->l == 2)
-		num = va_arg(args, long long );
-	else if (mods->h == 1)
-		num = va_arg(args, unsigned int );
+	char	*string;
+
+	if (mods->h == 1)
+		string = ft_itoabase((short)num, 16, 1);
 	else if (mods->h == 2)
-		return ((short *)num);
-	else if (mods->h == 0 && mods->l == 0)
-		num = va_arg(args, unsigned int );
-	return ((short *)num);
+		string = ft_itoabase((char)num, 16, 1);
+	else if (mods->l == 1)
+		string = ft_itoabase((unsigned long)num, 16, 1);
+	else if (mods->l == 2)
+		string = ft_itoabase((unsigned long long)num, 16, 1);
+	return (string);
 }
