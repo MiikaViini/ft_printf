@@ -6,24 +6,24 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 15:18:27 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/21 14:43:24 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/22 09:31:18 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	l_flag(char *format, t_flags *flags)
+void	l_length(char *format, t_modifiers *modifiers)
 {
 	if (*format++ == 'l')
-		flags->l = 1;
+		modifiers->l = 1;
 	if (*format == 'l')
-		flags->l = 2;
+		modifiers->l = 2;
 }
 
-void	h_flag(char *format, t_flags *flags)
+void	h_length(char *format, t_modifiers *modifiers)
 {
 	if (*format++ == 'h')
-		flags->h = 1;
+		modifiers->h = 1;
 	if (*format == 'h')
-		flags->h = 2;
+		modifiers->h = 2;
 }

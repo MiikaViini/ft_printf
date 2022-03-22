@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 09:58:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/21 14:47:48 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/22 09:55:28 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@
 
 # define CONV "discoxfpu"
 # define LEN "lh"
+# define MODS "-+.0# "
 # define CAPITAL 32
 
-typedef struct s_flags
+typedef struct s_modifiers
 {
 	int		plus;
 	int		minus;
@@ -30,10 +31,11 @@ typedef struct s_flags
 	int		space;
 	int		l;
 	int		h;
-}			t_flags;
+}			t_modifiers;
 
 typedef int				(*t_converse)(va_list args, char *format);
-typedef void			(*t_length)(char *format, t_flags *flags);
+typedef void			(*t_length)(char *format, t_modifiers *mods);
+typedef void			(*t_mods)(char *format, t_modifiers *mods);
 
 int						c_converse(va_list args, char *format);
 int						d_converse(va_list args, char *format);
@@ -46,13 +48,21 @@ int						find_letter(char c, char *letters);
 int						f_converse(va_list args, char *format);
 int						p_converse(va_list args, char *format);
 int						u_converse(va_list args, char *format);
-void					l_flag(char *format, t_flags *flags);
-void					h_flag(char *format, t_flags *flags);
-//void					init_struct(t_flags *flags);
+void					l_length(char *format, t_modifiers *mods);
+void					h_length(char *format, t_modifiers *mods);
+//void					init_struct(t_modifiers *mods);
 
  static const t_length	g_length[5] = {
-	 l_flag,
-	 h_flag
+	 l_length,
+	 h_length
+ };
+
+ static const t_mods	g_mods[5] = {
+	 minus,
+	 plus,
+	 dot,
+	 zero,
+	 hashtag
  };
 
 static const t_converse	g_specif[10] = {

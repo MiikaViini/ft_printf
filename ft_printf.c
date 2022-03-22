@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:06:29 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/21 14:50:08 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/22 09:47:05 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,16 @@ int	find_letter(char c, char *letters)
 
 int	conversion(va_list args, char *format)
 {
-	int		char_count;
-	t_flags	*flags;
+	int			char_count;
+	t_modifiers	*modifiers;
 
 	char_count = 0;
-	flags = ft_memalloc(sizeof(t_flags));
+	modifiers = ft_memalloc(sizeof(t_modifiers));
 	while (*format)
 	{
 		if (*format == '%' && format++)
 		{
-			g_length[find_letter(*format, LEN)](format, flags);
+			g_mods[find_letter(*format, LEN)](format, modifiers);
 			format++;
 			char_count += g_specif[find_letter(*format, CONV)](args, format);
 		}	
@@ -44,6 +44,7 @@ int	conversion(va_list args, char *format)
 			ft_putchar(*format);
 		format++;
 	}
+	free(modifiers);
 	return (char_count);
 }
 
