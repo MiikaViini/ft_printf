@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:06:29 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/22 11:57:09 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/22 12:40:21 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ char	*check_modifiers(char *format, t_modifiers *mods)
 	int	i;
 
 	i = 0;
-	while (!ft_strrchr(format, CONV[i++]) && *format)
+	while (!find_letter(*format, CONV))
 	{
 		g_mods[find_letter(*format, MODS)](format, mods);
-		//format++;
+		format++;
 	}
 	return (format);
 }
@@ -49,10 +49,7 @@ int	conversion(va_list args, char *format)
 	{
 		if (*format == '%' && format++)
 		{
-			//g_mods[find_letter(*format, MODS)](format, modifiers);
 			format = check_modifiers(format, modifiers);
-			
-			//g_flags[find_letter(*format, LEN)](format, modifiers);
 			char_count += g_specif[find_letter(*format, CONV)](args, modifiers);
 		}
 		else if (*(format - 1) != '%')

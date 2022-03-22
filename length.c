@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 15:18:27 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/22 11:08:56 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/22 14:52:36 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,17 @@ void	h_length(char *format, t_modifiers *modifiers)
 		modifiers->h = 2;
 }
 
-long long int	cast_long(long long int num, t_modifiers *mods)
+void	*cast_long(long long int num, t_modifiers *mods, va_list args)
 {
 	if (mods->l == 1)
-		return ((long int)num);
+		num = va_arg(args, unsigned long int );
 	else if (mods->l == 2)
-		return (num);
+		num = va_arg(args, long long );
 	else if (mods->h == 1)
-		return ((short int)num);
-	else if (mods->h== 2)
-		return ((char)num);
-	return ((int)num);
+		num = va_arg(args, unsigned int );
+	else if (mods->h == 2)
+		return ((short *)num);
+	else if (mods->h == 0 && mods->l == 0)
+		num = va_arg(args, unsigned int );
+	return ((short *)num);
 }

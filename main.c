@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 13:34:02 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/22 11:56:50 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/22 14:57:43 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 int	main(void)
 {
-
-	 int  joo= -1244343;
+	long  joo= -1288789789879;
 
 	printf("string %lx\n", joo);
-	ft_printf("joo %x", joo);
+	ft_printf("joo %lx", joo);
 	return (0);
 }
