@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 09:48:27 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/21 09:34:28 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/21 15:31:04 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,22 @@ int	precision(va_list args, char *format)
 		i++;
 	}
 	prec_int = ft_atoi(precision);
+}
+
+void	dot(char *format, t_flags *flags)
+{
+	if (*format++ == '.')
+		flags->dot = 1;
+}
+
+void	star(char *format, t_flags *flags)
+{
+	if (*format++ == '*')
+		flags->star = 1;
+}
+
+void	star(char *format, t_flags *flags)
+{
+	if (*format++ == '*')
+		flags->star = 1;
 }

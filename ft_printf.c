@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:06:29 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/21 14:50:08 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/21 15:25:29 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ int	conversion(va_list args, char *format)
 		{
 			g_length[find_letter(*format, LEN)](format, flags);
 			format++;
-			char_count += g_specif[find_letter(*format, CONV)](args, format);
-		}	
+			char_count += g_specif[find_letter(*format, CONV)](args, flags);
+		}
 		else if (*(format - 1) != '%')
 			ft_putchar(*format);
 		format++;
