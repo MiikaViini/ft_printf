@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 09:58:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/22 15:07:13 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/22 21:12:39 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdarg.h>
 # include <stdio.h>
 
-# define CONV "discoxfpu"
+# define CONV " discoxfpu"
 //# define LEN "lh"
 # define MODS "-+.0#* lh"
 # define CAPITAL 32
@@ -64,7 +64,8 @@ void					plus(char *format, t_modifiers *mods);
 void					space(char *format, t_modifiers *mods);
 void					hashtag(char *format, t_modifiers *mods);
 void					zero(char *format, t_modifiers *mods);
-char					*type_cast(unsigned long long num, t_modifiers *mods);
+char					*type_cast(unsigned long long num, t_modifiers *mods, int base);
+char					*type_cast_int(long long int num, t_modifiers *mods);
 //void					init_struct(t_modifiers *mods);
 
 //  static const t_length	g_length[5] = {
@@ -85,6 +86,7 @@ char					*type_cast(unsigned long long num, t_modifiers *mods);
  };
 
 static const t_converse	g_specif[10] = {
+	d_converse,
 	d_converse,
 	d_converse,
 	s_converse,

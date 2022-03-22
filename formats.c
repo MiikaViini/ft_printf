@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 11:29:41 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/22 15:01:27 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/22 21:57:58 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 int	s_converse(va_list args, t_modifiers *mods)
 {
 	char	*string;
-	printf("%d", mods->h);
+
+	(void)mods;
 	string = va_arg(args, char *);
 	ft_putstr(string);
 	return (ft_strlen(string));
@@ -23,20 +24,20 @@ int	s_converse(va_list args, t_modifiers *mods)
 
 int	d_converse(va_list args, t_modifiers *mods)
 {
-	long long int	num;
+	long long		num;
 	char			*string;
 
-	num = va_arg(args, long long int );
-	string = ft_itoabase(num, 10, 0);
+	num = va_arg(args, long long );
+	string = type_cast_int(num, mods);
 	mods->h = 0;
 	ft_putstr(string);
-	return (1);
+	return (ft_strlen(string));
 }
 
 int	c_converse(va_list args, t_modifiers *mods)
 {
 	int	c;
-	printf("%d", mods->h);
+	(void)mods;
 	c = va_arg(args, int );
 	ft_putchar(c);
 	return (1);
@@ -48,9 +49,8 @@ int	o_converse(va_list args, t_modifiers *mods)
 	char	*string;
 
 	num = va_arg(args, int );
-	string = ft_itoabase(num, 8, 1);
+	string = type_cast(num, mods, 8);
 	ft_putstr(string);
-	printf("%d", mods->h);
 	return (ft_strlen(string));
 }
 
@@ -60,10 +60,9 @@ int	x_converse(va_list args, t_modifiers *mods)
 	char					*string;
 
 	num = va_arg(args, unsigned long long int );
-	//num = (short)cast_long(num, mods, args);
-	string = ft_itoabase((char)num, 16, 1);
+	string = type_cast(num, mods, 16);
+	//printf("h%d\n", mods->h);
 	ft_putstr(string);
-	mods->h = 0;
 	return (ft_strlen(string));
 }
 
@@ -75,7 +74,7 @@ int	p_converse(va_list args, t_modifiers *mods)
 	num = va_arg(args, long long int );
 	string = ft_strjoin("0x", ft_itoabase(num, 16, 1));
 	ft_putstr(string);
-	printf("%d", mods->h);
+	(void)mods;
 	return (ft_strlen(string));
 }
 
@@ -85,20 +84,19 @@ int	f_converse(va_list args, t_modifiers *mods)
 	char	*string;
 
 	num = va_arg(args, double );
-	string = ft_ftoa(num, 2);
+	string = ft_ftoa(num, 6);
 	ft_putstr(string);
-	printf("%d", mods->h);
+	(void)mods;
 	return (ft_strlen(string));
 }
 
 int	u_converse(va_list args, t_modifiers *mods)
 {
-	unsigned int	num;
+	unsigned long long	num;
 	char			*string;
 
-	num = va_arg(args, unsigned int);
-	string = ft_utoa(num);
+	num = va_arg(args, unsigned long long );
+	string = type_cast(num, mods, 10);
 	ft_putstr(string);
-	printf("%d", mods->h);
 	return (ft_strlen(string));
 }
