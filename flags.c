@@ -32,42 +32,42 @@
 
 void	dot(char *format, t_modifiers *mods)
 {
-	if (*format++ == '.')
+	if (*format == '.')
 		mods->dot = 1;
 }
 
 void	star(char *format, t_modifiers *mods)
 {
-	if (*format++ == '*')
+	if (*format == '*')
 		mods->star = 1;
 }
 
 void	minus(char *format, t_modifiers *mods)
 {
-	if (*format++ == '-')
+	if (*format == '-')
 		mods->minus = 1;
 }
 
 void	plus(char *format, t_modifiers *mods)
 {
-	if (*format++ == '+')
+	if (*format == '+')
 		mods->minus = 1;
 }
 
 void	zero(char *format, t_modifiers *mods)
 {
-	if (*format++ == '0')
-		mods->minus = 1;
+	if (*format == '0')
+		mods->zero = 1;
 }
 
 void	space(char *format, t_modifiers *mods)
 {
-	if (*format++ == ' ')
-		mods->minus = 1;
+	if (*format == ' ')
+		mods->space = 1;
 }
 
 void	hashtag(char *format, t_modifiers *mods)
 {
-	if (*format++ == ' ')
-		mods->minus = 1;
+	if (*format == '#')
+		mods->hash = 1;
 }

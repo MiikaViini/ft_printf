@@ -6,23 +6,23 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 09:39:49 by mviinika          #+#    #+#             */
-/*   Updated: 2021/12/26 12:29:48 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/23 11:17:05 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include  "libft.h"
 
-static size_t	ft_lenint(int n)
+static size_t	ft_lenint(long long n)
 {
 	unsigned char	len;
 
 	len = 1;
-	if (n < 0 )
-	{
-		if (n == -2147483648)
-			n = n + 1;
-		n = n * -1;
-	}
+	// if (n < 0 )
+	// {
+	// 	if (n == -2147483648)
+	// 		n = n + 1;
+	// 	n = n * -1;
+	// }
 	while (n > 0)
 	{
 		n = n / 10;
@@ -31,7 +31,7 @@ static size_t	ft_lenint(int n)
 	return (len);
 }
 
-static	int	ft_isminus(int n)
+static	long long	ft_isminus(long long n)
 {
 	if (n >= 0)
 		return (0);
@@ -39,25 +39,25 @@ static	int	ft_isminus(int n)
 		return (1);
 }
 
-static	int	ft_remsign(int n)
+static	long long	ft_remsign(long long n)
 {
 	if (n <= 0)
 		return (n * -1);
 	return (n);
 }
 
-static	int	ft_ismin(int n)
+static	long long	ft_ismin(long long n)
 {
 	if (n == -2147483648)
 		n = n + 1;
 	return (n);
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoa(long long n)
 {
 	char	*num;
 	size_t	i;
-	int		t;
+	long long		t;
 
 	t = n;
 	n = ft_ismin(n);

@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 14:13:57 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/22 21:55:33 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/23 11:32:30 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s);
 char	*ft_strnew(size_t size);
 char	**ft_strsplit(char const *s, char c);
-char	*ft_itoa(int n);
+char	*ft_itoa(long long n);
 char	*ft_strcpy(char *dest, const char *src);
 char	*ft_strncpy(char *dest, const char *src, size_t n);
 char	*ft_strchr(const char *s, int c);
@@ -94,8 +94,8 @@ double	ft_pow(double num, double pow);
 int		bintodec(signed long long bin);
 int		ft_intlen(int n);
 char	*ft_itoabase(unsigned long long int num, int base, int flag);
-char	*ft_ftoa(long double num, int afterpoint);
+char	*ft_ftoa(double num, int afterpoint);
 char	*ft_ltoa(long long int n);
-char	*ft_utoa(unsigned int n);
+char	*ft_utoa(unsigned long long n);
 
 #endif

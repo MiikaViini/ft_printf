@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 09:58:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/22 21:12:39 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/23 11:26:27 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@
 # include <stdarg.h>
 # include <stdio.h>
 
-# define CONV " discoxfpu"
-//# define LEN "lh"
-# define MODS "-+.0#* lh"
+# define CONV " discoxXfpu"
+# define MODS "-+.0#* lhL"
 # define CAPITAL 32
 
 typedef struct s_modifiers
@@ -33,12 +32,12 @@ typedef struct s_modifiers
 	int			star;
 	int			l;
 	int			h;
+	int			ld;
+	int			cap_x;
 }				t_modifiers;
 
 typedef int				(*t_converse)(va_list args, t_modifiers *mods);
-//typedef void			(*t_length)(char *format, t_modifiers *mods);
 typedef void			(*t_mods)(char *format, t_modifiers *mods);
-
 
 int						ft_printf(char *format, ...);
 int						conversion(va_list args, char *format);
@@ -64,8 +63,15 @@ void					plus(char *format, t_modifiers *mods);
 void					space(char *format, t_modifiers *mods);
 void					hashtag(char *format, t_modifiers *mods);
 void					zero(char *format, t_modifiers *mods);
+void					cap_x(char *format, t_modifiers *mods);
 char					*type_cast(unsigned long long num, t_modifiers *mods, int base);
 char					*type_cast_int(long long int num, t_modifiers *mods);
+char					*type_cast_double(long double num, t_modifiers *mods);
+void					ld_length(char *format, t_modifiers *modifiers);
+
+
+//int						ld_converse(va_list args, t_modifiers *mods);
+
 //void					init_struct(t_modifiers *mods);
 
 //  static const t_length	g_length[5] = {
@@ -73,7 +79,7 @@ char					*type_cast_int(long long int num, t_modifiers *mods);
 // 	 h_length
 //  };
 
- static const t_mods	g_mods[10] = {
+ static const t_mods	g_mods[15] = {
 	 minus,
 	 plus,
 	 dot,
@@ -82,10 +88,11 @@ char					*type_cast_int(long long int num, t_modifiers *mods);
 	 star,
 	 space,
 	 l_length,
-	 h_length
+	 h_length,
+	 ld_length
  };
 
-static const t_converse	g_specif[10] = {
+static const t_converse	g_specif[15] = {
 	d_converse,
 	d_converse,
 	d_converse,
@@ -93,9 +100,11 @@ static const t_converse	g_specif[10] = {
 	c_converse,
 	o_converse,
 	x_converse,
+	x_converse,
 	f_converse,
 	p_converse,
 	u_converse
+	// ld_converse
 };
 
 #endif

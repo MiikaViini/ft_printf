@@ -1,72 +1,61 @@
-#include  "libft.h"
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_ltoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/23 11:49:11 by mviinika          #+#    #+#             */
+/*   Updated: 2022/03/23 13:57:57 by mviinika         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-static size_t	ft_lenint(long long int n)
+#include "libft.h"
+
+static size_t	intlen(unsigned long long n)
 {
-	unsigned char	len;
+	int	len;
 
 	len = 1;
-	// if (n < 0 )
-	// {
-	// 	if (n == -2147483648)
-	// 		n = n + 1;
-	// 	n = n * -1;
-	// }
-	while (n > 0)
-	{
-		n = n / 10;
+	if (n < 0)
 		len++;
-	}
+	while (n > 0 && len++)
+		n = n / 10;
 	return (len);
 }
 
-// static	int	ft_isminus(long long int n)
-// {
-// 	if (n >= 0)
-// 		return (0);
-// 	else
-// 		return (1);
-// }
-
-// static	int	ft_remsign(long long int n)
-// {
-// 	if (n <= 0)
-// 		return (n * -1);
-// 	return (n);
-// }
-
-// static	int	ft_ismin(long long int n)
-// {
-// 	if (n == -2147483648)
-// 		n = n + 1;
-// 	return (n);
-// }
-
-char	*ft_ltoa(long long int n)
+unsigned long long	treat_minus(long long n)
 {
-	char			*num;
-	size_t			i;
-	long long int	t;
+	unsigned long	temp;
 
-	t = n;
-	//printf("%lld", n);
-	//n = ft_ismin(n);
-	//n = ft_remsign(n);
-	i = 0;
-	num = (char *)malloc(sizeof(char) * (ft_lenint(t) + 1));
-	if (!num)
-		return (NULL);
-	if (n == 0)
-		num[i++] = '0';
-	while (n > 0)
+	temp = 0;
+	n = ~n;
+	temp += (unsigned long)n + 1;
+	return (temp);
+}
+
+char	*ft_ltoa(long long n)
+{
+	char			*res;
+	size_t			len;
+	unsigned long	temp;
+
+	if (n < 0)
+		temp = treat_minus(n);
+	else if (n == 0)
+		return ("0");
+	else
+		temp = (unsigned long)n;
+	len = intlen(temp);
+	res = ft_strnew(len + 1);
+	if (n < 0)
+			res[0] = '-';
+	else
+		len--;
+	while (temp && len--)
 	{
-		num[i++] = (n % 10) + '0';
-		n = n / 10;
+		res[len] = (temp % 10) + '0';
+		temp /= 10;
 	}
-	// if (t == -2147483648)
-	// 	*num = *num + 1;
-	// if (ft_isminus(t) == 1)
-	// 	num[i++] = '-';
-	num[i] = '\0';
-	return (ft_strrev(num));
+	return (res);
 }

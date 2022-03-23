@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 11:30:23 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/22 14:27:35 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/23 15:07:37 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,23 +36,19 @@ static char	*ft_over_sixteen(unsigned long long int num, int base, int flag)
 
 char	*ft_itoabase(unsigned long long int num, int base, int flag)
 {
-	unsigned long long int	res;
-	unsigned long long int	count;
-	int				remainder;
+	int						i;
+	char					*res;
 
-	res = 0;
-	count = 1;
-	remainder = 0;
+	res = ft_strnew(24);
+	i = 0;
 	if (num == 0)
-		return (ft_itoa(0));
+		return ("0");
 	if (base > 15)
 		return (ft_over_sixteen(num, base, flag));
 	while (num)
 	{
-		remainder = num % base;
-		res += remainder * count;
+		res[i++] = (num % base) + '0';
 		num /= base;
-		count *= 10;
 	}
-	return (ft_ltoa(res));
+	return (ft_strrev(res));
 }

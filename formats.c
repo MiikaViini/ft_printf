@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 11:29:41 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/22 21:57:58 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/23 14:21:08 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ int	c_converse(va_list args, t_modifiers *mods)
 
 int	o_converse(va_list args, t_modifiers *mods)
 {
-	int		num;
+	unsigned long long	num;
 	char	*string;
 
-	num = va_arg(args, int );
+	num = va_arg(args, unsigned long long );
 	string = type_cast(num, mods, 8);
 	ft_putstr(string);
 	return (ft_strlen(string));
@@ -61,7 +61,6 @@ int	x_converse(va_list args, t_modifiers *mods)
 
 	num = va_arg(args, unsigned long long int );
 	string = type_cast(num, mods, 16);
-	//printf("h%d\n", mods->h);
 	ft_putstr(string);
 	return (ft_strlen(string));
 }
@@ -80,13 +79,15 @@ int	p_converse(va_list args, t_modifiers *mods)
 
 int	f_converse(va_list args, t_modifiers *mods)
 {
-	double	num;
+	long double	num;
 	char	*string;
 
-	num = va_arg(args, double );
+	if (mods->ld == 1)
+		num = va_arg(args, long double );
+	else
+		num = va_arg(args, double );
 	string = ft_ftoa(num, 6);
 	ft_putstr(string);
-	(void)mods;
 	return (ft_strlen(string));
 }
 
@@ -100,3 +101,4 @@ int	u_converse(va_list args, t_modifiers *mods)
 	ft_putstr(string);
 	return (ft_strlen(string));
 }
+
