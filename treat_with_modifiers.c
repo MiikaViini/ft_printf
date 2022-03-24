@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main2.c                                            :+:      :+:    :+:   */
+/*   treat_with_modifiers.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/14 13:34:02 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/24 13:55:14 by mviinika         ###   ########.fr       */
+/*   Created: 2022/03/24 11:04:49 by mviinika          #+#    #+#             */
+/*   Updated: 2022/03/24 11:30:59 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <limits.h>
-#include <stdio.h>
 
-int main()
+char *treat_precision(char *string, t_modifiers *mods)
 {
-	//int joo = 123;
-	long double juh = 1.123451212312312321231231231321;
+	char	*res;
+	int		len;
+	int		i;
 
-	ft_printf("%.20Lf\n", juh);
-	printf("%.20Lf\n", juh);
+	i = 0;
+	res = ft_strnew(mods->precision);
+	len = ft_strlen(string);
+	while (len < mods->precision)
+	{
+		res[i++] = '0';
+		mods->precision--;
+	}
+	return (ft_strjoin(res, string));
 }

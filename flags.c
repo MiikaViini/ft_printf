@@ -12,44 +12,65 @@
 
 #include "ft_printf.h"
 
-void	dot(char *format, t_modifiers *mods)
+char	*dot(va_list args, char *format, t_modifiers *mods)
 {
-	if (*format == '.')
-		mods->dot = 1;
+	char	*num;
+	int		i;
+	int		prec_int;
+
+	i = 0;
+	num = ft_strnew(21);
+	prec_int = 0;
+	format++;
+	if (mods->star == 1)
+	{
+		mods->precision = va_arg(args, int );
+		return (format);
+	}
+	while (*format >= '0' && *format <= '9')
+		num[i++] = *format++;
+	mods->precision = ft_atoi(num);
+	return (format);
 }
 
-void	star(char *format, t_modifiers *mods)
-{
-	if (*format == '*')
-		mods->star = 1;
-}
+// char	*star(va_list args, char *format, t_modifiers *mods)
+// {
+// 	if (*format == '*')
+// 		mods->star = 1;
+// 	return (format);
+// }
 
-void	minus(char *format, t_modifiers *mods)
-{
-	if (*format == '-')
-		mods->minus = 1;
-}
+// char	*minus(va_list args, char *format, t_modifiers *mods)
+// {
+// 	if (*format == '-')
+// 		mods->minus = 1;
+// 	return (format);
+// }
 
-void	plus(char *format, t_modifiers *mods)
-{
-	if (*format == '+')
-		mods->minus = 1;
-}
+// char	*plus(va_list args, char *format, t_modifiers *mods)
+// {
+// 	if (*format == '+')
+// 		mods->minus = 1;
+// 	return (format);
+// }
 
-void	zero(char *format, t_modifiers *mods)
-{
-	if (*format == '0')
-		mods->zero = 1;
-}
+// char	*zero(va_list args, char *format, t_modifiers *mods)
+// {
+// 	if (*format == '0')
+// 		mods->zero = 1;
+// 	return (format);
+// }
 
-void	space(char *format, t_modifiers *mods)
-{
-	if (*format == ' ')
-		mods->space = 1;
-}
+// char	*space(va_list args, char *format, t_modifiers *mods)
+// {
+// 	if (*format == ' ')
+// 		mods->space = 1;
+// 	return (format);
+// }
 
-void	hashtag(char *format, t_modifiers *mods)
-{
-	if (*format == '#')
-		mods->hash = 1;
-}
+// char	*hashtag(va_list args, char *format, t_modifiers *mods)
+// {
+// 	if (*format == '#')
+// 		mods->hash = 1;
+// 	return (format);
+// }
