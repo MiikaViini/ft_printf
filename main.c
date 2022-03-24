@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 13:34:02 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/23 15:06:03 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/23 22:38:59 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	main(void)
 	char *addr = "12345";
 	int in = 132313;
 	int *p;
+
 
 	p = &in;
 
@@ -100,8 +101,89 @@ int	main(void)
 	printf("string OG %s\n", " ");
 	ft_printf("string IM %s\n"," ");
 
-		printf("string OG %lo\n", llmad);
+	printf("string OG %o\n", llmad);
+	ft_printf("string IM %o\n",llmad);
+
+	printf("string OG %o\n", in);
+	ft_printf("string IM %o\n",in);
+
+	printf("string OG %o\n", smad);
+	ft_printf("string IM %o\n",smad);
+
+
+	printf("string OG %o\n", sman);
+	ft_printf("string IM %o\n",sman);
+
+	printf("string OG %o\n", us);
+	ft_printf("string IM %o\n",us);
+
+
+	printf("string OG %lo\n", llmad);
 	ft_printf("string IM %lo\n",llmad);
+
+	printf("string OG %lo\n", in);
+	ft_printf("string IM %lo\n",in);
+
+	printf("string OG %lo\n", smad);
+	ft_printf("string IM %lo\n",smad);
+
+
+	printf("string OG %lo\n", sman);
+	ft_printf("string IM %lo\n",sman);
+
+	printf("string OG %lo\n", us);
+	ft_printf("string IM %lo\n",us);
+
+		printf("string OG %llo\n", llmad);
+	ft_printf("string IM %llo\n",llmad);
+
+	printf("string OG %llo\n", in);
+	ft_printf("string IM %llo\n",in);
+
+	printf("string OG %llo\n", smad);
+	ft_printf("string IM %llo\n",smad);
+
+
+	printf("string OG %llo\n", sman);
+	ft_printf("string IM %llo\n",sman);
+
+	printf("string OG %llo\n", us);
+	ft_printf("string IM %llo\n",us);
+
+
+		printf("string OG %ho\n", llmad);
+	ft_printf("string IM %ho\n",llmad);
+
+	printf("string OG %ho\n", in);
+	ft_printf("string IM %ho\n",in);
+
+	printf("string OG %ho\n", smad);
+	ft_printf("string IM %ho\n",smad);
+
+
+	printf("string OG %ho\n", sman);
+	ft_printf("string IM %ho\n",sman);
+
+	printf("string OG %ho\n", us);
+	ft_printf("string IM %ho\n",us);
+
+
+
+		printf("string OG %hho\n", llmad);
+	ft_printf("string IM %hho\n",llmad);
+
+	printf("string OG %hho\n", in);
+	ft_printf("string IM %hho\n",in);
+
+	printf("string OG %hho\n", smad);
+	ft_printf("string IM %hho\n",smad);
+
+
+	printf("string OG %hho\n", sman);
+	ft_printf("string IM %hho\n",sman);
+
+	printf("string OG %hho\n", us);
+	ft_printf("string IM %hho\n",us);
 
 	printf("string OG octal %llo\n", ULONG_MAX);
 	ft_printf("string IM octal %llo\n", ULONG_MAX);
@@ -109,8 +191,8 @@ int	main(void)
 	printf("string OG %lo\n", llmad);
 	ft_printf("string IM %lo\n",llmad);
 
-		printf("string OG %llo\n", -9223372036854775808);
-	ft_printf("string IM %llo\n", -9223372036854775808);
+		printf("string OG %llx\n", -9223372036854775808);
+	ft_printf("string IM %llx\n", -9223372036854775808);
 
 
 
