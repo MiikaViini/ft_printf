@@ -6,16 +6,16 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 09:57:54 by mviinika          #+#    #+#             */
-/*   Updated: 2022/02/10 15:19:32 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/25 17:06:52 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_abs(int num)
+unsigned long long	ft_abs(long long num)
 {
 	if (num < 0)
 	{
-		num--;
 		num = ~num;
+		num++;
 	}
 	return (num);
 }

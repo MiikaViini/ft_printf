@@ -6,44 +6,60 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 20:54:44 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/25 10:23:26 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/25 17:43:07 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 
-char	*ft_ftoa(long double num, int afterpoint)
+static char	*toarr(long double fract, long long inte, int afterpoint, int sign)
 {
-	unsigned long long		l_dot;
-	long double				r_dot;
-	char					*res;
-	char					*integer;
-	int						remain;
+	char	*integer;
+	char	*fractions;
+	int		i;
+	int		remain;
 
-
-	remain = 0;
-	counter = 0;
-	l_dot = (unsigned long long)num;
-	r_dot = num - (long double)l_dot;
-	integer = ft_strnew(21);
-	//integer = ft_itoa(l_dot);
+	i = 0;
+	if (sign)
+		integer = ft_itoa(inte * (-1));
+	else
+		integer = ft_itoa(inte);
+	if (afterpoint > 6)
+		fractions = ft_strnew(afterpoint + i + 2);
+	else
+		fractions = ft_strnew(6 + i + 2);
 	if (afterpoint != 0)
-		integer[ft_strlen(integer)] = '.';
-	//r_dot = r_dot * ft_pow(10, afterpoint);
+		fractions[i++] = '.';
 	while (afterpoint-- > 0)
 	{
-			r_dot = r_dot * 10.0;
-			remain = (int)r_dot;
-			r_dot = r_dot - (long double)remain;
-			//r_dot = num - (long double)remain;
-			//printf("r_dot %.20Lf\n", r_dot);
-			printf("remain %d\n", remain);
-			//printf("remain %d\n", remain);
-			//remain = 0;
+		fract = fract * 10.0;
+		remain = (int)fract;
+		fractions[i++] = remain + '0';
+		fract = fract - (long double)remain;
 	}
+	fractions = ft_strjoin(integer, fractions);
+	return (fractions);
+}
 
-	res = ft_strjoin(integer, ft_utoa((unsigned long long)r_dot));
-	free(integer);
+char	*ft_ftoa(long double num, int afterpoint)
+{
+	long long	l_dot;
+	long double	r_dot;
+	char		*res;
+	int			sign;
+
+	sign = (int)num;
+	
+	if (1 / num < 0)
+	{
+		printf("something");
+		num = num * -1;
+		sign = 1;
+	}
+	
+	l_dot = (long long)num;
+	r_dot = num - (long double)l_dot;
+	res = toarr(r_dot, l_dot, afterpoint, sign);
 	return (res);
 }

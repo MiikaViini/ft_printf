@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 14:13:57 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/24 13:52:26 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/25 16:18:00 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,9 @@ int		ft_isspace(int c);
 void	ft_swap(int *a, int *b);
 char	*ft_strndup(const char *s, size_t size);
 int		ft_abs(int num);
-long double	ft_pow(long double num, long double pow);
+double	ft_pow(double num, double pow);
 int		bintodec(signed long long bin);
-int		ft_intlen(int n);
+size_t	ft_intlen(long long n);
 char	*ft_itoabase(unsigned long long int num, int base, int flag);
 char	*ft_ftoa(long double num, int afterpoint);
 char	*ft_ltoa(long long int n);
