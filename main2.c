@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 13:34:02 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/24 13:55:14 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/25 10:21:45 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 int main()
 {
 	//int joo = 123;
-	long double juh = 1.123451212312312321231231231321;
+	double juh = 1.90876;
 
-	ft_printf("%.20Lf\n", juh);
-	printf("%.20Lf\n", juh);
+	ft_printf("%.30f\n", juh);
+	printf("%.30f\n", juh);
 }

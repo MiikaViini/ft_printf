@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 11:29:41 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/24 13:56:57 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/24 19:41:16 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	s_converse(va_list args, t_modifiers *mods)
 	(void)mods;
 	string = va_arg(args, char *);
 	//string = treat_precision(string, mods);
-	
+
 	ft_putstr(ft_strndup(string, mods->precision));
 	count = ft_strlen(string);
 	//free(string);
