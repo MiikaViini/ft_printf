@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 09:58:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/24 12:12:58 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/28 15:20:25 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 # include <stdarg.h>
 # include <stdio.h>
 
-# define CONV " discoxXfpu"
-# define MODS ".-+0#* "
-# define LEN "lhL"
+# define CONV "discoxXfpu"
+# define MODS ".lhL-+0#* "
+//# define LEN "lhL"
 # define CAPITAL 32
 
 typedef struct s_modifiers
@@ -40,7 +40,7 @@ typedef struct s_modifiers
 
 typedef int				(*t_converse)(va_list args, t_modifiers *mods);
 typedef char			*(*t_mods)(va_list args, char *format, t_modifiers *mods);
-typedef void			(*t_length)(char *format, t_modifiers *mods);
+//typedef char			*(*t_length)(char *format, t_modifiers *mods);
 // typedef char			*(*t_treat)(char *format, t_modifiers *mods);
 
 int						ft_printf(char *format, ...);
@@ -56,9 +56,9 @@ int						s_converse(va_list args, t_modifiers *mods);
 int						o_converse(va_list args, t_modifiers *mods);
 int						x_converse(va_list args, t_modifiers *mods);
 
-void					l_length(char *format, t_modifiers *mods);
-void					h_length(char *format, t_modifiers *mods);
-void					ld_length(char *format, t_modifiers *mods);
+char					*l_length(va_list args, char *format, t_modifiers *mods);
+char					*h_length(va_list args, char *format, t_modifiers *mods);
+char					*ld_length(va_list args, char *format, t_modifiers *mods);
 
 char					*check_modifiers(char *format, t_modifiers *mods, va_list args);
 
@@ -76,6 +76,8 @@ char					*type_cast_int(long long int num, t_modifiers *mods);
 char					*type_cast_double(long double num, t_modifiers *mods);
 
 char 					*treat_precision(char *string, t_modifiers *mods);
+t_modifiers				*init_struct(t_modifiers *mods);
+char					*check_edges(t_modifiers *mods, char *format);
 
 //char					*type_cast_double(double long num, t_modifiers *mods)
 
@@ -90,7 +92,10 @@ char 					*treat_precision(char *string, t_modifiers *mods);
 //  };
 
  static const t_mods	g_mods[15] = {
-	 dot
+	dot,
+	l_length,
+	h_length,
+	ld_length
 	//  minus,
 	//  plus,
 	//  zero,
@@ -99,18 +104,17 @@ char 					*treat_precision(char *string, t_modifiers *mods);
 	//  space,
  };
 
- static const t_length	g_length[3] = {
-	l_length,
-	h_length,
-	ld_length
- };
+//  static const t_length	g_length[5] = {
+// 	l_length,
+// 	h_length,
+// 	ld_length
+//  };
 
 //  static const t_treat	g_treat[3] = {
 // 	treat_precision
 //  };
 
 static const t_converse	g_specif[15] = {
-	d_converse,
 	d_converse,
 	d_converse,
 	s_converse,

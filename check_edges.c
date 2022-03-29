@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main2.c                                            :+:      :+:    :+:   */
+/*   check_edges.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/14 13:34:02 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/29 22:20:51 by mviinika         ###   ########.fr       */
+/*   Created: 2022/03/28 15:12:49 by mviinika          #+#    #+#             */
+/*   Updated: 2022/03/28 15:21:02 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <limits.h>
-#include <stdio.h>
 
-int main()
+char	*check_edges(t_modifiers *mods, char *format)
 {
-	//long long joo = 9223372036854775808;
-	 int juu = 500;
-	// int jaa = 1;
-	//char *pok = "fiesta hattu";
+	char	*res;
 
-	ft_printf("%d\n", juu);
-	printf("%d\n", juu);
+	res = ft_strnew(1);
+	if (mods->dot == 1 && mods->precision == 0)
+		return (res);
+	free(res);
+	return (format);
 }

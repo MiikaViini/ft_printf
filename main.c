@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 13:34:02 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/23 22:38:59 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/28 13:40:15 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ int	main(void)
 	char *addr = "12345";
 	int in = 132313;
 	int *p;
+
+	float flout = 123456.123456;
+	double doublu = 123456.123456123456;
 
 
 	p = &in;
@@ -45,8 +48,8 @@ int	main(void)
 
 	//unsigned long long ullmad = 18446744073709551615;
 
-	printf("string OG %ld\n", joo);
-	ft_printf("string IM %ld\n", joo);
+	printf("string OG %lld\n", joo);
+	ft_printf("string IM %lld\n", joo);
 
 
 
@@ -121,8 +124,8 @@ int	main(void)
 	printf("string OG %lo\n", llmad);
 	ft_printf("string IM %lo\n",llmad);
 
-	printf("string OG %lo\n", in);
-	ft_printf("string IM %lo\n",in);
+	printf("string OG %o\n", in);
+	ft_printf("string IM %o\n",in);
 
 	printf("string OG %lo\n", smad);
 	ft_printf("string IM %lo\n",smad);
@@ -179,22 +182,43 @@ int	main(void)
 	ft_printf("string IM %hho\n",smad);
 
 
-	printf("string OG %hho\n", sman);
-	ft_printf("string IM %hho\n",sman);
+	printf("string OG %ho\n", sman);
+	ft_printf("string IM %ho\n",sman);
 
-	printf("string OG %hho\n", us);
-	ft_printf("string IM %hho\n",us);
+	printf("string OG %ho\n", us);
+	ft_printf("string IM %ho\n",us);
 
 	printf("string OG octal %llo\n", ULONG_MAX);
 	ft_printf("string IM octal %llo\n", ULONG_MAX);
 
-	printf("string OG %lo\n", llmad);
-	ft_printf("string IM %lo\n",llmad);
+	printf("string OG %llo\n", llmad);
+	ft_printf("string IM %llo\n",llmad);
 
 		printf("string OG %llx\n", -9223372036854775808);
 	ft_printf("string IM %llx\n", -9223372036854775808);
 
+		printf("string OG %f\n", flout);
+	ft_printf("string IM %f\n", flout);
 
+		printf("string OG %Lf\n", flout);
+	ft_printf("string IM %Lf\n", flout);
 
+	printf("string OG %lf\n", flout);
+	ft_printf("string IM %lf\n", flout);
+
+	printf("string OG %llf\n", flout);
+	ft_printf("string IM %llf\n", flout);
+
+	printf("string OG %f\n", doublu);
+	ft_printf("string IM %f\n", doublu);
+
+		printf("string OG %Lf\n", doublu);
+	ft_printf("string IM %Lf\n", doublu);
+
+	printf("string OG %lf\n", doublu);
+	ft_printf("string IM %lf\n", doublu);
+
+	printf("string OG %llf\n", doublu);
+	ft_printf("string IM %llf\n", doublu);
 	return (0);
 }

@@ -6,13 +6,14 @@
 #    By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/14 12:56:26 by mviinika          #+#    #+#              #
-#    Updated: 2022/03/24 11:23:29 by mviinika         ###   ########.fr        #
+#    Updated: 2022/03/28 15:20:01 by mviinika         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS = ft_printf.c \
 	formats.c length.c \
-	flags.c treat_with_modifiers.c
+	flags.c treat_with_modifiers.c \
+	init_struct.c check_edges.c
 
 OBJS = $(SRCS:.c=.o)
 

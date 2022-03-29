@@ -6,14 +6,14 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 20:54:44 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/25 17:43:07 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/28 14:55:58 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 
-static char	*toarr(long double fract, long long inte, int afterpoint, int sign)
+static char	*toarr(long double fract, unsigned long long inte, int afterpoint, int sign)
 {
 	char	*integer;
 	char	*fractions;
@@ -42,23 +42,37 @@ static char	*toarr(long double fract, long long inte, int afterpoint, int sign)
 	return (fractions);
 }
 
+char	*infinity(int afterpoint)
+{
+	char	*res;
+	int		i;
+
+	i = 0;
+	res = ft_strnew(1 + afterpoint);
+	res[i++] = '-';
+	res[i++] = '0';
+	res[i++] = '.';
+	while (afterpoint-- > 0)
+		res[i++] = '0';
+	return (res);
+}
+
 char	*ft_ftoa(long double num, int afterpoint)
 {
-	long long	l_dot;
-	long double	r_dot;
-	char		*res;
-	int			sign;
+	unsigned long long	l_dot;
+	long double			r_dot;
+	char				*res;
+	int					sign;
 
-	sign = (int)num;
-	
-	if (1 / num < 0)
+	sign = 0;
+	if (num < 0)
 	{
-		printf("something");
 		num = num * -1;
 		sign = 1;
 	}
-	
-	l_dot = (long long)num;
+	if (1 / num < 0)
+		return (infinity(afterpoint));
+	l_dot = (unsigned long long)num;
 	r_dot = num - (long double)l_dot;
 	res = toarr(r_dot, l_dot, afterpoint, sign);
 	return (res);
