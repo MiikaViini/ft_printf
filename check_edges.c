@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:12:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/30 14:51:38 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/30 21:31:59 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ char	*check_infinity(double num)
 	res = ft_strnew(4);
 	posinf = 1.0 / 0;
 	neginf = -1.0 / 0;
-	if (posinf == num)
-		res = strcpy(res, "inf");	
-	else if (neginf == num)
+	if (num == posinf)
+		res = strcpy(res, "inf");
+	else if (num == neginf)
 		res = strcpy(res, "-inf");
 	else if (num != num)
 		res = strcpy(res, "nan");

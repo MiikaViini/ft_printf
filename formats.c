@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 11:29:41 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/30 14:45:14 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/30 21:55:48 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int	d_converse(va_list args, t_modifiers *mods)
 	count = ft_strlen(string);
 	if (count < mods->width)
 		string = treat_width(string, mods, count);
+	if (mods->plus == 1 && num > 0)
+		string = ft_strjoin("+", string);
 	string = treat_precision(string, mods, count);
 	ft_putstr(check_edges(mods, string, num));
 	free(string);
@@ -68,7 +70,9 @@ int	o_converse(va_list args, t_modifiers *mods)
 	output = string;
 	if (mods->hash == 1)
 		output = ft_strjoin("0", string);
-	count = ft_strlen(string);
+	count = ft_strlen(output);
+	if (count < mods->width)
+		output = treat_width(string, mods, count);
 	output = treat_precision(output, mods, count);
 	ft_putstr(check_edges(mods, output, num));
 	free(string);
@@ -90,8 +94,11 @@ int	x_converse(va_list args, t_modifiers *mods)
 	else if (mods->hash == 1 && mods->cap_x == 0)
 		output = ft_strjoin("0X", string);
 	count = ft_strlen(string);
+	if (count < mods->width)
+		output = treat_width(string, mods, count);
 	output = treat_precision(output, mods, count);
 	ft_putstr(check_edges(mods, output, num));
+	count = ft_strlen(string);
 	free(string);
 	return (count);
 }
@@ -101,12 +108,16 @@ int	p_converse(va_list args, t_modifiers *mods)
 	long long int	num;
 	char			*string;
 	char			*output;
+	int				count;
 
 	(void)mods;
 	num = va_arg(args, long long int );
 	string = ft_itoabase(num, 16, 1);
 	output = ft_strjoin("0x", string);
-	ft_putstr(check_edges(mods, string, num));
+	count = ft_strlen(output);
+	if (count < mods->width)
+		output = treat_width(output, mods, count);
+	ft_putstr(check_edges(mods, output, num));
 	free(output);
 	free(string);
 	return (ft_strlen(string));
@@ -117,7 +128,7 @@ int	f_converse(va_list args, t_modifiers *mods)
 	long double		num;
 	char			*string;
 	int				count;
-
+	//char			*output;
 	if (mods->ld == 1)
 		num = va_arg(args, long double );
 	else
@@ -126,6 +137,13 @@ int	f_converse(va_list args, t_modifiers *mods)
 		mods->precision = 6;
 	string = ft_ftoa(num, mods->precision);
 	count = ft_strlen(string);
+	if (num == 1.0 / 0 || num == -1.0 / 0 || num != num)
+	{
+		ft_putstr(check_infinity(num));
+		return (ft_strlen(check_infinity(num)));
+	}
+	if (count < mods->width)
+		string = treat_width(string, mods, count);
 	ft_putstr(string);
 	free(string);
 	return (count);
@@ -140,6 +158,9 @@ int	u_converse(va_list args, t_modifiers *mods)
 	num = va_arg(args, unsigned long long );
 	string = type_cast(num, mods, 10);
 	count = ft_strlen(string);
+	if (count < mods->width)
+		string = treat_width(string, mods, count);
+	string = treat_precision(string, mods, count);
 	ft_putstr(check_edges(mods, string, num));
 	free(string);
 	return (count);

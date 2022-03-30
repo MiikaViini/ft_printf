@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 20:54:44 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/30 14:48:13 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/30 20:27:12 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ char	*ft_ftoa(long double num, int afterpoint)
 	}
 	else if (1 / num < 0)
 		return (minuszero(afterpoint));
-	else if (check_infinity(num) == 0)
 	l_dot = (unsigned long long)num;
 	r_dot = num - (long double)l_dot;
 	res = toarr(r_dot, l_dot, afterpoint, sign);
