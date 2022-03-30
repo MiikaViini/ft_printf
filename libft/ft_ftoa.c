@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 20:54:44 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/29 22:37:25 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/30 14:48:13 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static char	*toarr(long double fract, unsigned long long inte, int afterpoint, i
 	return (fractions);
 }
 
-char	*infinity(int afterpoint)
+static char	*minuszero(int afterpoint)
 {
 	char	*res;
 	int		i;
@@ -70,8 +70,9 @@ char	*ft_ftoa(long double num, int afterpoint)
 		num = num * -1;
 		sign = 1;
 	}
-	if (1 / num < 0)
-		return (infinity(afterpoint));
+	else if (1 / num < 0)
+		return (minuszero(afterpoint));
+	else if (check_infinity(num) == 0)
 	l_dot = (unsigned long long)num;
 	r_dot = num - (long double)l_dot;
 	res = toarr(r_dot, l_dot, afterpoint, sign);

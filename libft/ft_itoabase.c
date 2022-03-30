@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 11:30:23 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/28 13:35:16 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/30 10:28:50 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ char	*ft_itoabase(unsigned long long int num, int base, int flag)
 		res[i++] = (num % base) + '0';
 		num /= base;
 	}
+	printf("%s", res);
 	return (ft_strrev(res));
 }

@@ -40,12 +40,13 @@ char	*dot(va_list args, char *format, t_modifiers *mods)
 // 	return (format);
 // }
 
-// char	*minus(va_list args, char *format, t_modifiers *mods)
-// {
-// 	if (*format == '-')
-// 		mods->minus = 1;
-// 	return (format);
-// }
+char	*minus(va_list args, char *format, t_modifiers *mods)
+{
+	(void)args;
+	if (*format++ == '-')
+		mods->minus = 1;
+	return (format);
+}
 
 // char	*plus(va_list args, char *format, t_modifiers *mods)
 // {
@@ -68,9 +69,33 @@ char	*dot(va_list args, char *format, t_modifiers *mods)
 // 	return (format);
 // }
 
-// char	*hashtag(va_list args, char *format, t_modifiers *mods)
-// {
-// 	if (*format == '#')
-// 		mods->hash = 1;
-// 	return (format);
-// }
+char	*hashtag(va_list args, char *format, t_modifiers *mods)
+{
+	(void)args;
+	if (*format++ == '#')
+		mods->hash = 1;
+	return (format);
+}
+
+char	*width(va_list args, char *format, t_modifiers *mods)
+{
+	char	res[100];
+	int		i;
+
+	(void)args;
+	i = 0;
+	if (!ft_isdigit(*format))
+		return (format);
+	while (ft_isdigit(*format))
+		res[i++] = *format++;
+	res[i] = '\0';
+	mods->width = ft_atoi(res);
+	return (format);
+}
+
+char	*do_nothing(va_list args, char *format, t_modifiers *mods)
+{
+	(void)args;
+	(void)mods;
+	return (format);
+}

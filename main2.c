@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 13:34:02 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/29 22:39:34 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/03/30 14:43:48 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,14 @@
 
 int main()
 {
-	//long long joo = 9223372036854775808;
-	 long double juu = 1844674407370955161.1;
-	// int jaa = 1;
+	//long long joo = 922337203685477580;
+	 //long  juu = 0;
+	// char *joo = "jouo";
+	//long double jaa = 23.1;
 	//char *pok = "fiesta hattu";
 
-	ft_printf("%.10Lf\n", juu);
-	printf("%.10Lf\n", juu);
+	ft_printf("%f\n", -0.00);
+	printf("%f\n", -0.00);
+	// printf("%Lf", jaa);
+	// printf("\n");
 }
