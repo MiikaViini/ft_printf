@@ -87,6 +87,11 @@ char	*width(va_list args, char *format, t_modifiers *mods)
 	i = 0;
 	if (!ft_isdigit(*format))
 		return (format);
+	else if (*format == '0')
+	{
+		mods->zero = 1;
+		format++;
+	}
 	while (ft_isdigit(*format))
 		res[i++] = *format++;
 	res[i] = '\0';
@@ -98,5 +103,7 @@ char	*do_nothing(va_list args, char *format, t_modifiers *mods)
 {
 	(void)args;
 	(void)mods;
-	return (format++);
+	if (!ft_strrchr(CONV, *format))
+		format++;
+	return (format);
 }
