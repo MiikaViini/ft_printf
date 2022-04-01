@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 11:04:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/31 15:45:20 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/01 21:14:07 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	*is_num_neg(char *string, char *fill, t_modifiers *mods)
 		string[i] = string[i + 1];
 		i++;
 	}
-	temp = ft_strcpy((temp), fill);
+	temp = ft_strcpy(temp, fill);
 	string = ft_strjoin(temp, string);
 	//free(temp);
 	return (string);
@@ -83,10 +83,11 @@ char	*treat_width(char *string, t_modifiers *mods, int length, int num)
 		temp[i++] = c;
 	if (mods->minus == 1)
 		res = ft_strjoin(string, temp);
-	else if ((mods->minus == 0 && mods->zero == 1 && num < 0) || mods->plus)
+	else if ((mods->minus == 0 && mods->zero == 1 && num < 0) || (mods->plus && mods->precision > mods->width))
 		res = is_num_neg(string, temp, mods);
 	else
 		res = ft_strjoin(temp, string);
+	//printf("%s", string);
 	free(temp);
 	return (res);
 }
@@ -96,12 +97,13 @@ char	*treat_w_mods(char *str, t_modifiers *mods, int count, int num)
 	char	*res;
 
 	res = str;
-	if (mods->plus == 1 && !mods->width)
+	if (mods->plus == 1 && mods->width && !mods->dot)
 	{
 		count++;
 		res = ft_strjoin("+", str);
 	}
 	res = treat_precision(res, mods, count);
+
 	if (count < mods->width)
 		res = treat_width(res, mods, ft_strlen(res), num);
 	return (res);
