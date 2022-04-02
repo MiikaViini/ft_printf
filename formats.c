@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 11:29:41 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/01 21:43:46 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/02 08:11:31 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	s_converse(va_list args, t_modifiers *mods)
 	int		count;
 	char	*output;
 
+	if (mods->star)
+		mods->width = va_arg(args, int );
 	string = va_arg(args, char *);
 	output = string;
 	count = ft_strlen(string);
@@ -37,6 +39,10 @@ int	d_converse(va_list args, t_modifiers *mods)
 	char			*string;
 
 	num = va_arg(args, long long );
+	// if (mods->star == 2)
+	// 	mods->precision = va_arg(args, int)-1;
+
+
 	string = type_cast_int(num, mods);
 	count = ft_strlen(string);
 	string = treat_w_mods(string, mods, count, num);
@@ -149,8 +155,10 @@ int	f_converse(va_list args, t_modifiers *mods)
 	}
 	if (mods->plus == 1)
 		string = ft_strjoin("+", string);
+	if (mods->space && !mods->plus)
+		string = ft_strjoin(" ", string);
 	if (count < mods->width)
-		string = treat_width(string, mods, count + mods->plus, num);
+		string = treat_width(string, mods, count + mods->plus + mods->space, num);
 	ft_putstr(string);
 	free(string);
 	return (count);

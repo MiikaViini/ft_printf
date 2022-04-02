@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:06:29 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/31 14:24:07 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/02 08:39:26 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,13 @@ int	find_letter(char c, char *letters)
 			return (index);
 		index++;
 	}
-	return (7);
+	return (0);
 }
 
 char	*check_modifiers(char *format, t_modifiers *mods, va_list args)
 {
 	while (!ft_strrchr(CONV, *format))
 	{
-
 		format = width(args, format, mods);
 		format = g_mods[find_letter(*format, MODS)](args, format, mods);
 	}

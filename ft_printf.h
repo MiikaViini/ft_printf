@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 09:58:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/31 14:55:51 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/02 08:31:27 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <stdio.h>
 
 # define CONV "discoxXfpu%"
-# define MODS "#-.+lhL="
-// *
+# define MODS "* #-.+lhL="
+//
 # define CAPITAL 32
 
 typedef struct s_modifiers
@@ -89,7 +89,10 @@ t_modifiers				*init_struct(t_modifiers *mods);
 char					*check_edges(t_modifiers *mods, char *format, int num);
 
 char					*do_nothing(va_list args, char *format, t_modifiers *mods);
+int						do_nothing_conv(va_list args, t_modifiers *mods);
 static const t_mods	g_mods[15] = {
+	star,
+	space,
 	hashtag,
 	minus,
 	dot,
@@ -114,7 +117,8 @@ static const t_converse	g_specif[15] = {
 	f_converse,
 	p_converse,
 	u_converse,
-	per_converse
+	per_converse,
+	do_nothing_conv
 };
 
 #endif

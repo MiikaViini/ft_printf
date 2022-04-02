@@ -21,11 +21,6 @@ char	*apply_num(va_list args, char *format, t_modifiers *mods)
 	i = 0;
 	num = ft_strnew(21);
 	prec_int = 0;
-	if (mods->star == 1 && format++)
-	{
-		mods->precision = va_arg(args, int );
-		return (format);
-	}
 	while (*format >= '0' && *format <= '9')
 		num[i++] = *format++;
 	mods->precision = ft_atoi(num);
