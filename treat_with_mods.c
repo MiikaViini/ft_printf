@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 11:04:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/06 15:27:43 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/06 15:50:27 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ char	*treat_precision(char *string, t_modifiers *mods, int length, int num)
 	if (mods->plus && string[i] != '+'&& num >= 0)
 	{
 		res[i++] = '+';
+	}
+	if (string[i] != '-' && num < 0)
+	{
+		res[i++] = '-';
 	}
 	while (length < mods->precision)
 	{	
@@ -85,7 +89,7 @@ char	*treat_width(char *string, t_modifiers *mods, int length, int num)
 	temp = ft_strnew(count);
 	if (mods->zero == 1 && mods->minus == 0)
 		c = '0';
-	while (count-- > 0 && i <= mods->width - (int)ft_strlen(string))
+	while (count-- > 0 && i < mods->width - (int)ft_strlen(string))
 		temp[i++] = c;
 	if (mods->minus == 1)
 		res = ft_strjoin(res, temp);
