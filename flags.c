@@ -23,15 +23,11 @@ char	*dot(va_list args, char *format, t_modifiers *mods)
 	prec_int = 0;
 	(void)args;
 	format++;
-	// if (format++ && mods->star == 2)
-	// {
-	// 	mods->precision = va_arg(args, int );
-	// 	return (format);
-	// }
 	while (*format >= '0' && *format <= '9')
 		num[i++] = *format++;
 	mods->precision = ft_atoi(num);
 	mods->dot = 1;
+	free(num);
 	return (format);
 }
 

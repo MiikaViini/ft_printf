@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 11:30:23 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/30 21:11:39 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/02 18:55:26 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ char	*ft_itoabase(unsigned long long int num, int base, int flag)
 	res = ft_strnew(24);
 	i = 0;
 	res[0] = '0';
+	if (num == 0)
+		return (res);
 	if (base > 15)
 		return (ft_over_sixteen(num, base, flag));
 	while (num)

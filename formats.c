@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 11:29:41 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/02 08:11:31 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/04 21:13:05 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,19 @@ int	s_converse(va_list args, t_modifiers *mods)
 	if (mods->star)
 		mods->width = va_arg(args, int );
 	string = va_arg(args, char *);
-	output = string;
+	if (string == NULL)
+	{
+		ft_putstr("(null)");
+		return (6);
+	}
 	count = ft_strlen(string);
-	if (mods->precision < count)
+	if (mods->precision)
 		output = ft_strndup(string, mods->precision);
-	output = ft_strdup(string);
-	output = treat_width(output, mods, ft_strlen(output), count);
-	ft_putstr(output);
-	free(output);
+	else
+		output = ft_strdup(string);
+	string = treat_width(output, mods, ft_strlen(output), count);
+	ft_putstr(string);
+	count = ft_strlen(string);
 	return (count);
 }
 
@@ -59,11 +64,33 @@ int	d_converse(va_list args, t_modifiers *mods)
 
 int	c_converse(va_list args, t_modifiers *mods)
 {
-	int	c;
-	(void)mods;
+	char	*str;
+	int		c;
+
+	str = ft_strnew(mods->width);
 	c = va_arg(args, int );
-	ft_putchar(c);
-	return (1);
+	if (!c)
+	{
+		str = treat_width(str, mods, ft_strlen(str), c);
+		if (mods->minus)
+		{
+			ft_putchar(c);
+			ft_putstr(str + 1);
+			return (ft_strlen(str));
+		}
+		else if (mods->width)
+		{
+			ft_putstr(str + 1);
+			ft_putchar(c);
+			return (ft_strlen(str));
+		}
+		ft_putchar(c);
+		return (1);
+	}
+	str[0] = c;
+	str = treat_width(str, mods, ft_strlen(str), c);
+	ft_putstr(str);
+	return (ft_strlen(str));
 }
 
 int	o_converse(va_list args, t_modifiers *mods)
@@ -85,31 +112,26 @@ int	o_converse(va_list args, t_modifiers *mods)
 	output = treat_w_mods(string, mods, count, num);
 	ft_putstr(check_edges(mods, output, num));
 	free(string);
-	return (count);
+	return (ft_strlen(output));
 }
 
 int	x_converse(va_list args, t_modifiers *mods)
 {
 	unsigned long long		num;
 	char					*string;
-	int						count;
 	char					*output;
+	int						count;
 
 	num = va_arg(args, unsigned long long int );
 	string = type_cast(num, mods, 16);
-	output = string;
-	if (mods->hash == 1 && mods->cap_x == 1)
-		output = ft_strjoin("0x", string);
-	else if (mods->hash == 1 && mods->cap_x == 0)
-		output = ft_strjoin("0X", string);
+	string = treat_zerox(string, mods, num);
+	output = ft_strdup(string);
+	string = treat_width(output, mods, ft_strlen(string), num);
+	output = ft_strdup(string);
+	string = check_edges(mods, output, num);
 	count = ft_strlen(string);
-	// if (count < mods->width)
-	// 	output = treat_width(string, mods, count, num);
-	// output = treat_precision(output, mods, count);
-	output = treat_w_mods(string, mods, count, num);
-	ft_putstr(check_edges(mods, output, num));
-	count = ft_strlen(string);
-	free(string);
+	ft_putstr(string);
+	ft_strdel(&output);
 	return (count);
 }
 
@@ -160,8 +182,8 @@ int	f_converse(va_list args, t_modifiers *mods)
 	if (count < mods->width)
 		string = treat_width(string, mods, count + mods->plus + mods->space, num);
 	ft_putstr(string);
-	free(string);
-	return (count);
+	//free(string);
+	return (ft_strlen(string));
 }
 
 int	u_converse(va_list args, t_modifiers *mods)
@@ -185,10 +207,24 @@ int	u_converse(va_list args, t_modifiers *mods)
 int per_converse(va_list args, t_modifiers *mods)
 {
 	int	count;
+	char	*res;
+	int		i;
 
-	(void)mods;
-	(void)args;
+	i = 0;
 	count = 0;
-	ft_putchar('%');
-	return(1);
+	(void)args;
+	res = ft_strnew(1 + mods->width);
+	if (!mods->width)
+	{
+		ft_putchar('%');
+		return(1);
+	}
+	while (mods->width && i < mods->width - 1)
+		res[i++] = ' ';
+	if (mods->width && !mods->minus)
+		res = ft_strjoin(res, "%");
+	else if (mods->minus)
+		res = ft_strjoin("%", res);
+	ft_putstr(res);
+	return(ft_strlen(res));
 }

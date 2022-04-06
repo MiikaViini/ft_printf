@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:06:29 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/02 08:39:26 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/02 20:06:05 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@ int	find_letter(char c, char *letters)
 	int	index;
 
 	index = 0;
+
 	while (letters[index])
 	{
 		if (letters[index] == c)
 			return (index);
 		index++;
 	}
-	return (0);
+	return (index);
 }
 
 char	*check_modifiers(char *format, t_modifiers *mods, va_list args)
@@ -35,6 +36,7 @@ char	*check_modifiers(char *format, t_modifiers *mods, va_list args)
 	}
 	if (*format == 'x')
 		mods->cap_x = 1;
+
 	return (format);
 }
 
@@ -57,8 +59,11 @@ int	conversion(va_list args, char *format)
 		if (!*format)
 			break ;
 		ft_putchar(*format);
+
 		format++;
+		ch_count++;
 	}
+	//free(format);
 	free(modifiers);
 	return (ch_count);
 }
@@ -74,7 +79,7 @@ int	ft_printf(char *format, ...)
 	if (!temp)
 		return (-1);
 	va_start(list, format);
-	count += conversion (list, temp);
+	count += conversion(list, temp);
 	va_end(list);
 	free(temp);
 	//system("leaks a.out");

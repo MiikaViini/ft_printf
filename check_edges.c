@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:12:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/30 21:31:59 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/04 18:12:29 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,42 @@
 
 char	*check_edges(t_modifiers *mods, char *format, int num)
 {
-	char	*res;
+	char	*temp;
+	int		i;
 
-	res = ft_strnew(1);
-	if (mods->dot == 1 && mods->precision == 0 && num == 0)
-		return (res);
-	free(res);
+	i = 0;
+	temp = NULL;
+	if (mods->dot && mods->precision == 0 && num == 0 && !mods->width)
+	{
+		return ("");
+	}
+	else if (mods->dot && mods->precision == 0 && num == 0 && mods->width)
+	{
+		while (format[i])
+		{
+			if (ft_isdigit(format[i]))
+				format[i] = ' ';
+			i++;
+		}
+		return (format);
+	}
+	temp = ft_strnew(ft_strlen(format));
+	if ((!mods->width && !mods->precision && !mods->zero) || !temp)
+	{
+		ft_strdel(&temp);
+		return (format);
+	}
+	if (mods->zero && mods->width && mods->hash && mods->cap_x)
+		temp = ft_strjoin("0x", format + (mods->hash * 2));
+	else if (mods->zero && mods->width && mods->hash && !mods->cap_x)
+		temp = ft_strjoin("0X", format + (mods->hash * 2));
+	else
+	{
+		ft_strdel(&temp);
+		return (format);
+	}
+	format = temp;
+	ft_strdel(&temp);
 	return (format);
 }
 
