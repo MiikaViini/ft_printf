@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 09:58:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/06 12:08:20 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/06 15:23:00 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char					*type_cast(unsigned long long num, t_modifiers *mods, int base);
 char					*type_cast_int(long long int num, t_modifiers *mods);
 char					*type_cast_double(long double num, t_modifiers *mods);
 
-char					*treat_precision(char *string, t_modifiers *mods, int length);
+char					*treat_precision(char *string, t_modifiers *mods, int length, int num);
 char					*treat_width(char *string, t_modifiers *mods, int length, int num);
 char					*check_infinity(double num);
 char					*treat_w_mods(char *str, t_modifiers *mods, int count, int num);
