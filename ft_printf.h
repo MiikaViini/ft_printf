@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 09:58:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/03 17:34:35 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/06 12:08:20 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef struct s_modifiers
 	int			ld;
 	int			cap_x;
 	int			precision;
+	int			o_zero;
+	int			d_space;
 }				t_modifiers;
 
 typedef int			(*t_converse)(va_list args, t_modifiers *mods);
@@ -102,9 +104,6 @@ static const t_mods	g_mods[15] = {
 	h_length,
 	ld_length,
 	do_nothing
-	//  zero,
-	//  star,
-	//  space,
 };
 
 static const t_converse	g_specif[15] = {
