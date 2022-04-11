@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:06:29 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/06 09:57:48 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/11 13:28:51 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ char	*check_modifiers(char *format, t_modifiers *mods, va_list args)
 		format = width(args, format, mods);
 		format = g_mods[find_letter(*format, MODS)](args, format, mods);
 	}
-	if (*format == 'x')
-		mods->cap_x = 1;
+	if (*format == 'x' || *format == 'U')
+		mods->capital = 1;
 
 	return (format);
 }

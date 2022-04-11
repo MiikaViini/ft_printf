@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 15:18:27 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/10 21:23:52 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/11 13:01:08 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,16 @@ char	*type_cast(unsigned long long int num, t_modifiers *mods, int base)
 
 	string = NULL;
 
-	if (mods->h == 1)
-		string = ft_itoabase((unsigned short)num, base, mods->cap_x);
+	if (mods->h == 1 && !mods->cap_u)
+		string = ft_itoabase((unsigned short)num, base, mods->capital);
 	else if (mods->h == 2)
-		string = ft_itoabase((unsigned char)num, base, mods->cap_x);
+		string = ft_itoabase((unsigned char)num, base, mods->capital);
 	else if (mods->l == 1)
-		string = ft_itoabase((unsigned long)num, base, mods->cap_x);
-	else if (mods->l == 2)
-		string = ft_itoabase((unsigned long long)num, base, mods->cap_x);
+		string = ft_itoabase((unsigned long)num, base, mods->capital);
+	else if (mods->l == 2 || mods->j || mods->cap_u)
+		string = ft_itoabase((unsigned long long)num, base, mods->capital);
 	else
-		string = ft_itoabase((unsigned int)num, base, mods->cap_x);
+		string = ft_itoabase((unsigned int)num, base, mods->capital);
 	return (string);
 }
 
@@ -72,14 +72,16 @@ char	*type_cast_int(long long int num, t_modifiers *mods)
 	char	*string;
 
 	string = NULL;
-	if (mods->h == 1)
+	if (mods->h == 1 && !mods->z && !mods->j)
 		string = ft_itoa((short)num);
-	else if (mods->h == 2)
+	else if (mods->h == 2 && !mods->l && !mods->z && !mods->j) 
 		string = ft_itoa((char)num);
-	else if (mods->l == 1)
+	else if (mods->l == 1 || mods->z)
 		string = ft_ltoa((long)num);
-	else if (mods->l == 2)
+	else if (mods->l == 2 || mods->j)
 		string = ft_ltoa((long long)num);
+	// else if (mods->j)
+	// 	string = ft_itoabase((unsigned long long)num, 10, 1);
 	else
 		string = ft_ltoa((int)num);
 	return (string);

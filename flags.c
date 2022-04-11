@@ -73,6 +73,22 @@ char	*space(va_list args, char *format, t_modifiers *mods)
 	return (format);
 }
 
+char	*j_flag(va_list args, char *format, t_modifiers *mods)
+{
+	(void)args;
+	if (*format++ == 'j')
+		mods->j = 1;
+	return (format);
+}
+
+char	*z_flag(va_list args, char *format, t_modifiers *mods)
+{
+	(void)args;
+	if (*format++ == 'z')
+		mods->z = 1;
+	return (format);
+}
+
 char	*hashtag(va_list args, char *format, t_modifiers *mods)
 {
 	(void)args;

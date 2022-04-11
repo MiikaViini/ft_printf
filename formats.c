@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 11:29:41 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/10 21:27:32 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/11 14:13:43 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,9 @@ int	s_converse(va_list args, t_modifiers *mods)
 		mods->width = va_arg(args, int );
 	string = va_arg(args, char *);
 	if (string == NULL)
-	{
-		ft_putstr("(null)");
-		return (6);
-	}
+		string = ft_strdup("(null)");
 	count = ft_strlen(string);
-	if (mods->precision)
+	if (mods->dot)
 		output = ft_strndup(string, mods->precision);
 	else
 		output = ft_strdup(string);
@@ -47,6 +44,8 @@ int	d_converse(va_list args, t_modifiers *mods)
 	mods->d_space = mods->space - mods->plus;
 	num = va_arg(args, long long );
 	string = type_cast_int(num, mods);
+	if (string[0] == '-')
+		mods->sign = 1;
 	count = ft_strlen(string);
 	output = ft_strdup(string);
 	string = treat_w_mods(output, mods, count, num);
@@ -186,17 +185,17 @@ int	u_converse(va_list args, t_modifiers *mods)
 {
 	unsigned long long	num;
 	char				*string;
-	int					count;
 
+	if (mods->capital)
+		mods->cap_u = 1;
 	num = va_arg(args, unsigned long long );
 	mods->plus = 0;
 	string = type_cast(num, mods, 10);
 
-	count = ft_strlen(string);
 	// if (count < mods->width)
 	// 	string = treat_width(string, mods, count, num);
 	// string = treat_precision(string, mods, count);
-	string = treat_w_mods(string, mods, count, num);
+	string = treat_w_mods(string, mods, ft_strlen(string), num);
 	ft_putstr(check_edges(mods, string, num));
 
 	//free(string);
@@ -205,21 +204,25 @@ int	u_converse(va_list args, t_modifiers *mods)
 
 int per_converse(va_list args, t_modifiers *mods)
 {
-	int	count;
+	int		count;
 	char	*res;
 	int		i;
+	char	c;
 
+	c = ' ';
 	i = 0;
 	count = 0;
 	(void)args;
 	res = ft_strnew(1 + mods->width);
+	if (mods->zero && !mods->minus)
+		c = '0';
 	if (!mods->width)
 	{
 		ft_putchar('%');
 		return(1);
 	}
 	while (mods->width && i < mods->width - 1)
-		res[i++] = ' ';
+		res[i++] = c;
 	if (mods->width && !mods->minus)
 		res = ft_strjoin(res, "%");
 	else if (mods->minus)

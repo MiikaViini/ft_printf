@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 09:58:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/10 21:20:03 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/11 13:09:37 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <stdarg.h>
 # include <stdio.h>
 
-# define CONV "discoxXfpu%"
-# define MODS "* #-.+lhL"
+# define CONV "discoxXfpuU%"
+# define MODS "* #-.+lhLjz"
 //
 # define CAPITAL 32
 
@@ -35,14 +35,18 @@ typedef struct s_modifiers
 	int			l;
 	int			h;
 	int			ld;
-	int			cap_x;
+	int			j;
+	int			z;
+	int			capital;
+	int			cap_u;
 	int			precision;
 	int			o_zero;
 	int			d_space;
+	int			sign;
+	int			inv_spec;
 }				t_modifiers;
 
-typedef int			(*t_converse)(va_list args, t_modifiers *mods);
-typedef char		*(*t_mods)(va_list args, char *format, t_modifiers *mods);
+
 //typedef char			*(*t_length)(char *format, t_modifiers *mods);
 // typedef char			*(*t_treat)(char *format, t_modifiers *mods);
 
@@ -77,6 +81,8 @@ char					*hashtag(va_list args, char *format, t_modifiers *mods);
 char					*zero(va_list args, char *format, t_modifiers *mods);
 char					*cap_x(va_list args, char *format, t_modifiers *mods);
 char					*width(va_list args, char *format, t_modifiers *mods);
+char					*j_flag(va_list args, char *format, t_modifiers *mods);
+char					*z_flag(va_list args, char *format, t_modifiers *mods);
 
 char					*type_cast(unsigned long long num, t_modifiers *mods, int base);
 char					*type_cast_int(long long int num, t_modifiers *mods);
@@ -86,6 +92,7 @@ char					*treat_precision(char *string, t_modifiers *mods, int length, long long
 char					*treat_width(char *string, t_modifiers *mods, int length, long long num);
 char					*check_infinity(double num);
 char					*treat_w_mods(char *str, t_modifiers *mods, int count, long long num);
+char					*is_num_neg(char *string, char *fill, t_modifiers *mods, long long num);
 
 t_modifiers				*init_struct(t_modifiers *mods);
 char					*check_edges(t_modifiers *mods, char *format, long long num);
@@ -93,7 +100,11 @@ char					*check_edges(t_modifiers *mods, char *format, long long num);
 char					*treat_zerox(char *string, t_modifiers *mods, long long num);
 char					*do_nothing(va_list args, char *format, t_modifiers *mods);
 int						do_nothing_conv(va_list args, t_modifiers *mods);
-static const t_mods	g_mods[15] = {
+
+typedef int				(*t_converse)(va_list args, t_modifiers *mods);
+typedef char			*(*t_mods)(va_list args, char *format, t_modifiers *mods);
+
+static const t_mods		g_mods[15] = {
 	star,
 	space,
 	hashtag,
@@ -103,6 +114,8 @@ static const t_mods	g_mods[15] = {
 	l_length,
 	h_length,
 	ld_length,
+	j_flag,
+	z_flag,
 	do_nothing
 };
 
@@ -116,6 +129,7 @@ static const t_converse	g_specif[15] = {
 	x_converse,
 	f_converse,
 	p_converse,
+	u_converse,
 	u_converse,
 	per_converse,
 	do_nothing_conv
