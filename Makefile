@@ -6,7 +6,7 @@
 #    By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/14 12:56:26 by mviinika          #+#    #+#              #
-#    Updated: 2022/04/02 15:35:11 by mviinika         ###   ########.fr        #
+#    Updated: 2022/04/10 21:30:51 by mviinika         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,15 +28,16 @@ INCLUDES = "ft_printf.h"
 all: $(NAME)
 
 $(NAME):
-		@$(CC) $(FLAGS) libft/*.c -I libft/libft.h
-		@$(CC) $(FLAGS) $(SRCS) $(INCLUDES)
-		@ar rcs $(NAME) *.o
+		@make -C ./libft
+		cp libft/libft.a $(NAME)
+		@$(CC) -c $(SRCS) $(INCLUDES)
+		@ar rcs $(NAME) $(OBJS)
 clean:
-		@make fclean -C libft
+		@make fclean -C ./libft
 		@rm -f *.o
 
 fclean: clean
-		@make fclean -C libft
+		@make fclean -C ./libft
 		@rm -f $(NAME)
 
 re: fclean all

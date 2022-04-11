@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 15:18:27 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/28 13:31:00 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/10 21:23:52 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char	*type_cast(unsigned long long int num, t_modifiers *mods, int base)
 	char	*string;
 
 	string = NULL;
-	
+
 	if (mods->h == 1)
 		string = ft_itoabase((unsigned short)num, base, mods->cap_x);
 	else if (mods->h == 2)

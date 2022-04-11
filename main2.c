@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 13:34:02 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/06 15:47:58 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/10 21:32:33 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@ int main()
 	int i = 0;
 	int a = 0;
 
-	i = ft_printf("%03.2d\n", 0);
+	i = ft_printf("%+d\n", -54);
 
-	a =	printf("%03.2d\n", 0);
+
+	a =	printf("%+d\n", -54);
 
 	printf("%d", a);
 	return (0);

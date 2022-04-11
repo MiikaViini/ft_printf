@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 09:58:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/06 15:23:00 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/10 21:20:03 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +82,15 @@ char					*type_cast(unsigned long long num, t_modifiers *mods, int base);
 char					*type_cast_int(long long int num, t_modifiers *mods);
 char					*type_cast_double(long double num, t_modifiers *mods);
 
-char					*treat_precision(char *string, t_modifiers *mods, int length, int num);
-char					*treat_width(char *string, t_modifiers *mods, int length, int num);
+char					*treat_precision(char *string, t_modifiers *mods, int length, long long num);
+char					*treat_width(char *string, t_modifiers *mods, int length, long long num);
 char					*check_infinity(double num);
-char					*treat_w_mods(char *str, t_modifiers *mods, int count, int num);
+char					*treat_w_mods(char *str, t_modifiers *mods, int count, long long num);
 
 t_modifiers				*init_struct(t_modifiers *mods);
-char					*check_edges(t_modifiers *mods, char *format, int num);
+char					*check_edges(t_modifiers *mods, char *format, long long num);
 
-char					*treat_zerox(char *string, t_modifiers *mods, int num);
+char					*treat_zerox(char *string, t_modifiers *mods, long long num);
 char					*do_nothing(va_list args, char *format, t_modifiers *mods);
 int						do_nothing_conv(va_list args, t_modifiers *mods);
 static const t_mods	g_mods[15] = {

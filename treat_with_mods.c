@@ -6,41 +6,44 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 11:04:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/06 15:50:27 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/10 21:50:18 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*treat_precision(char *string, t_modifiers *mods, int length, int num)
+char	*treat_precision(char *string, t_modifiers *mods, int length, long long num)
 {
 	char	*res;
 	char	*temp;
 	int		i;
 
 	i = 0;
+	(void)length;
 	if (mods->dot == 0 && !mods->plus)
 		return (string);
 	res = ft_strnew(mods->precision + 1);
-	if (mods->plus && string[i] != '+'&& num >= 0)
+	if (mods->plus && (int)num >= 0)
 	{
 		res[i++] = '+';
 	}
-	if (string[i] != '-' && num < 0)
+
+	if (/*string[i] != '-' && num < 0*/mods->dot && num < 0)
 	{
 		res[i++] = '-';
 	}
 	while (length < mods->precision)
-	{	
+	{
 		res[i++] = '0';
 		mods->precision--;
 	}
 	temp = ft_strjoin(res, string);
 	free(res);
+
 	return (temp);
 }
 
-char	*is_num_neg(char *string, char *fill, t_modifiers *mods, int num)
+char	*is_num_neg(char *string, char *fill, t_modifiers *mods, long long num)
 {
 	int		i;
 	char	*temp;
@@ -71,7 +74,7 @@ char	*is_num_neg(char *string, char *fill, t_modifiers *mods, int num)
 	return (string);
 }
 
-char	*treat_width(char *string, t_modifiers *mods, int length, int num)
+char	*treat_width(char *string, t_modifiers *mods, int length, long long num)
 {
 	char	*temp;
 	char	*res;
@@ -89,8 +92,13 @@ char	*treat_width(char *string, t_modifiers *mods, int length, int num)
 	temp = ft_strnew(count);
 	if (mods->zero == 1 && mods->minus == 0)
 		c = '0';
+	//  while (mods->width-- > mods->precision)
+	//  	temp[i++] = ' ';
 	while (count-- > 0 && i < mods->width - (int)ft_strlen(string))
 		temp[i++] = c;
+	// while (mods->width > mods->precision++)
+	// 	temp[i++] = ' ';
+
 	if (mods->minus == 1)
 		res = ft_strjoin(res, temp);
 	else if ((mods->minus == 0 && mods->zero == 1) || (mods->plus && mods->precision > mods->width))
@@ -103,7 +111,7 @@ char	*treat_width(char *string, t_modifiers *mods, int length, int num)
 	return (res);
 }
 
-char	*treat_w_mods(char *str, t_modifiers *mods, int count, int num)
+char	*treat_w_mods(char *str, t_modifiers *mods, int count, long long num)
 {
 	char	*res;
 
@@ -113,17 +121,13 @@ char	*treat_w_mods(char *str, t_modifiers *mods, int count, int num)
 		count++;
 		res = ft_strjoin(" ", str);
 	}
-	// if ((mods->d_space <= 0 && mods->plus && num >= 0) || (mods->plus == 1 && mods->width && !mods->dot && num >= 0 && mods->precision > (int)ft_strlen(str)))
-	// {
-	// 	count++;
-	// 	res = ft_strjoin("+", str);
-	// }
+
 	res = treat_precision(res, mods, count, num);
 	if (count < mods->width)
 		res = treat_width(res, mods, ft_strlen(res), num);
 	return (res);
 }
-char	*treat_zerox(char *string, t_modifiers *mods, int num)
+char	*treat_zerox(char *string, t_modifiers *mods, long long num)
 {
 	char	*res;
 

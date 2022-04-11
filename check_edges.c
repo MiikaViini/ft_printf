@@ -6,20 +6,20 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:12:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/06 10:35:37 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/10 21:21:35 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*check_edges(t_modifiers *mods, char *format, int num)
+char	*check_edges(t_modifiers *mods, char *format, long long num)
 {
 	char	*temp;
 	int		i;
 
 	i = 0;
 	temp = NULL;
-	
+
 	if (mods->o_zero)
 		return ("0");
 	if (mods->dot && mods->precision == 0 && num == 0 && !mods->width)
@@ -66,10 +66,10 @@ char	*check_infinity(double num)
 	posinf = 1.0 / 0;
 	neginf = -1.0 / 0;
 	if (num == posinf)
-		res = strcpy(res, "inf");
+		res = ft_strcpy(res, "inf");
 	else if (num == neginf)
-		res = strcpy(res, "-inf");
+		res = ft_strcpy(res, "-inf");
 	else if (num != num)
-		res = strcpy(res, "nan");
+		res = ft_strcpy(res, "nan");
 	return (res);
 }
