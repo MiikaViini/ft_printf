@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 11:04:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/11 14:46:19 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/12 15:51:15 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,25 @@ char	*treat_precision(char *string, t_modifiers *mods, int length, long long num
 	int		i;
 
 	i = 0;
-	(void)length;
-	if (mods->dot == 0 && !mods->plus)
+	if (!mods->dot && !mods->plus)
 		return (string);
+
 	res = ft_strnew(mods->precision + 1);
-	while (length < mods->precision + mods->sign)
+	while (length + mods->sign  < mods->precision + mods->sign)
 	{
 		res[i++] = '0';
 		mods->precision--;
 	}
-	if (mods->plus && (int)num >= 0)
+	if (mods->plus && (int)num >= 0 && !mods->width)
 	{
-		res[i++] = '+';
+		res = ft_strjoin("+", res);
 	}
-	if ((int)num < 0)
+	if (mods->sign)
 	{
-		res[i++] = '-';
+		res = ft_strjoin("-", res);
 	}
-	
-	temp = ft_strjoin(res, string + mods->sign);
+
+	temp = ft_strjoin(res, string);
 	free(res);
 	return (temp);
 }
@@ -51,18 +51,18 @@ char	*is_num_neg(char *string, char *fill, t_modifiers *mods, long long num)
 	i = 0;
 	sign = 0;
 	temp = ft_strnew(ft_strlen(fill) + 1);
-	if (mods->plus && !mods->dot && num > 0)
-	{
-		temp[0] = '+';
-		temp++;
-		sign++;
-	}
-	else if (mods->sign)
-	{
-		temp[0] = '-';
-		temp++;
-		sign++;
-	}
+	// if (mods->plus && !mods->dot && num > 0)
+	// {
+	// 	temp[0] = '+';
+	// 	temp++;
+	// 	sign++;
+	// }
+	// else if (mods->sign)
+	// {
+	// 	temp[0] = '-';
+	// 	temp++;
+	// 	sign++;
+	// }
 	while (string[i] && sign)
 	{
 		string[i] = string[i + 1];
@@ -72,7 +72,7 @@ char	*is_num_neg(char *string, char *fill, t_modifiers *mods, long long num)
 	}
 	temp = ft_strcpy(temp, fill);
 	string = ft_strjoin(temp - sign, string);
-	
+
 	return (string);
 }
 
@@ -97,14 +97,18 @@ char	*treat_width(char *string, t_modifiers *mods, int length, long long num)
 	temp = ft_strnew(count);
 	if (mods->zero == 1 && mods->minus == 0 && !mods->dot)
 		c = '0';
-	while (count-- > 0 && i < mods->width - (int)ft_strlen(string))
+	// if (mods->zero && mods->width && num < 0)
+	// 	res++;
+	while (count-- > 0 && i < mods->width - (int)ft_strlen(string) - (mods->zero * mods->plus))
 		temp[i++] = c;
+	//printf("res [%s]\n", res);
 	if (mods->minus == 1)
 		res = ft_strjoin(res, temp);
 	// else if (mods->zero == 1 || mods->precision > mods->width)
 	// 	res = is_num_neg(res, temp, mods, num);
 	else
 		res = ft_strjoin(temp, res);
+	//printf("res [%s]\n", res);
 	// ft_strdel(&temp);
 	// temp = res;
 	// ft_strdel(&res);
@@ -121,22 +125,49 @@ char	*treat_w_mods(char *str, t_modifiers *mods, int count, long long num)
 		count++;
 		res = ft_strjoin(" ", str);
 	}
-
 	res = treat_precision(res, mods, count, num);
+	res = apply_sign(res, mods, num);
 	if (count < mods->width)
 		res = treat_width(res, mods, ft_strlen(res), num);
+	res = apply_sign(res, mods, num);
 	return (res);
 }
+
 char	*treat_zerox(char *string, t_modifiers *mods, long long num)
 {
 	char	*res;
 
 	res = ft_strdup(string);
-	if ((mods->hash == 1 && mods->capital == 1 && num && !mods->zero) || (mods->minus && mods->hash == 1))
+	if ((mods->hash == 1 && mods->capital == 1
+			&& num && !mods->zero) || (mods->minus && mods->hash == 1))
 		res = ft_strjoin("0x", string);
-	else if ((mods->hash == 1 && mods->capital == 0 && num && !mods->zero)|| (mods->minus && mods->hash == 1))
+	else if ((mods->hash == 1 && mods->capital == 0
+			&& num && !mods->zero) || (mods->minus && mods->hash == 1))
 		res = ft_strjoin("0X", string);
 	string = res;
 	ft_strdel(&res);
 	return (string);
 }
+
+char	*apply_sign(char *string, t_modifiers *mods, long long num)
+{
+	char	*res;
+	int		i;
+
+	i = 0;
+	res = ft_strdup(string);
+	if (num >= 0 && *string == '0' && mods->plus)
+	{
+		res = ft_strjoin("+", string);
+	}
+	else if (mods->sign && *string == '0')
+	{
+		res = ft_strjoin("-", string);
+	}
+		//res = ft_strjoin("-", string + 1);
+	//printf("%s", string);
+	string = ft_strdup(res);
+	ft_strdel(&res);
+	return (string);
+}
+

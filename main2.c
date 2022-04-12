@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 13:34:02 by m3iinika          #+#    #+#             */
-/*   Updated: 2022/04/11 14:36:00 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/12 15:45:57 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,46 @@ int main()
 	int i = 0;
 	int a = 0;
 
-	i = ft_printf("[%010.5d]\n", -123);
-	a =	printf("[%010.5d]\n", -123);
+	// i = ft_printf("[%5d]\n", -12);
+	// a =	printf("[%5d]\n", -12);
+
+	// i = ft_printf("[%-5d]\n", -12);
+	// a =	printf("[%-5d]\n", -12);
+
+	// i = ft_printf("[%-05d]\n", -12);
+	// a =	printf("[%-05d]\n", -12);
+
+	// i = ft_printf("[%+10.5d]\n", -12);
+	// a =	printf("[%+10.5d]\n", -12);
+
+	// i = ft_printf("[%+10.5d]\n", -12);
+	// a =	printf("[%+10.5d]\n", -12);
+
+	// i = ft_printf("[%+10.5d]\n", 4242);
+	// a =	printf("[%+10.5d]\n", 4242);
+
+	//  i = ft_printf("MY [%.5d]\n", 42);
+	//  a =	printf("OG [%.5d]\n", 42);
+
+	// i = ft_printf("[%05d]\n", 42);
+	// a =	printf("[%05d]\n", 42);
+
+	// i = ft_printf("[%5d]\n", -42);
+	// a =	printf("[%5d]\n", -42);
+
+	// i = ft_printf("MY [%05d]\n", 42);
+	// a =	printf("OG [%05d]\n", 42);
+
+	// i = ft_printf("[%03.2d]\n", -1);
+	// a =	printf("[%03.2d]\n", -1);
+
+	i = ft_printf("[%03.2d]\n", -1);
+	a =	printf("[%03.2d]\n", -1);
+
+	// i = ft_printf("[%.5x]\n", 21);
+	// a =	printf("[%.5x]\n", 21);
 	//printf("%d", a);
 	return (0);
 }
+
+
