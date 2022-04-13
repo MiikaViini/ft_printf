@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 20:54:44 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/13 14:52:12 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/13 22:08:47 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static char	*rounded_fracts(long double fract, int afterpoint, char *afterdot)
 {
 	int		remain;
 	int		i;
-	int jo = 8;
 
 	i = 1;
 	remain = 0;
@@ -31,7 +30,7 @@ static char	*rounded_fracts(long double fract, int afterpoint, char *afterdot)
 	fract = fract * 10.0;
 	remain = (int)fract;
 	i--;
-	if (remain > 5 && remain < 9)
+	if (remain > 5)
 		afterdot[i] = afterdot[i] + 1;
 	else if (remain == 5)
 		if ((ft_atoi(&afterdot[i]) + 1) % 2 == 0)
@@ -52,9 +51,9 @@ static char	*toarr(long double fract, unsigned long long inte, int afterpoint, i
 	else
 		integer = ft_itoa(inte);
 	if (afterpoint > 6)
-		fractions = ft_strnew(afterpoint + i + 2);
+		fractions = ft_strnew(afterpoint + 2);
 	else
-		fractions = ft_strnew(6 + i + 2);
+		fractions = ft_strnew(6 + 2);
 	if (afterpoint != 0)
 		fractions[i++] = '.';
 	fractions = rounded_fracts(fract, afterpoint, fractions);
