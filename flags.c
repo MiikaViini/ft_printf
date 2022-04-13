@@ -38,6 +38,11 @@ char	*star(va_list args, char *format, t_modifiers *mods)
 		mods->width = va_arg(args, long long);
 	if (mods->star || mods->dot)
 		mods->precision = va_arg(args, long long);
+	if (mods->width < 0 || mods->precision < 0)
+	{
+		mods->width = ft_abs(mods->width);
+		mods->minus = 1;
+	}
 	return (format);
 }
 

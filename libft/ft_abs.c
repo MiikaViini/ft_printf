@@ -6,11 +6,15 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 09:57:54 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/25 17:06:52 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/13 09:21:18 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned long long	ft_abs(long long num)
+#include <stdio.h>
+#include <stdlib.h>
+
+
+size_t	ft_abs(int num)
 {
 	if (num < 0)
 	{

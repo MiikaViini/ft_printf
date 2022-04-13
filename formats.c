@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 11:29:41 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/13 07:47:56 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/13 11:46:03 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ int	s_converse(va_list args, t_modifiers *mods)
 	char	*string;
 	int		count;
 	char	*output;
-
-	if (mods->star)
-		mods->width = va_arg(args, int );
+	
 	string = va_arg(args, char *);
 	if (string == NULL)
 		string = ft_strdup("(null)");
@@ -72,7 +70,10 @@ int	c_converse(va_list args, t_modifiers *mods)
 	char	*str;
 	int		c;
 
-	str = ft_strnew(mods->width);
+	if (mods->width)
+		str = ft_strnew(mods->width);
+	else
+		str = ft_strnew(1);
 	c = va_arg(args, int );
 	if (!c)
 	{
@@ -92,7 +93,7 @@ int	c_converse(va_list args, t_modifiers *mods)
 		ft_putchar(c);
 		return (1);
 	}
-	str[0] = c;
+	*str = c;
 	str = treat_width(str, mods, ft_strlen(str), c);
 	ft_putstr(str);
 	return (ft_strlen(str));
@@ -132,7 +133,7 @@ int	x_converse(va_list args, t_modifiers *mods)
 	string = type_cast(num, mods, 16);
 	string = treat_zerox(string, mods, num);
 	output = ft_strdup(string);
-	string = treat_width(output, mods, ft_strlen(string), num);
+	string = treat_w_mods(output, mods, ft_strlen(string), num);
 	output = ft_strdup(string);
 	string = check_edges(mods, output, num);
 	count = ft_strlen(string);

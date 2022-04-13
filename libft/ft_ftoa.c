@@ -6,19 +6,45 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 20:54:44 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/10 21:07:33 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/13 14:52:12 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 
+static char	*rounded_fracts(long double fract, int afterpoint, char *afterdot)
+{
+	int		remain;
+	int		i;
+	int jo = 8;
+
+	i = 1;
+	remain = 0;
+	while (afterpoint-- > 0)
+	{
+		fract = fract * 10.0;
+		remain = (int)fract;
+		afterdot[i++] = remain + '0';
+		fract = fract - (long double)remain;
+	}
+	fract = fract * 10.0;
+	remain = (int)fract;
+	i--;
+	if (remain > 5 && remain < 9)
+		afterdot[i] = afterdot[i] + 1;
+	else if (remain == 5)
+		if ((ft_atoi(&afterdot[i]) + 1) % 2 == 0)
+			afterdot[i] = afterdot[i] + 1;
+	return (afterdot);
+}
+
 static char	*toarr(long double fract, unsigned long long inte, int afterpoint, int sign)
 {
 	char	*integer;
 	char	*fractions;
 	int		i;
-	int		remain;
+	char	*output;
 
 	i = 0;
 	if (sign)
@@ -31,15 +57,11 @@ static char	*toarr(long double fract, unsigned long long inte, int afterpoint, i
 		fractions = ft_strnew(6 + i + 2);
 	if (afterpoint != 0)
 		fractions[i++] = '.';
-	while (afterpoint-- > 0)
-	{
-		fract = fract * 10.0;
-		remain = (int)fract;
-		fractions[i++] = remain + '0';
-		fract = fract - (long double)remain;
-	}
-	fractions = ft_strjoin(integer, fractions);
-	return (fractions);
+	fractions = rounded_fracts(fract, afterpoint, fractions);
+	output = ft_strjoin(integer, fractions);
+	ft_strdel(&integer);
+	ft_strdel(&fractions);
+	return (output);
 }
 
 static char	*minuszero(int afterpoint)
@@ -56,6 +78,8 @@ static char	*minuszero(int afterpoint)
 		res[i++] = '0';
 	return (res);
 }
+
+
 
 char	*ft_ftoa(long double num, int afterpoint)
 {

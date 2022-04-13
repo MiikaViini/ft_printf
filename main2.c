@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 13:34:02 by m3iinika          #+#    #+#             */
-/*   Updated: 2022/04/13 07:56:53 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/13 14:47:24 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,11 @@ int main()
 	// char *joo = "jouo";
 	//double jaa = 23.145;
 	//char per = '%';
-	int i = 0;
+	int i = 42;
 	int a = 0;
+	static unsigned int uin = 238;
+	static char c = 'G';
+	static char *str = "Hello World";
 
 	// i = ft_printf("[%5d]\n", -12);
 	// a =	printf("[%5d]\n", -12);
@@ -57,11 +60,18 @@ int main()
 	// i = ft_printf("[%03.2d]\n", -1);
 	// a =	printf("[%03.2d]\n", -1);
 
-	i = ft_printf("[%04d]\n", -5352);
-	a =	printf("[%04d]\n", -5325);
+	// i = ft_printf("[%-*s]\n", -32, "abc");
+	// a =	printf("[%-*s]\n", -32, "abc");
 
-	i = ft_printf("[%04d]\n", -532);
-	a =	printf("[%04d]\n", -535);
+	// i = ft_printf("[%*s]\n", -32, "abc");
+	// a =	printf("[%*s]\n", -32, "abc");
+
+	i = ft_printf("[%.6f]\n", 1.00002);
+	a =	printf("[%.6f]\n", 1.00002);
+
+
+	// i = ft_printf("[%s  %x    %X %c %u  %p  ]\n", str, uin, uin, c,uin, &i);
+	// a =	printf("[%s  %x    %X %c %u  %p  ]\n", str, uin, uin, c,uin, &i);
 
 	// i = ft_printf("[%.5x]\n", 21);
 	// a =	printf("[%.5x]\n", 21);

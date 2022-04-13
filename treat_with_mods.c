@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 11:04:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/13 08:28:25 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/13 10:37:23 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ char	*treat_width(char *string, t_modifiers *mods, int length, long long num)
 	char	c;
 
 	c = ' ';
-	count = mods->width - length;
+	count = mods->width - length + (mods->dot * mods->sign);
 	i = 0;
 	(void)num;
 	res = ft_strdup(string);
@@ -108,7 +108,7 @@ char	*treat_width(char *string, t_modifiers *mods, int length, long long num)
 	// 	res = is_num_neg(res, temp, mods, num);
 	else
 		res = ft_strjoin(temp, res);
-	//printf("res [%s]\n", res);
+	
 	// ft_strdel(&temp);
 	// temp = res;
 	// ft_strdel(&res);
@@ -120,12 +120,12 @@ char	*treat_w_mods(char *str, t_modifiers *mods, int count, long long num)
 	char	*res;
 
 	res = ft_strdup(str);
-	if (mods->d_space > 0 && num > 0 && !mods->width)
-	{
-		count++;
-		res = ft_strjoin(" ", str);
-	}
+	
 	res = treat_precision(res, mods, count, num);
+	if (mods->d_space > 0 && num > 0)
+	{
+		res = ft_strjoin(" ", res);
+	}
 	res = apply_sign(res, mods, num);
 	if (count < mods->width)
 		res = treat_width(res, mods, ft_strlen(res), num);
