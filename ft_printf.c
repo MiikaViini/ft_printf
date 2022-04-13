@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:06:29 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/11 13:28:51 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/13 08:06:50 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	conversion(va_list args, char *format)
 			format++;
 			format = check_modifiers(format, modifiers, args);
 			ch_count += g_specif[find_letter(*format++, CONV)](args, modifiers);
-			modifiers = init_struct(modifiers);
+			ft_bzero(modifiers, sizeof(t_modifiers));
 		}
 		if (!*format)
 			break ;
@@ -62,7 +62,6 @@ int	conversion(va_list args, char *format)
 		format++;
 		ch_count++;
 	}
-	//free(format);
 	free(modifiers);
 	return (ch_count);
 }
