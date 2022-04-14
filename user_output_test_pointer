@@ -1,0 +1,18 @@
+testing test_pointer %p '0x7ffee3c0a9b8'
+ret is 39
+testing &test_value %p '0x7ffee3c0a9b8'
+ret is 38
+testing test_pointer %p '      0x7ffee3c0a9b8'
+ret is 39
+testing test_pointer %p '                                                                                                                                                                                          0x7ffee3c0a9b8'
+ret is 39
+testing test_pointer %p '0x7ffee3c0a9b8      '
+ret is 39
+testing test_pointer %p '0x7ffee3c0a9b8'
+ret is 39
+testing test_pointer %p '0x0'
+ret is 28
+testing test_pointer %p '0x0                 '
+ret is 28
+testing test_pointer %p '  0x0'
+ret is 28
