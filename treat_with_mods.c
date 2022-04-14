@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 11:04:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/14 13:33:17 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/14 14:34:17 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ char	*treat_w_mods(char *str, t_modifiers *mods, int count, long long num)
 	res = ft_strdup(str);
 	
 	res = treat_precision(res, mods, count, num);
-	if (mods->d_space > 0)
+	if (mods->d_space > 0) 
 	{
 		res = ft_strjoin(" ", res);
 	}
@@ -158,8 +158,6 @@ char	*apply_sign(char *string, t_modifiers *mods, long long num)
 	{
 		res = ft_strjoin("-", string);
 	}
-		//res = ft_strjoin("-", string + 1);
-	//printf("%s", string);
 	string = ft_strdup(res);
 	ft_strdel(&res);
 	return (string);

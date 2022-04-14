@@ -1,14 +1,14 @@
-testing test_pointer %p '0x7ffee3c0a9b8'
+testing test_pointer %p '0x7ffee0fd89b8'
 ret is 41
-testing &test_value %p '0x7ffee3c0a9b8'
+testing &test_value %p '0x7ffee0fd89b8'
 ret is 40
-testing test_pointer %p '      0x7ffee3c0a9b8'
+testing test_pointer %p '      0x7ffee0fd89b8'
 ret is 47
-testing test_pointer %p '                                                                                                                                                                                          0x7ffee3c0a9b8'
+testing test_pointer %p '                                                                                                                                                                                          0x7ffee0fd89b8'
 ret is 227
-testing test_pointer %p '0x7ffee3c0a9b8      '
+testing test_pointer %p '0x7ffee0fd89b8      '
 ret is 47
-testing test_pointer %p '0x7ffee3c0a9b8'
+testing test_pointer %p '0x7ffee0fd89b8'
 ret is 41
 testing test_pointer %p '0x0'
 ret is 30

@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 11:29:41 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/14 13:12:07 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/14 14:50:14 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int	o_converse(va_list args, t_modifiers *mods)
 		output = ft_strjoin("0", string);
 	if (mods->hash && mods->dot && !mods->width)
 		mods->o_zero = 1;
-	string = treat_w_mods(output, mods, ft_strlen(string), num);
+	string = treat_w_mods(output, mods, ft_strlen(output), num);
 	output = ft_strdup(string);
 	string = check_edges(mods, output, num);
 	count = ft_strlen(string);

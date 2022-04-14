@@ -1,5 +1,5 @@
-*** user_output_test_short_int	2022-04-14 13:33:34.000000000 +0300
---- test_output_test_short_int	2022-04-14 13:33:34.000000000 +0300
+*** user_output_test_short_int	2022-04-14 14:50:30.000000000 +0300
+--- test_output_test_short_int	2022-04-14 14:50:30.000000000 +0300
 *************** ret is 30
 *** 27,34 ****
   ret is 30
