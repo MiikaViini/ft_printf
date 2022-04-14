@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/14 13:34:02 by m3iinika          #+#    #+#             */
-/*   Updated: 2022/04/14 07:50:03 by mviinika         ###   ########.fr       */
+/*   Created: 2022/04/14 09:08:03 by mviinika          #+#    #+#             */
+/*   Updated: 2022/04/14 13:31:17 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "ft_printf.h"
 #include <limits.h>
@@ -66,8 +67,30 @@ int main()
 	// i = ft_printf("[%*s]\n", -32, "abc");
 	// a =	printf("[%*s]\n", -32, "abc");
 
-	i = ft_printf("[%.15f]\n", 1.564333);
-	a =	printf("[%.15f]\n", 1.564333);
+	// i = ft_printf("[%.f]\n", 1.5);
+	// a =	printf("[%.f]\n", 1.5);
+	
+	
+
+	
+
+	// i = ft_printf("[%.f]\n", 9.50000);
+	// a =	printf("[%.f]\n", 9.50000);
+
+	// i = ft_printf("[%.15f]\n", 1.00002);
+	// a =	printf("[%.15f]\n", 1.00002);
+
+
+	// i = ft_printf("[%.15f]\n", 1.56423335);
+	// a =	printf("[%.15f]\n", 1.56423335);
+
+
+	// i = ft_printf("[%.15f]\n", 1.5643339);
+	// a =	printf("[%.15f]\n", 1.5643339);
+
+	i = ft_printf("[%5.0d]\n", -392082);
+	a =	printf("[%5.0d]\n", -392082);
+
 
 	// i = ft_printf("[%s  %x    %X %c %u  %p  ]\n", str, uin, uin, c,uin, &i);
 	// a =	printf("[%s  %x    %X %c %u  %p  ]\n", str, uin, uin, c,uin, &i);

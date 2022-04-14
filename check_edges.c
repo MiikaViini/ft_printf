@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:12:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/11 11:19:36 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/14 13:21:30 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char	*check_infinity(double num)
 		res = ft_strcpy(res, "inf");
 	else if (num == neginf)
 		res = ft_strcpy(res, "-inf");
-	else if (num != num)
+	else if ((long double)num != (long double)num)
 		res = ft_strcpy(res, "nan");
 	return (res);
 }
