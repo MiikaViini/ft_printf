@@ -7,10 +7,14 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 20:54:44 by mviinika          #+#    #+#             */
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*   Updated: 2022/04/14 07:45:37 by mviinika         ###   ########.fr       */
 =======
 /*   Updated: 2022/04/13 22:08:47 by mviinika         ###   ########.fr       */
 >>>>>>> 2564d38b42f4e792a864caa0d27db7867ae72785
+=======
+/*   Updated: 2022/04/14 08:50:59 by mviinika         ###   ########.fr       */
+>>>>>>> a4c635bb2c62be5cec4f3871f0c3afd7afc7390a
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +31,7 @@ static char	*rounded_fracts(long double fract, int afterpoint, char *afterdot)
 	while (afterpoint-- > 0)
 	{
 		fract = fract * 10.0;
-		remain = (int)fract;
+		remain = (long long)fract;
 		afterdot[i++] = remain + '0';
 		fract = fract - (long double)remain;
 	}
