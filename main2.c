@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 13:34:02 by m3iinika          #+#    #+#             */
-/*   Updated: 2022/04/13 22:23:04 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/14 07:50:03 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ int main()
 	// i = ft_printf("[%*s]\n", -32, "abc");
 	// a =	printf("[%*s]\n", -32, "abc");
 
-	i = ft_printf("[%.15f]\n", 1.56423335);
-	a =	printf("[%.15f]\n", 1.56423335);
+	i = ft_printf("[%.15f]\n", 1.564333);
+	a =	printf("[%.15f]\n", 1.564333);
 
 	// i = ft_printf("[%s  %x    %X %c %u  %p  ]\n", str, uin, uin, c,uin, &i);
 	// a =	printf("[%s  %x    %X %c %u  %p  ]\n", str, uin, uin, c,uin, &i);

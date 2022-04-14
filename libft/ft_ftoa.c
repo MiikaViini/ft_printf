@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 20:54:44 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/13 22:08:47 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/14 08:50:59 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char	*rounded_fracts(long double fract, int afterpoint, char *afterdot)
 	while (afterpoint-- > 0)
 	{
 		fract = fract * 10.0;
-		remain = (int)fract;
+		remain = (long long)fract;
 		afterdot[i++] = remain + '0';
 		fract = fract - (long double)remain;
 	}
