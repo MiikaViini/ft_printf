@@ -1,5 +1,5 @@
-*** user_output_test_unsigned_int	2022-04-19 11:32:27.000000000 +0300
---- test_output_test_unsigned_int	2022-04-19 11:32:27.000000000 +0300
+*** user_output_test_unsigned_int	Tue Apr 19 18:46:48 2022
+--- test_output_test_unsigned_int	Tue Apr 19 18:46:48 2022
 *************** ret is 44
 *** 29,42 ****
   ret is 43
