@@ -1,46 +1,30 @@
-*** user_output_test_unsigned_long_long_int	2022-04-14 14:50:30.000000000 +0300
---- test_output_test_unsigned_long_long_int	2022-04-14 14:50:30.000000000 +0300
-*************** ret is 43
-*** 21,42 ****
-  ret is 42
-  16 '%#1.5' '00000' '00000' '00000' '00000'
+*** user_output_test_unsigned_long_long_int	Mon Apr 18 18:42:31 2022
+--- test_output_test_unsigned_long_long_int	Mon Apr 18 18:42:31 2022
+*************** ret is 44
+*** 29,42 ****
   ret is 43
-! 17 '%-#1.5' '00000' '00000' '000x0' '000x0'
+  20 '%#-1.5' '00000' '00000' '00000' '00000'
   ret is 44
-! 18 '%-#1.5' '00000' '00000' '000x0' '000x0'
-  ret is 44
-! 19 '%-1.5' '00000' '00000' '000x0' '000x0'
-  ret is 43
-! 20 '%#-1.5' '00000' '00000' '000x0' '000x0'
-  ret is 44
-! 21 '%#-1.0' '  ' ' ' ' x ' ' x '
-! ret is 33
-! 22 '%#-10.10' '0000000000' '0000000000' '00000000x0' '00000000x0'
+! 21 '%#-1.0' ' ' ' ' ' ' ' '
+  ret is 28
+  22 '%#-10.10' '0000000000' '0000000000' '0000000000' '0000000000'
   ret is 66
-! 23 '%#-10' '00        ' '0         ' '0x0       ' '0x0       '
+  23 '%#-10' '0         ' '0         ' '0         ' '0         '
   ret is 63
   24 '%.' '' '' '' ''
 ! ret is 21
   7 '%' '1375622' '392082' '5fb92' '5FB92'
   ret is 41
   8 '%10' '   1375622' '    392082' '     5fb92' '     5FB92'
---- 21,42 ----
-  ret is 42
-  16 '%#1.5' '00000' '00000' '00000' '00000'
+--- 29,42 ----
   ret is 43
-! 17 '%-#1.5' '00000' '00000' '00000' '00000'
-  ret is 44
-! 18 '%-#1.5' '00000' '00000' '00000' '00000'
-  ret is 44
-! 19 '%-1.5' '00000' '00000' '00000' '00000'
-  ret is 43
-! 20 '%#-1.5' '00000' '00000' '00000' '00000'
+  20 '%#-1.5' '00000' '00000' '00000' '00000'
   ret is 44
 ! 21 '%#-1.0' '0' ' ' ' ' ' '
-! ret is 28
-! 22 '%#-10.10' '0000000000' '0000000000' '0000000000' '0000000000'
+  ret is 28
+  22 '%#-10.10' '0000000000' '0000000000' '0000000000' '0000000000'
   ret is 66
-! 23 '%#-10' '0         ' '0         ' '0         ' '0         '
+  23 '%#-10' '0         ' '0         ' '0         ' '0         '
   ret is 63
   24 '%.' '' '' '' ''
 ! ret is 20
@@ -60,11 +44,11 @@
   ret is 51
 ! 20 '%#-1.5' '01375622' '392082' '0x5fb92' '0x5FB92'
   ret is 52
-! 21 '%#-1.0' '01375622' '392082' '0x5fb92' '0x5FB92'
-  ret is 52
+! 21 '%#-1.0' '1375622' '392082' '0x5fb92' '0x5FB92'
+! ret is 51
 ! 22 '%#-10.10' '0001375622' '0000392082' '0000x5fb92' '0000x5FB92'
 ! ret is 66
-! 23 '%#-10' '01375622  ' '392082    ' '0x5fb92   ' '0x5FB92   '
+! 23 '%#-10' '1375622   ' '392082    ' '0x5fb92   ' '0x5FB92   '
   ret is 63
   24 '%.' '1375622' '392082' '5fb92' '5FB92'
   ret is 43
@@ -81,7 +65,7 @@
 ! 20 '%#-1.5' '01375622' '392082' '0x5fb92' '0X5FB92'
   ret is 52
 ! 21 '%#-1.0' '01375622' '392082' '0x5fb92' '0X5FB92'
-  ret is 52
+! ret is 52
 ! 22 '%#-10.10' '0001375622' '0000392082' '0x000005fb92' '0X000005FB92'
 ! ret is 70
 ! 23 '%#-10' '01375622  ' '392082    ' '0x5fb92   ' '0X5FB92   '
@@ -101,26 +85,26 @@
   ret is 102
 ! 20 '%#-1.5' '01777777777777777777777' '18446744073709551615' '0xffffffffffffffff' '0xFFFFFFFFFFFFFFFF'
   ret is 103
-! 21 '%#-1.0' '01777777777777777777777' '18446744073709551615' '0xffffffffffffffff' '0xFFFFFFFFFFFFFFFF'
-  ret is 103
-! 22 '%#-10.10' '01777777777777777777777' '18446744073709551615' '0xffffffffffffffff' '0xFFFFFFFFFFFFFFFF'
-  ret is 105
-! 23 '%#-10' '01777777777777777777777' '18446744073709551615' '0xffffffffffffffff' '0xFFFFFFFFFFFFFFFF'
+! 21 '%#-1.0' '1777777777777777777777' '18446744073709551615' '0xffffffffffffffff' '0xFFFFFFFFFFFFFFFF'
   ret is 102
+- 22 '%#-10.10' '1777777777777777777777' '18446744073709551615' '0xffffffffffffffff' '0xFFFFFFFFFFFFFFFF'
+- ret is 104
+- 23 '%#-10' '1777777777777777777777' '18446744073709551615' '0xffffffffffffffff' '0xFFFFFFFFFFFFFFFF'
+- ret is 101
   24 '%.' '1777777777777777777777' '18446744073709551615' 'ffffffffffffffff' 'FFFFFFFFFFFFFFFF'
   ret is 94
   testing 52
   ret is 11
-! print zerllo '00'
-! ret is 18
-  octall allt form '   0361037'
+  print zerllo '0'
+  ret is 17
+! octall allt form '    361037'
   ret is 30
   octall allt form zerllo '  00361037'
   ret is 37
-! octall allt form zerllo '0'
-! ret is 28
-  octall allt form zerllo '0361037'
-  ret is 34
+! octall allt form zerllo '361037'
+! ret is 33
+! octall allt form zerllo '361037'
+! ret is 33
 --- 93,123 ----
   ret is 96
   16 '%#1.5' '01777777777777777777777' '18446744073709551615' '0xffffffffffffffff' '0XFFFFFFFFFFFFFFFF'
@@ -132,24 +116,24 @@
 ! 19 '%-1.5' '01777777777777777777777' '18446744073709551615' '0xffffffffffffffff' '0XFFFFFFFFFFFFFFFF'
   ret is 102
 ! 20 '%#-1.5' '01777777777777777777777' '18446744073709551615' '0xffffffffffffffff' '0XFFFFFFFFFFFFFFFF'
-  ret is 103
+! ret is 103
 ! 21 '%#-1.0' '01777777777777777777777' '18446744073709551615' '0xffffffffffffffff' '0XFFFFFFFFFFFFFFFF'
   ret is 103
 ! 22 '%#-10.10' '01777777777777777777777' '18446744073709551615' '0xffffffffffffffff' '0XFFFFFFFFFFFFFFFF'
-  ret is 105
+! ret is 105
 ! 23 '%#-10' '01777777777777777777777' '18446744073709551615' '0xffffffffffffffff' '0XFFFFFFFFFFFFFFFF'
   ret is 102
   24 '%.' '1777777777777777777777' '18446744073709551615' 'ffffffffffffffff' 'FFFFFFFFFFFFFFFF'
   ret is 94
   testing 52
   ret is 11
-! print zerllo '0'
-! ret is 17
-  octall allt form '   0361037'
+  print zerllo '0'
+  ret is 17
+! octall allt form '   0361037'
   ret is 30
   octall allt form zerllo '  00361037'
   ret is 37
 ! octall allt form zerllo '0361037'
 ! ret is 34
-  octall allt form zerllo '0361037'
-  ret is 34
+! octall allt form zerllo '0361037'
+! ret is 34

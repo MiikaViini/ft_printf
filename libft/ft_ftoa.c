@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 09:07:21 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/14 12:28:53 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/18 21:37:12 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,13 @@ static char	*toarr(long double fract, unsigned long long inte, int afterpoint, i
 
 	i = 0;
 	if (sign)
-		integer = ft_itoa(inte * (-1));
-	else
-		integer = ft_itoa(inte);
+		inte = inte * -1;
+	integer = ft_itoa(inte);
 	if (afterpoint > 6)
 		fractions = ft_strnew(afterpoint + 2);
 	else
 		fractions = ft_strnew(6 + 2);
-	if (afterpoint > 0)
+	if (afterpoint >= 0)
 		fractions[i++] = '.';
 	fractions = rounded_fracts(fract, afterpoint, fractions, &integer);
 	output = ft_strjoin(integer, fractions);
@@ -111,8 +110,8 @@ char	*ft_ftoa(long double num, int afterpoint)
 		return (minuszero(afterpoint));
 	l_dot = (unsigned long long)num;
 	r_dot = num - (long double)l_dot;
-	if (r_dot >= 0.5 && afterpoint >= 0)
-		l_dot++;
+	// if (r_dot > 0.5 && afterpoint >= 0)
+	// 	l_dot++;
 	res = toarr(r_dot, l_dot, afterpoint, sign);
 	return (res);
 }

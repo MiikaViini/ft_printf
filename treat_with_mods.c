@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 11:04:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/14 15:18:48 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/18 20:25:02 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ char	*treat_precision(char *string, t_modifiers *mods, int length, long long num
 	int		i;
 
 	i = 0;
-	if (!mods->dot && !mods->plus)
+
+	if (!mods->precision && !mods->plus)
 		return (string);
 	res = ft_strnew(mods->precision + 1);
 	while (length + mods->sign < mods->precision + mods->sign)
@@ -27,7 +28,7 @@ char	*treat_precision(char *string, t_modifiers *mods, int length, long long num
 		res[i++] = '0';
 		mods->precision--;
 	}
-	if (mods->plus && (int)num >= 0 && !mods->width)
+	if (mods->plus && num >= 0)
 		res = ft_strjoin("+", res);
 	if (mods->sign)
 		res = ft_strjoin("-", res);
@@ -82,10 +83,11 @@ char	*treat_width(char *string, t_modifiers *mods, int length, long long num)
 	count = mods->width - length + (mods->dot * mods->sign);
 	i = 0;
 	(void)num;
+
 	res = ft_strdup(string);
 	if (mods->width == 0 || count < 0)
 	{
-		free(res);
+		//free(res);
 		return (string);
 	}
 	temp = ft_strnew(count);
@@ -97,7 +99,6 @@ char	*treat_width(char *string, t_modifiers *mods, int length, long long num)
 		res = ft_strjoin(res, temp);
 	else
 		res = ft_strjoin(temp, res);
-
 	// ft_strdel(&temp);
 	// temp = res;
 	// ft_strdel(&res);
@@ -109,16 +110,20 @@ char	*treat_w_mods(char *str, t_modifiers *mods, int count, long long num)
 	char	*res;
 
 	res = ft_strdup(str);
-
 	res = treat_precision(res, mods, count, num);
 	if (mods->d_space > 0)
 	{
 		res = ft_strjoin(" ", res);
 	}
 	res = apply_sign(res, mods, num);
-	if (count < mods->width)
+	//printf("%d", count);
+	if (count < mods->width + mods->sign)
 		res = treat_width(res, mods, ft_strlen(res), num);
 	res = apply_sign(res, mods, num);
+
+	//ft_strdel(&str);
+	// str = res;
+	// ft_strdel(&res);
 	return (res);
 }
 
@@ -128,10 +133,10 @@ char	*treat_zerox(char *string, t_modifiers *mods, long long num)
 
 	res = ft_strdup(string);
 	if ((mods->hash == 1 && mods->capital == 1
-			&& num && !mods->zero) || (mods->minus && mods->hash == 1))
+			&& num && !mods->zero) || (mods->minus && mods->hash == 1 && num))
 		res = ft_strjoin("0x", string);
 	else if ((mods->hash == 1 && mods->capital == 0
-			&& num && !mods->zero) || (mods->minus && mods->hash == 1))
+			&& num && !mods->zero) || (mods->minus && mods->hash == 1 && num))
 		res = ft_strjoin("0X", string);
 	string = res;
 	ft_strdel(&res);
@@ -149,7 +154,6 @@ char	*apply_sign(char *string, t_modifiers *mods, long long num)
 	{
 		res = ft_strjoin("+", string);
 	}
-
 	else if ((mods->sign && *string == '0') || (mods->width <= ft_strlen(string) && mods->sign) && string[0] != '-' && string[0] != ' ')
 	{
 		res = ft_strjoin("-", string);
@@ -158,4 +162,3 @@ char	*apply_sign(char *string, t_modifiers *mods, long long num)
 	ft_strdel(&res);
 	return (string);
 }
-

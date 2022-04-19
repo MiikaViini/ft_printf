@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 09:39:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/23 11:17:05 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/18 21:32:11 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char	*ft_itoa(long long n)
 	n = ft_ismin(n);
 	n = ft_remsign(n);
 	i = 0;
-	num = (char *)malloc(sizeof(char) * (ft_lenint(t) + 1));
+	num = ft_strnew(ft_lenint(t) + 1);
 	if (!num)
 		return (NULL);
 	if (n == 0)

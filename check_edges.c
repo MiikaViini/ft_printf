@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:12:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/14 13:21:30 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/17 23:34:54 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,11 @@ char	*check_edges(t_modifiers *mods, char *format, long long num)
 
 	i = 0;
 	temp = NULL;
-
-	if (mods->o_zero)
+	if (mods->o_zero && !mods->precision && !mods->dot)
 		return ("0");
-	if (mods->dot && mods->precision == 0 && num == 0 && !mods->width)
+	if (mods->dot && mods->precision == 0 && num == 0 && !mods->width && !mods->d_space)
 		return ("");
-	else if (mods->dot && mods->precision == 0 && num == 0 && mods->width)
+	else if (mods->dot && mods->precision == 0 && num == 0)
 	{
 		while (format[i])
 		{
@@ -32,6 +31,8 @@ char	*check_edges(t_modifiers *mods, char *format, long long num)
 				format[i] = ' ';
 			i++;
 		}
+		if (mods->d_space && mods->width <= 1)
+			format++;
 		return (format);
 	}
 	temp = ft_strnew(ft_strlen(format));
