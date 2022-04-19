@@ -19,7 +19,7 @@ char	*dot(va_list args, char *format, t_modifiers *mods)
 	int		prec_int;
 
 	i = 0;
-	num = ft_strnew(21);
+	num = ft_strnew(100);
 	prec_int = 0;
 	(void)args;
 	format++;

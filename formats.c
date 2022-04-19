@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 11:29:41 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/18 20:58:32 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/19 11:37:15 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,20 +186,12 @@ int	f_converse(va_list args, t_modifiers *mods)
 		mods->precision = 6;
 	if (mods->dot && !mods->hash && !mods->precision)
 		mods->precision = -1;
+	
 	if (mods->zero)
-	{
 		mods->dot = 0;
-		//mods->precision = mods->width;
-	}
 	string = ft_ftoa(num, mods->precision);
 	output = ft_strdup(string);
-	// if (output[0] == '-')
-	// {
-	// 	mods->plus = 0;
-	// 	mods->sign++;
-	// 	output++;
-	// 	mods->width--;
-	// }
+
 	if (output[0] == '-')
 	{
 		mods->sign = 1;
@@ -213,12 +205,13 @@ int	f_converse(va_list args, t_modifiers *mods)
 			mods->width--;
 		}
 	}
-	//printf("%s", output);
 	if (mods->zero)
 	{
 		mods->dot = 0;
 		mods->precision = mods->width;
 	}
+	if (mods->dot && mods->hash && !mods->precision)
+		output = ft_strjoin(output, ".");
 	count = ft_strlen(output);
 	if (num == 1.0 / 0 || num == -1.0 / 0 || num != num)
 	{
@@ -233,7 +226,7 @@ int	f_converse(va_list args, t_modifiers *mods)
 	if (mods->plus)
 		mods->precision--;
 	output = treat_w_mods(output, mods, count, num);
-
+	
 	ft_putstr(output);
 	//free(string);
 	return (ft_strlen(output));
