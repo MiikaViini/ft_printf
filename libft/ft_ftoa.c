@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 09:07:21 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/19 19:49:22 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/21 09:23:02 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static char	*toarr(long double fract, unsigned long long inte, int afterpoint, i
 	char	*integer;
 	char	*fractions;
 	int		i;
-	//char	*output;
+	char	*output;
 
 	i = 0;
 	// if (sign)
@@ -82,12 +82,10 @@ static char	*toarr(long double fract, unsigned long long inte, int afterpoint, i
 	if (afterpoint > 0)
 		fractions[i++] = '.';
 	fractions = rounded_fracts(fract, afterpoint, fractions, &integer);
-	//output = ft_strjoin(integer, fractions);
-	if (sign && fractions[0] != '-')
-		fractions = ft_strjoin("-", fractions);
+	output = ft_strdup(fractions);
 	ft_strdel(&integer);
-	//ft_strdel(&fractions);
-	return (fractions);
+	ft_strdel(&fractions);
+	return (output);
 }
 
 // static char	*minuszero(int afterpoint)
@@ -113,11 +111,8 @@ char	*ft_ftoa(long double num, int afterpoint)
 	int					sign;
 
 	sign = 0;
-	if (num < 0 || 1 / num < 0)
-	{
-		num = num * -1;
+	if (num < 0)
 		sign = 1;
-	}
 	l_dot = (unsigned long long)num;
 	r_dot = num - (long double)l_dot;
 	res = toarr(r_dot, l_dot, afterpoint, sign);
