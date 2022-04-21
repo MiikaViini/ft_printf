@@ -1,0 +1,1 @@
+./run.sh: line 69: 46752 Abort trap: 6           ./test_exe ft_printf $test_name > $user_output
