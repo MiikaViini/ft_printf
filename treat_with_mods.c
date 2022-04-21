@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 11:04:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/18 20:25:02 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/21 20:42:47 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*treat_precision(char *string, t_modifiers *mods, int length, long long num
 	}
 	if (mods->plus && num >= 0)
 		res = ft_strjoin("+", res);
-	if (mods->sign)
+	if (mods->sign && *string != '-')
 		res = ft_strjoin("-", res);
 	temp = ft_strjoin(res, string);
 	free(res);

@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:12:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/19 20:30:27 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/21 21:11:05 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,12 @@ char	*check_infinity(double num, t_modifiers *mods)
 	res = ft_strnew(4);
 	posinf = 1.0 / 0;
 	neginf = -1.0 / 0;
-	if (num == posinf && !mods->plus)
+	if (num == posinf && !mods->plus && !mods->space)
 		res = ft_strcpy(res, "inf");
 	else if (num == posinf && mods->plus)
 		res = ft_strcpy(res, "+inf");
+	else if (num == posinf && mods->space)
+		res = ft_strcpy(res, " inf");
 	else if (num == neginf)
 		res = ft_strcpy(res, "-inf");
 	else if ((long double)num != (long double)num)
