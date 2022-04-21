@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 09:07:21 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/19 18:56:31 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/19 19:49:22 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,13 @@ void	rounding(char *str, int index)
 {
 	if (str[index] == '.')
 		rounding(str, index - 1);
-	if (str[index] + 1 <= '9')
+	if (str[index] + 1 >= '0' && str[index] + 1 <='9')
 		str[index] += 1;
 	else if (str[index] == '9')
 	{
 		str[index] = '0';
 		rounding(str, index - 1);
 	}
-	printf("%s", str);
-	exit(1);
 }
 
 static char	*rounded_fracts(long double fract, int afterpoint, char *afterdot, char **integer)

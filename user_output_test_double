@@ -1589,19 +1589,19 @@ ret is 111
 
 %f '13.999990' %lf '13.999990'
 ret is 31
-%.f '14' %.0f '14' %.1f '14/0' %.10f '13.9999900000' %.15f '13.999990000000000'
+%.f '14' %.0f '14' %.1f '14.0' %.10f '13.9999900000' %.15f '13.999990000000000'
 ret is 80
-%10.f '        14' %10.0f '        14' %10.1f '      14/0' %10.10f '13.9999900000' %10.15f '13.999990000000000'
+%10.f '        14' %10.0f '        14' %10.1f '      14.0' %10.10f '13.9999900000' %10.15f '13.999990000000000'
 ret is 112
-%.2f '14/00' %.3f '14/000' %.4f '14/0000' %.5f '13.99999' %.6f '13.999990'
+%.2f '14.00' %.3f '14.000' %.4f '14.0000' %.5f '13.99999' %.6f '13.999990'
 ret is 75
 %#f '13.999990'
 ret is 16
-%#.f '14.' %#.0f '14.' %#.1f '14/0' %#.10f '13.9999900000' %#.15f '13.999990000000000'
+%#.f '14.' %#.0f '14.' %#.1f '14.0' %#.10f '13.9999900000' %#.15f '13.999990000000000'
 ret is 87
-%0f '13.999990' %#0f '13.999990' %0#.1f '14/0' %0 f ' 13.999990' %+0f '+13.999990'
+%0f '13.999990' %#0f '13.999990' %0#.1f '14.0' %0 f ' 13.999990' %+0f '+13.999990'
 ret is 83
-%010f '013.999990' %#010f '013.999990' %0#10.1f '00000014/0' %0 10f ' 13.999990' %+010f '+13.999990'
+%010f '013.999990' %#010f '013.999990' %0#10.1f '00000014.0' %0 10f ' 13.999990' %+010f '+13.999990'
 ret is 101
 %+f '+13.999990' %#+0f '+13.999990' %+ 1f '+13.999990' %#+.f '+14.' %0.10f '13.9999900000'
 ret is 91
@@ -1877,8 +1877,8 @@ ret is 166
 ret is 21
 %.f '-inf' %.0f '-inf' %.1f '-inf' %.10f '-inf' %.15f '-inf'
 ret is 61
-%10.f '-inf' %10.0f '-inf' %10.1f '-inf' %10.10f '-inf' %10.15f '-inf'
-ret is 71
+%10.f '       -inf' %10.0f '       -inf' %10.1f '       -inf' %10.10f '       -inf' %10.15f '       -inf'
+ret is 106
 %.2f '-inf' %.3f '-inf' %.4f '-inf' %.5f '-inf' %.6f '-inf'
 ret is 60
 %#f '-inf'
@@ -1887,8 +1887,8 @@ ret is 11
 ret is 66
 %0f '-inf' %#0f '-inf' %0#.1f '-inf' %0 f '-inf' %+0f '-inf'
 ret is 61
-%010f '-inf' %#010f '-inf' %0#10.1f '-inf' %0 10f '-inf' %+010f '-inf'
-ret is 71
+%010f '     -inf' %#010f '     -inf' %0#10.1f '     -inf' %0 10f '     -inf' %+010f '     -inf'
+ret is 96
 %+f '-inf' %#+0f '-inf' %+ 1f '-inf' %#+.f '-inf' %0.10f '-inf'
 ret is 64
 
@@ -1903,20 +1903,20 @@ ret is 64
 ret is 19
 %.f 'inf' %.0f 'inf' %.1f 'inf' %.10f 'inf' %.15f 'inf'
 ret is 56
-%10.f 'inf' %10.0f 'inf' %10.1f 'inf' %10.10f 'inf' %10.15f 'inf'
-ret is 66
+%10.f '       inf' %10.0f '       inf' %10.1f '       inf' %10.10f '       inf' %10.15f '       inf'
+ret is 101
 %.2f 'inf' %.3f 'inf' %.4f 'inf' %.5f 'inf' %.6f 'inf'
 ret is 55
 %#f 'inf'
 ret is 10
 %#.f 'inf' %#.0f 'inf' %#.1f 'inf' %#.10f 'inf' %#.15f 'inf'
 ret is 61
-%0f 'inf' %#0f 'inf' %0#.1f 'inf' %0 f 'inf' %+0f 'inf'
-ret is 56
-%010f 'inf' %#010f 'inf' %0#10.1f 'inf' %0 10f 'inf' %+010f 'inf'
-ret is 66
-%+f 'inf' %#+0f 'inf' %+ 1f 'inf' %#+.f 'inf' %0.10f 'inf'
-ret is 59
+%0f 'inf' %#0f 'inf' %0#.1f 'inf' %0 f 'inf' %+0f '+inf'
+ret is 57
+%010f '       inf' %#010f '       inf' %0#10.1f '       inf' %0 10f '       inf' %+010f '      +inf'
+ret is 101
+%+f '+inf' %#+0f '+inf' %+ 1f '+inf' %#+.f '+inf' %0.10f 'inf'
+ret is 63
 
 
 
@@ -1929,8 +1929,8 @@ ret is 59
 ret is 19
 %.f 'nan' %.0f 'nan' %.1f 'nan' %.10f 'nan' %.15f 'nan'
 ret is 56
-%10.f 'nan' %10.0f 'nan' %10.1f 'nan' %10.10f 'nan' %10.15f 'nan'
-ret is 66
+%10.f '       nan' %10.0f '       nan' %10.1f '       nan' %10.10f '       nan' %10.15f '       nan'
+ret is 101
 %.2f 'nan' %.3f 'nan' %.4f 'nan' %.5f 'nan' %.6f 'nan'
 ret is 55
 %#f 'nan'
@@ -1939,8 +1939,8 @@ ret is 10
 ret is 61
 %0f 'nan' %#0f 'nan' %0#.1f 'nan' %0 f 'nan' %+0f 'nan'
 ret is 56
-%010f 'nan' %#010f 'nan' %0#10.1f 'nan' %0 10f 'nan' %+010f 'nan'
-ret is 66
+%010f '       nan' %#010f '       nan' %0#10.1f '       nan' %0 10f '       nan' %+010f '       nan'
+ret is 101
 %+f 'nan' %#+0f 'nan' %+ 1f 'nan' %#+.f 'nan' %0.10f 'nan'
 ret is 59
 
@@ -1955,8 +1955,8 @@ ret is 59
 ret is 19
 %.f 'nan' %.0f 'nan' %.1f 'nan' %.10f 'nan' %.15f 'nan'
 ret is 56
-%10.f 'nan' %10.0f 'nan' %10.1f 'nan' %10.10f 'nan' %10.15f 'nan'
-ret is 66
+%10.f '       nan' %10.0f '       nan' %10.1f '       nan' %10.10f '       nan' %10.15f '       nan'
+ret is 101
 %.2f 'nan' %.3f 'nan' %.4f 'nan' %.5f 'nan' %.6f 'nan'
 ret is 55
 %#f 'nan'
@@ -1965,8 +1965,8 @@ ret is 10
 ret is 61
 %0f 'nan' %#0f 'nan' %0#.1f 'nan' %0 f 'nan' %+0f 'nan'
 ret is 56
-%010f 'nan' %#010f 'nan' %0#10.1f 'nan' %0 10f 'nan' %+010f 'nan'
-ret is 66
+%010f '       nan' %#010f '       nan' %0#10.1f '       nan' %0 10f '       nan' %+010f '       nan'
+ret is 101
 %+f 'nan' %#+0f 'nan' %+ 1f 'nan' %#+.f 'nan' %0.10f 'nan'
 ret is 59
 

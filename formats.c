@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 11:29:41 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/19 11:37:15 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/19 20:54:19 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int	o_converse(va_list args, t_modifiers *mods)
 	num = va_arg(args, unsigned long long );
 	string = type_cast(num, mods, 8);
 	output = ft_strdup(string);
-	if (mods->hash == 1 && mods->width < mods->precision)
+	if (mods->hash == 1 && mods->width > mods->precision)
 		output = ft_strjoin("0", string);
 	if (mods->hash && mods->dot && !mods->width)
 		mods->o_zero = 1;
@@ -139,9 +139,9 @@ int	x_converse(va_list args, t_modifiers *mods)
 
 	num = va_arg(args, unsigned long long int );
 	string = type_cast(num, mods, 16);
-	string = treat_zerox(string, mods, num);
 	output = ft_strdup(string);
 	string = treat_w_mods(output, mods, ft_strlen(string), num);
+	string = treat_zerox(string, mods, num);
 	output = ft_strdup(string);
 	string = check_edges(mods, output, num);
 	count = ft_strlen(string);
@@ -186,7 +186,7 @@ int	f_converse(va_list args, t_modifiers *mods)
 		mods->precision = 6;
 	if (mods->dot && !mods->hash && !mods->precision)
 		mods->precision = -1;
-	
+
 	if (mods->zero)
 		mods->dot = 0;
 	string = ft_ftoa(num, mods->precision);
@@ -215,8 +215,15 @@ int	f_converse(va_list args, t_modifiers *mods)
 	count = ft_strlen(output);
 	if (num == 1.0 / 0 || num == -1.0 / 0 || num != num)
 	{
-		ft_putstr(check_infinity(num));
-		return (ft_strlen(check_infinity(num)));
+		if (num == -1.0 / 0)
+			mods->sign++;
+		mods->zero = 0;
+
+
+		output = check_infinity(num, mods);
+		output = treat_width(output, mods, ft_strlen(output), num);
+		ft_putstr(output);
+		return (ft_strlen(output));
 	}
 	if (mods->space && !mods->plus && num > 0)
 	{
@@ -226,7 +233,7 @@ int	f_converse(va_list args, t_modifiers *mods)
 	if (mods->plus)
 		mods->precision--;
 	output = treat_w_mods(output, mods, count, num);
-	
+
 	ft_putstr(output);
 	//free(string);
 	return (ft_strlen(output));
