@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 11:29:41 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/21 21:06:38 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/21 23:42:42 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,13 +113,18 @@ int	o_converse(va_list args, t_modifiers *mods)
 	num = va_arg(args, unsigned long long );
 	string = type_cast(num, mods, 8);
 	output = ft_strdup(string);
-	if (mods->hash == 1 && mods->width < mods->precision)
-		output = ft_strjoin("0", string);
-	if (mods->hash && mods->dot && !mods->width)
-		mods->o_zero = 1;
-	string = treat_w_mods(output, mods, ft_strlen(output), num);
 
-	output = ft_strdup(string);
+	if (mods->hash && mods->dot && mods->width)
+	{
+		mods->o_zero = 1;
+		// if (mods->width > 1)
+		// 	mods->width--;
+	}
+	if (mods->hash == 1 && num && !mods->precision)
+		output = ft_strjoin("0", string);
+	output= treat_w_mods(output, mods, ft_strlen(output), num);
+
+	//output = ft_strdup(string);
 	// printf("%s", string);
 	// exit(1);
 	string = check_edges(mods, output, num);
@@ -139,11 +144,17 @@ int	x_converse(va_list args, t_modifiers *mods)
 
 	num = va_arg(args, unsigned long long int );
 	string = type_cast(num, mods, 16);
-	string = treat_zerox(string, mods, num);
+
 	output = ft_strdup(string);
+	if (mods->minus && mods->hash && num != 0)
+		mods->width -= 2;
+	// if (mods->minus && mods->width < mods->precision)
+	// 	string = treat_zerox(string, mods, num);
 	string = treat_w_mods(output, mods, ft_strlen(string), num);
 	output = ft_strdup(string);
 	string = check_edges(mods, output, num);
+	//if (!mods->minus)
+	string = treat_zerox(string, mods, num);
 	count = ft_strlen(string);
 	ft_putstr(string);
 	ft_strdel(&output);
@@ -254,7 +265,8 @@ int	u_converse(va_list args, t_modifiers *mods)
 	// 	string = treat_width(string, mods, count, num);
 	// string = treat_precision(string, mods, count);
 	string = treat_w_mods(string, mods, ft_strlen(string), num);
-	ft_putstr(check_edges(mods, string, num));
+	string = check_edges(mods, string, num);
+	ft_putstr(string);
 
 	//free(string);
 	return (ft_strlen(string));

@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 09:08:03 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/19 18:54:47 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/21 23:26:35 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,8 +226,10 @@ int main()
 	// i = ft_printf("[%f]\n", -0.0);
 	// a =	printf("[%f]\n", -0.0);
 
-	i = ft_printf("[%.2f]\n", 13.999990);
-	a =	printf("[%.2f]\n", 13.999990);
+	// i = ft_printf("[%#10.8hho]\n", (unsigned char)250);
+	// a =	printf("[%#10.8hho]\n", (unsigned char)250);
+	i = ft_printf("[%#.hho]\n", (unsigned char)250);
+	a =	printf("[%#.hho]\n", (unsigned char)250);
 
 
 	// i = ft_printf("[%.5x]\n", 21);
