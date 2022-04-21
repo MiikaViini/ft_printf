@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 11:29:41 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/19 20:54:19 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/21 10:01:05 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,8 +218,6 @@ int	f_converse(va_list args, t_modifiers *mods)
 		if (num == -1.0 / 0)
 			mods->sign++;
 		mods->zero = 0;
-
-
 		output = check_infinity(num, mods);
 		output = treat_width(output, mods, ft_strlen(output), num);
 		ft_putstr(output);
