@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 11:04:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/21 23:32:07 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/22 15:37:56 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,35 @@ char	*treat_precision(char *string, t_modifiers *mods, int length, long long num
 	int		i;
 
 	i = 0;
-
 	if (!mods->precision && !mods->plus)
 		return (string);
+	temp = ft_strdup(string);
 	res = ft_strnew(mods->precision + 1);
 	while (length + mods->sign < mods->precision + mods->sign)
 	{
 		res[i++] = '0';
 		mods->precision--;
 	}
-	if (mods->plus && num >= 0)
-		res = ft_strjoin("+", res);
-	if (mods->sign && *string != '-')
-		res = ft_strjoin("-", res);
-	temp = ft_strjoin(res, string);
-	free(res);
-	return (temp);
+	if (mods->plus && num >= 0 && *res == '0')
+	{
+		string = ft_strjoin("+", res);
+		ft_strdel(&res);
+		res = ft_strdup(string);
+		ft_strdel(&string);
+	}
+	else if (mods->sign && *temp != '-')
+	{
+		string = ft_strjoin("-", res);
+		ft_strdel(&res);
+		res = ft_strdup(string);
+		ft_strdel(&string);
+	}
+	string = ft_strjoin(res, temp);
+	ft_strdel(&res);
+	res = ft_strdup(string);
+	ft_strdel(&temp);
+	ft_strdel(&string);
+	return (res);
 }
 
 // char	*is_num_neg(char *string, char *fill, t_modifiers *mods, long long num)
@@ -83,26 +96,23 @@ char	*treat_width(char *string, t_modifiers *mods, int length, long long num)
 	count = mods->width - length + (mods->dot * mods->sign);
 	i = 0;
 	(void)num;
-
 	res = ft_strdup(string);
 	if (mods->width == 0 || count < 0)
-	{
-		//free(res);
-		return (string);
-	}
+		return (res);
 	temp = ft_strnew(count);
-	if (mods->zero == 1 && mods->minus == 0 && !mods->dot)
+	if (mods->zero == 1 && mods->minus == 0 && !mods->dot || mods->zero == 1 && mods->minus == 0 && mods->precision < 0)
 		c = '0';
 	while (count-- > 0 && i < mods->width - (int)ft_strlen(string) - (mods->zero * mods->plus - mods->sign))
 		temp[i++] = c;
+	ft_strdel(&res);
 	if (mods->minus == 1)
-		res = ft_strjoin(res, temp);
+		res = ft_strjoin(string, temp);
 	else
-		res = ft_strjoin(temp, res);
-	// ft_strdel(&temp);
-	// temp = res;
-	// ft_strdel(&res);
-	return (res);
+		res = ft_strjoin(temp, string);
+	string = ft_strdup(res);
+	ft_strdel(&temp);
+	ft_strdel(&res);
+	return (string);
 }
 
 char	*treat_w_mods(char *str, t_modifiers *mods, int count, long long num)
@@ -110,20 +120,37 @@ char	*treat_w_mods(char *str, t_modifiers *mods, int count, long long num)
 	char	*res;
 
 	res = ft_strdup(str);
-	res = treat_precision(res, mods, count, num);
-	if (mods->d_space > 0)
+	str = treat_precision(res, mods, ft_strlen(res), num);
+	ft_strdel(&res);
+	res = ft_strdup(str);
+	ft_strdel(&str);
+	if (mods->d_space > 0 && !mods->zero)
 	{
-		res = ft_strjoin(" ", res);
+		str = ft_strjoin(" ", res);
+		ft_strdel(&res);
+		res = ft_strdup(str);
+		ft_strdel(&str);
 	}
-	res = apply_sign(res, mods, num);
-	//printf("%d", count);
 	if (count < mods->width + mods->sign)
-		res = treat_width(res, mods, ft_strlen(res), num);
-	res = apply_sign(res, mods, num);
+	{
+		str = treat_width(res, mods, ft_strlen(res), num);
+		ft_strdel(&res);
+		res = ft_strdup(str);
+		ft_strdel(&str);
+	}
 
-	//ft_strdel(&str);
-	// str = res;
-	// ft_strdel(&res);
+	if (mods->d_space > 0 && mods->zero)
+	{
+		if (*str == '0' && mods->width)
+			str++;
+		res = ft_strjoin(" ", str);
+	}
+	str = apply_sign(res, mods, num);
+	// printf("%s", str);
+	// ;
+	ft_strdel(&res);
+	res = ft_strdup(str);
+	ft_strdel(&str);
 	return (res);
 }
 
@@ -150,7 +177,7 @@ char	*apply_sign(char *string, t_modifiers *mods, long long num)
 
 	i = 0;
 	res = ft_strdup(string);
-	if (num >= 0 && *string == '0' && mods->plus)
+	if (num >= 0 && *string != ' ' && *string != '+' && mods->plus)
 	{
 		res = ft_strjoin("+", string);
 	}

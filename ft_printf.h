@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 09:58:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/21 21:06:11 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/22 10:36:48 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,9 @@ typedef struct s_modifiers
 	int			precision;
 	int			o_zero;
 	int			d_space;
-	long			sign;
+	long		sign;
 	int			inv_spec;
+	int			p_spec;
 }				t_modifiers;
 
 
