@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 10:42:33 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/02 12:44:33 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/25 13:30:15 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ char	*ft_strnew(size_t size)
 	if (fresh == NULL)
 		return (NULL);
 	while (size--)
-		fresh[i++] = '\0';
+	{
+		fresh[i] = '\0';
+		i++;
+	}
 	fresh[i] = '\0';
 	return (fresh);
 }

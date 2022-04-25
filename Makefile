@@ -6,7 +6,7 @@
 #    By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/14 12:56:26 by mviinika          #+#    #+#              #
-#    Updated: 2022/04/10 21:30:51 by mviinika         ###   ########.fr        #
+#    Updated: 2022/04/25 12:31:04 by mviinika         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ NAME = libftprintf.a
 
 CC = clang
 
-FLAGS = -c -Wall -Werror -Wextra
+FLAGS = -c -Wall -Werror -Wextra -g
 
 INCLUDES = "ft_printf.h"
 
@@ -39,5 +39,6 @@ clean:
 fclean: clean
 		@make fclean -C ./libft
 		@rm -f $(NAME)
-
+debug:
+	gcc $(SRCS) ./libft/*.c main2.c  -g
 re: fclean all

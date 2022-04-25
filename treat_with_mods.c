@@ -6,7 +6,11 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 11:04:49 by mviinika          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/04/22 19:30:10 by mviinika         ###   ########.fr       */
+=======
+/*   Updated: 2022/04/25 14:32:35 by mviinika         ###   ########.fr       */
+>>>>>>> 04afeaefe6c4015b0c4791d8b60513cf4f37bd27
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +23,12 @@ char	*treat_precision(char *string, t_modifiers *mods, int length, long long num
 	int		i;
 
 	i = 0;
-	if (!mods->precision && !mods->plus)
-		return (string);
 	temp = ft_strdup(string);
+	if (!mods->precision && !mods->plus)
+	{
+		///ft_strdel(&string);
+		return (temp);
+	}
 	res = ft_strnew(mods->precision + 1);
 	while (length + mods->sign < mods->precision + mods->sign)
 	{
@@ -96,62 +103,66 @@ char	*treat_width(char *string, t_modifiers *mods, int length, long long num)
 	count = mods->width - length + (mods->dot * mods->sign);
 	i = 0;
 	(void)num;
-	res = ft_strdup(string);
 	if (mods->width == 0 || count < 0)
-		return (res);
+		return (string);
+	// res = ft_strdup(string);
+	// 
 	temp = ft_strnew(count);
 	if (mods->zero == 1 && mods->minus == 0 && !mods->dot || mods->zero == 1 && mods->minus == 0 && mods->precision < 0)
 		c = '0';
 	while (count-- > 0 && i < mods->width - (int)ft_strlen(string) - (mods->zero * mods->plus - mods->sign))
 		temp[i++] = c;
-	ft_strdel(&res);
 	if (mods->minus == 1)
 		res = ft_strjoin(string, temp);
 	else
 		res = ft_strjoin(temp, string);
-	string = ft_strdup(res);
 	ft_strdel(&temp);
+	temp = ft_strdup(res);
 	ft_strdel(&res);
-	return (string);
+	return (temp);	
 }
 
 char	*treat_w_mods(char *str, t_modifiers *mods, int count, long long num)
 {
 	char	*res;
+	char	*temp;
 
-	res = ft_strdup(str);
-	str = treat_precision(res, mods, ft_strlen(res), num);
-	ft_strdel(&res);
-	res = ft_strdup(str);
-	ft_strdel(&str);
+	// res = ft_strdup(str);
+	//ft_strdel(&str);
+	temp = treat_precision(str, mods, ft_strlen(str), num);
+	res = NULL;
 	if (mods->d_space > 0 && !mods->zero)
 	{
-		str = ft_strjoin(" ", res);
+		res = ft_strjoin(" ", temp);
+		ft_strdel(&temp);
+		temp = ft_strdup(res);
 		ft_strdel(&res);
-		res = ft_strdup(str);
-		ft_strdel(&str);
 	}
 	if (count < mods->width + mods->sign)
 	{
-		str = treat_width(res, mods, ft_strlen(res), num);
+		res = treat_width(temp, mods, ft_strlen(temp), num);
+		ft_strdel(&temp);
+		temp = ft_strdup(res);
 		ft_strdel(&res);
-		res = ft_strdup(str);
-		ft_strdel(&str);
 	}
-
 	if (mods->d_space > 0 && mods->zero)
 	{
 		if (*str == '0' && mods->width)
 			str++;
 		res = ft_strjoin(" ", str);
 	}
-	str = apply_sign(res, mods, num);
-	// printf("%s", str);
-	// ;
-	ft_strdel(&res);
+	// ft_stdel(&str);
 	res = ft_strdup(str);
 	ft_strdel(&str);
-	return (res);
+	res = apply_sign(res, mods, num);
+
+	// printf("%s", str);
+	// ;
+	str = ft_strdup(res);
+	
+	
+	ft_strdel(&res);
+	return (str);
 }
 
 char	*treat_zerox(char *string, t_modifiers *mods, long long num)
@@ -159,6 +170,8 @@ char	*treat_zerox(char *string, t_modifiers *mods, long long num)
 	char	*res;
 
 	res = ft_strdup(string);
+	// if (res == NULL)
+	// 	return (NULL);
 	if ((mods->hash == 1 && mods->capital == 1
 			&& num && !mods->zero) || (mods->minus && mods->hash == 1 && num && mods->capital == 1))
 		res = ft_strjoin("0x", string);
@@ -181,11 +194,15 @@ char	*apply_sign(char *string, t_modifiers *mods, long long num)
 	{
 		res = ft_strjoin("+", string);
 	}
-	else if ((mods->sign && *string == '0') || (mods->width <= ft_strlen(string) && mods->sign) && string[0] != '-' && string[0] != ' ')
+	
+	else if ((mods->sign && *string == '0') || (mods->width <= ft_strlen(string) && mods->sign) && *string != '-' && *string != ' ')
 	{
 		res = ft_strjoin("-", string);
 	}
-	string = ft_strdup(res);
-	ft_strdel(&res);
-	return (string);
+	
+	// else
+	// 	return();
+	//string = ft_strdup(res);
+	//ft_strdel(&res);
+	return (res);
 }

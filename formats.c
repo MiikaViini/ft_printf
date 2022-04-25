@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 11:29:41 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/22 15:41:10 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/25 14:11:47 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,22 +54,24 @@ int	d_converse(va_list args, t_modifiers *mods)
 		mods->d_space = 0;
 		if (mods->zero && mods->width && !mods->minus && !mods->dot || mods->precision)
 		{
-			string++;
+			mods->d_zerominus++;
 			mods->width--;
 		}
 	}
 	if (mods->minus)
 		mods->zero = 0;
-	output = ft_strdup(string);
+	output = ft_strdup(string + mods->d_zerominus);
 	ft_strdel(&string);
 	string = treat_w_mods(output, mods, ft_strlen(output), num);
-	ft_strdel(&output);
+	//ft_strdel(&output);
 	output = ft_strdup(string);
-	ft_strdel(&string);
+	///printf("%s", output);
+	//ft_strdel(&string);
 	string = check_edges(mods, output, num);
-	ft_putstr(output);
-	count = ft_strlen(output);
-	ft_strdel(&output);
+	ft_putstr(string);
+	count = ft_strlen(string);
+	//ft_strdel(&output);
+	//ft_strdel(&string);
 	return (count);
 }
 
