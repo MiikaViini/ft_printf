@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:12:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/19 20:30:27 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/21 22:43:20 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*check_edges(t_modifiers *mods, char *format, long long num)
 
 	i = 0;
 	temp = NULL;
-	if (mods->o_zero && !mods->precision && !mods->dot)
+	if (mods->o_zero && !mods->precision && !num)
 		return ("0");
 	if (mods->dot && mods->precision == 0 && num == 0 && !mods->width && !mods->d_space)
 		return ("");
@@ -66,10 +66,12 @@ char	*check_infinity(double num, t_modifiers *mods)
 	res = ft_strnew(4);
 	posinf = 1.0 / 0;
 	neginf = -1.0 / 0;
-	if (num == posinf && !mods->plus)
+	if (num == posinf && !mods->plus && !mods->space)
 		res = ft_strcpy(res, "inf");
 	else if (num == posinf && mods->plus)
 		res = ft_strcpy(res, "+inf");
+	else if (num == posinf && mods->space)
+		res = ft_strcpy(res, " inf");
 	else if (num == neginf)
 		res = ft_strcpy(res, "-inf");
 	else if ((long double)num != (long double)num)

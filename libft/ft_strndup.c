@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 15:43:28 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/02 10:12:05 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/22 13:04:48 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ char	*ft_strndup(const char *s, size_t size)
 	char	*str;
 	int		i;
 	size_t	str_len;
-	char	*temp;
-
 
 	i = 0;
 	str_len = ft_strlen((char *)s);
@@ -34,7 +32,5 @@ char	*ft_strndup(const char *s, size_t size)
 		i++;
 	}
 	str[i] = '\0';
-	temp = str;
-	free(str);
-	return (temp);
+	return (str);
 }
