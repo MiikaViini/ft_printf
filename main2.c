@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 09:08:03 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/25 21:24:15 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/26 10:09:52 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int main()
 	// i = ft_printf("[%#10.10d]\n", 10);
 	// i = printf("[%#10.10d]\n", 10);
 	// i = ft_printf("[%010.10d]\n", 10);
-	i = ft_printf("[%d]\n", 10);
+	i = ft_printf("[%# -+015.15d]\n", 16);
 	// i = ft_printf("[%c]\n", '\0');
 	// i = printf("[%10c]\n", 60);
 	// i = ft_printf("[%10c]\n", 70);
