@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 11:04:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/26 11:40:04 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/26 14:31:26 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*treat_precision(char *string, t_modifiers *mods, int length, long long num
 	temp = ft_strdup(string);
 	if (!mods->precision && !mods->plus)
 	{
-		ft_strdel(&string);
+		//ft_strdel(&string);
 		return (temp);
 	}	
 	res = ft_strnew(mods->precision + 1);
@@ -137,6 +137,7 @@ char	*treat_zerox(char *string, t_modifiers *mods, long long num)
 		res = ft_strjoin("0X", temp);
 	else
 		res = ft_strdup(temp);
+	mods->hash = 0;
 	ft_strdel(&temp);
 	return (res);
 }
