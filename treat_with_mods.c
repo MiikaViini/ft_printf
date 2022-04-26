@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 11:04:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/26 10:04:31 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/26 11:40:04 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,19 +125,20 @@ char	*treat_w_mods(char *str, t_modifiers *mods, int count, long long num)
 char	*treat_zerox(char *string, t_modifiers *mods, long long num)
 {
 	char	*res;
+	char	*temp;
 
-	res = ft_strdup(string);
-	// if (res == NULL)
-	// 	return (NULL);
+	temp = ft_strdup(string);
+	res = NULL;
 	if ((mods->hash == 1 && mods->capital == 1
 			&& num && !mods->zero) || (mods->minus && mods->hash == 1 && num && mods->capital == 1))
-		res = ft_strjoin("0x", string);
+		res = ft_strjoin("0x", temp);
 	else if ((mods->hash == 1 && mods->capital == 0
 			&& num && !mods->zero) || (mods->minus && mods->hash == 1 && num))
-		res = ft_strjoin("0X", string);
-	string = res;
-	ft_strdel(&res);
-	return (string);
+		res = ft_strjoin("0X", temp);
+	else
+		res = ft_strdup(temp);
+	ft_strdel(&temp);
+	return (res);
 }
 
 char	*apply_sign(char *string, t_modifiers *mods, long long num)
@@ -149,16 +150,16 @@ char	*apply_sign(char *string, t_modifiers *mods, long long num)
 	res = ft_strdup(string);
 	if (num >= 0 && *string != ' ' && *string != '+' && mods->plus)
 	{
+		ft_strdel(&res);
 		res = ft_strjoin("+", string);
 	}
-	else if ((mods->sign && *string == '0') || (mods->width <= ft_strlen(string) && mods->sign) && *string != '-' && *string != ' ')
+	else if ((mods->sign && *string == '0')
+		|| (mods->width <= ft_strlen(string) && mods->sign)
+		&& *string != '-' && *string != ' ')
 	{
+		ft_strdel(&res);
 		res = ft_strjoin("-", string);
 	}
-	// else
-	// 	return();
-	//string = ft_strdup(res);
-	//ft_strdel(&res);
 	return (res);
 }
 
