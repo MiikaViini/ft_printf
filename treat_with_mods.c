@@ -6,11 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 11:04:49 by mviinika          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/04/22 19:30:10 by mviinika         ###   ########.fr       */
-=======
-/*   Updated: 2022/04/25 14:32:35 by mviinika         ###   ########.fr       */
->>>>>>> 04afeaefe6c4015b0c4791d8b60513cf4f37bd27
+/*   Updated: 2022/04/25 21:34:14 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +15,12 @@
 char	*treat_precision(char *string, t_modifiers *mods, int length, long long num)
 {
 	char	*res;
-	char	*temp;
 	int		i;
 
 	i = 0;
-	temp = ft_strdup(string);
+	//temp = ft_strdup(string);
 	if (!mods->precision && !mods->plus)
-	{
-		///ft_strdel(&string);
-		return (temp);
-	}
+		return (string);
 	res = ft_strnew(mods->precision + 1);
 	while (length + mods->sign < mods->precision + mods->sign)
 	{
@@ -42,18 +34,18 @@ char	*treat_precision(char *string, t_modifiers *mods, int length, long long num
 		res = ft_strdup(string);
 		ft_strdel(&string);
 	}
-	else if (mods->sign && *temp != '-')
+	else if (mods->sign && *string != '-')
 	{
 		string = ft_strjoin("-", res);
 		ft_strdel(&res);
 		res = ft_strdup(string);
 		ft_strdel(&string);
 	}
-	string = ft_strjoin(res, temp);
-	ft_strdel(&res);
-	res = ft_strdup(string);
-	ft_strdel(&temp);
-	ft_strdel(&string);
+	//string = ft_strjoin(res, temp);
+	//ft_strdel(&res);
+	//res = ft_strdup(string);
+	//ft_strdel(&temp);
+	//ft_strdel(&string);
 	return (res);
 }
 
@@ -106,7 +98,7 @@ char	*treat_width(char *string, t_modifiers *mods, int length, long long num)
 	if (mods->width == 0 || count < 0)
 		return (string);
 	// res = ft_strdup(string);
-	// 
+	//
 	temp = ft_strnew(count);
 	if (mods->zero == 1 && mods->minus == 0 && !mods->dot || mods->zero == 1 && mods->minus == 0 && mods->precision < 0)
 		c = '0';
@@ -119,7 +111,7 @@ char	*treat_width(char *string, t_modifiers *mods, int length, long long num)
 	ft_strdel(&temp);
 	temp = ft_strdup(res);
 	ft_strdel(&res);
-	return (temp);	
+	return (temp);
 }
 
 char	*treat_w_mods(char *str, t_modifiers *mods, int count, long long num)
@@ -129,8 +121,11 @@ char	*treat_w_mods(char *str, t_modifiers *mods, int count, long long num)
 
 	// res = ft_strdup(str);
 	//ft_strdel(&str);
-	temp = treat_precision(str, mods, ft_strlen(str), num);
+	temp = NULL;
 	res = NULL;
+	if (!mods->width && !mods->precision)
+		return (str);
+	temp = treat_precision(str, mods, ft_strlen(str), num);
 	if (mods->d_space > 0 && !mods->zero)
 	{
 		res = ft_strjoin(" ", temp);
@@ -159,8 +154,8 @@ char	*treat_w_mods(char *str, t_modifiers *mods, int count, long long num)
 	// printf("%s", str);
 	// ;
 	str = ft_strdup(res);
-	
-	
+
+
 	ft_strdel(&res);
 	return (str);
 }
@@ -194,12 +189,12 @@ char	*apply_sign(char *string, t_modifiers *mods, long long num)
 	{
 		res = ft_strjoin("+", string);
 	}
-	
+
 	else if ((mods->sign && *string == '0') || (mods->width <= ft_strlen(string) && mods->sign) && *string != '-' && *string != ' ')
 	{
 		res = ft_strjoin("-", string);
 	}
-	
+
 	// else
 	// 	return();
 	//string = ft_strdup(res);

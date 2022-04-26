@@ -6,11 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 09:08:03 by mviinika          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/04/22 19:38:56 by mviinika         ###   ########.fr       */
-=======
-/*   Updated: 2022/04/25 12:33:38 by mviinika         ###   ########.fr       */
->>>>>>> 04afeaefe6c4015b0c4791d8b60513cf4f37bd27
+/*   Updated: 2022/04/25 21:24:15 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,26 +75,11 @@ int main()
 	// i = ft_printf("[%#10.10d]\n", 10);
 	// i = printf("[%#10.10d]\n", 10);
 	// i = ft_printf("[%010.10d]\n", 10);
-<<<<<<< HEAD
 	i = ft_printf("[%d]\n", 10);
 	// i = ft_printf("[%c]\n", '\0');
 	// i = printf("[%10c]\n", 60);
 	// i = ft_printf("[%10c]\n", 70);
 	// i = printf("[%10c]\n", 70);
-=======
-	// i = printf("[%010.10d]\n", 10);
-	// i = ft_printf("[%15.10d]\n", -10);
-	// i = printf("[%15.10d]\n", -10);
-
-	// i = ft_printf("[%15.10d]\n", 10);
-	// i = printf("[%15.10d]\n", 10);
-	
-	i = ft_printf("[%-10d]\n", 10);
-	//i = printf("[%-10d]\n", 10);
-	
-	// i = ft_printf("[%d]\n", -10);
-	// i = printf("[%d]\n", -10);
->>>>>>> 04afeaefe6c4015b0c4791d8b60513cf4f37bd27
 	//i = ft_printf("[%20.s]\n", str);
 
 	// i = ft_printf("[%*s]\n", -32, "abc");
