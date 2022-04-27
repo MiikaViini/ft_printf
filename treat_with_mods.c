@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 11:04:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/26 14:31:26 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/27 14:49:03 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@ char	*treat_precision(char *string, t_modifiers *mods, int length, long long num
 {
 	char	*res;
 	int		i;
+	int 	count;
 	char	*temp;
 
 	i = 0;
+	count = mods->precision;
 	temp = ft_strdup(string);
 	if (!mods->precision && !mods->plus)
 	{
@@ -26,10 +28,10 @@ char	*treat_precision(char *string, t_modifiers *mods, int length, long long num
 		return (temp);
 	}	
 	res = ft_strnew(mods->precision + 1);
-	while (length + mods->sign < mods->precision + mods->sign)
+	while (length + mods->sign < count + mods->sign)
 	{
 		res[i++] = '0';
-		mods->precision--;
+		count--;
 	}
 	if (mods->plus && num >= 0 && *res == '0')
 	{
@@ -91,7 +93,7 @@ char	*treat_w_mods(char *str, t_modifiers *mods, int count, long long num)
 	char	*temp;
 
 	res = ft_strdup(str);
-	ft_strdel(&str);
+	//ft_strdel(&str);
 	temp = NULL;
 	if (!mods->width && !mods->precision)
 		return (res);

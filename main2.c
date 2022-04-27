@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 09:08:03 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/26 14:53:46 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/27 14:52:49 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,76 +28,94 @@ int main()
 	static char c = 'G';
 	static char *str = "Hello World";
 
-	// i = ft_printf("[%5d]\n", -12);
-	// a =	printf("[%5d]\n", -12);
+	i = ft_printf("[%5d]\n", -12);
+	a =	printf("[%5d]\n", -12);
 
-	// i = ft_printf("[%-5d]\n", -12);
-	// a =	printf("[%-5d]\n", -12);
+	i = ft_printf("[%-5d]\n", -12);
+	a =	printf("[%-5d]\n", -12);
 
-	// i = ft_printf("[%-05d]\n", -12);
-	// a =	printf("[%-05d]\n", -12);
+	i = ft_printf("[%-05d]\n", -12);
+	a =	printf("[%-05d]\n", -12);
 
-	// i = ft_printf("[%+10.5d]\n", -12);
-	// a =	printf("[%+10.5d]\n", -12);
+	i = ft_printf("[%+10.5d]\n", -12);
+	a =	printf("[%+10.5d]\n", -12);
 
-	// i = ft_printf("[%+10.5d]\n", -12);
-	// a =	printf("[%+10.5d]\n", -12);
+	i = ft_printf("[%+10.5d]\n", -12);
+	a =	printf("[%+10.5d]\n", -12);
 
-	// i = ft_printf("[%+10.5d]\n", 4242);
-	// a =	printf("[%+10.5d]\n", 4242);
+	i = ft_printf("[%+10.5d]\n", 4242);
+	a =	printf("[%+10.5d]\n", 4242);
 
-	//  i = ft_printf("MY [%.5d]\n", 42);
-	//  a =	printf("OG [%.5d]\n", 42);
+	 i = ft_printf("MY [%.5d]\n", 42);
+	 a =	printf("OG [%.5d]\n", 42);
 
-	// i = ft_printf("[%05d]\n", 42);
-	// a =	printf("[%05d]\n", 42);
+	i = ft_printf("[%05d]\n", 42);
+	a =	printf("[%05d]\n", 42);
 
-	// i = ft_printf("[%5d]\n", -42);
-	// a =	printf("[%5d]\n", -42);
+	i = ft_printf("[%5d]\n", -42);
+	a =	printf("[%5d]\n", -42);
 
-	// i = ft_printf("MY [%05d]\n", 42);
-	// a =	printf("OG [%05d]\n", 42);
+	i = ft_printf("MY [%05d]\n", 42);
+	a =	printf("OG [%05d]\n", 42);
 
-	// i = ft_printf("[%03.2d]\n", -1);
-	// a =	printf("[%03.2d]\n", -1);
+	i = ft_printf("[%03.2d]\n", -1);
+	a =	printf("[%03.2d]\n", -1);
 
-	// i = ft_printf("[%20s]\n", str);
-	// i = printf("[%20s]\n", str);
-	// i = ft_printf("[%s]\n", str);
-	// i = printf("[%s]\n", str);
-	// i = ft_printf("[%10.10d]\n", 10);
-	// i = printf("[%10.10d]\n", 10);
-	// i = ft_printf("[%+10.10d]\n", 10);
-	// i = printf("[%+10.10d]\n", 10);
-	//  i = ft_printf("[%- 15.10d]\n", 10);
-	// i = printf("[%- 15.10d]\n", 10);
+	i = ft_printf("[%20s]\n", str);
+	i = printf("[%20s]\n", str);
+	i = ft_printf("[%s]\n", str);
+	i = printf("[%s]\n", str);
+	i = ft_printf("[% 10.10u]\n", 10);
+	i = printf("[% 10.10u]\n", 10);
+	i = ft_printf("[%+10.10u]\n", 10);
+	i = printf("[%+10.10u]\n", 10);
+	 i = ft_printf("[%- 15.10u]\n", 10);
+	i = printf("[%- 15.10u]\n", 10);
 
-	// i = ft_printf("[%#10.10d]\n", 10);
-	// i = printf("[%#10.10d]\n", 10);
+	// i = ft_printf("[%#0 15u]\n", 10);
+	// i = printf("[%#0 15u]\n", 10);
+
+	// i = ft_printf("[%#10.10u]\n", -1231231);
+	// i = printf("[%#10.10u]\n", -1231231);
 	// i = ft_printf("[%010.10d]\n", 10);
-	//i = ft_printf("[%20c]\n", 60);
-	i = ft_printf("[%#-10.5x]\n", 60);
-	i = printf("[%#-10.5x]\n", 60);
+	// //i = ft_printf("[%20c]\n", 60);
+	// i = ft_printf("[%#-10.5x]\n", 60);
+	// i = printf("[%#-10.5x]\n", 60);
 	
-	i = ft_printf("[%#12.15x]\n", 60);
-	i = printf("[%#12.15x]\n", 60);
+	// i = ft_printf("[%#12.15x]\n", 60);
+	// i = printf("[%#12.15x]\n", 60);
 	
-	i = ft_printf("[%#10.11x]\n", 60);
-	i = printf("[%#10.11x]\n", 60);
+	// i = ft_printf("[%#10.11x]\n", 60);
+	// i = printf("[%#10.11x]\n", 60);
 
-	i = ft_printf("[%#10.5x]\n", 60);
-	i = printf("[%#10.5x]\n", 60);
+	// i = ft_printf("[%#10.5x]\n", 60);
+	// i = printf("[%#10.5x]\n", 60);
 	
-	i = ft_printf("[%#-15.12x]\n", 150);
-	i = printf("[%#-15.12x]\n", 150);
+	// i = ft_printf("[%#-15.12x]\n", 150);
+	// i = printf("[%#-15.12x]\n", 150);
 	
-	i = ft_printf("[%#-x]\n", 60);
-	i = printf("[%#-x]\n", 60);
-	// i = ft_printf("[%c]\n", '\0');
-	// i = printf("[%10c]\n", 60);
+	// i = ft_printf("[%#-x]\n", 60);
+	// i = printf("[%#-x]\n", 60);
+	// // i = ft_printf("[%c]\n", '\0');
+	// // i = printf("[%10c]\n", 60);
 	// i = ft_printf("[%10c]\n", 70);
 	// i = printf("[%10c]\n", 70);
-	//i = ft_printf("[%20.s]\n", str);
+	// i = ft_printf("[%20.s]\n", str);
+
+	// i = ft_printf("[%%]\n");
+	// i = printf("[%%]\n");
+	
+	// i = ft_printf("[%050%]\n");
+	// i = printf("[%050%]\n");
+
+	// i = ft_printf("[%-50%]\n");
+	// i = printf("[%-50%]\n");
+
+	// i = ft_printf("[%     %]\n");
+	// i = printf("[%     %]\n");
+	
+	// i = ft_printf("[%#%]\n");
+	// i = printf("[%#%]\n");
 
 	// i = ft_printf("[%*s]\n", -32, "abc");
 	// a =	printf("[%*s]\n", -32, "abc");
@@ -113,7 +131,7 @@ int main()
 	// a =	printf("[%.f]\n", 9.50000);
 
 	// i = ft_printf("[%.15f]\n", 1.00002);
-	// a =	printf("[%.15f]\n", 1.00002);
+	// a =	printf("[%.15f]\n", 1.00002);	
 
 
 	// i = ft_printf("[%.15f]\n", 1.56423335);
@@ -198,22 +216,32 @@ int main()
 	// 	i = ft_printf("[%+1.0d]\n", 33333);
 	// a =	printf("[%+1.0d]\n", 33333);
 
-	// i = ft_printf("[%05.0d]\n", -10);
-	// a =	printf("[%05.0d]\n", -10);
+	// i = ft_printf("[%0p]\n", -10);
+	// a =	printf("[%0p]\n", -10);
+
+	// i = ft_printf("[%p]\n", -10);
+	// a =	printf("[%p]\n", -10);
+
+	// i = ft_printf("[%-20p]\n", 10);
+	// a =	printf("[%-20p]\n", 10);
+
+	// i = ft_printf("[%20p]\n", 10);
+	// a =	printf("[%20p]\n", 10);
+
 
 
 	// i = ft_printf("[%s  %x    %X %c %u  %p  ]\n", str, uin, uin, c,uin, &i);
 	// a =	printf("[%s  %x    %X %c %u  %p  ]\n", str, uin, uin, c,uin, &i);
 
-	// i = ft_printf("[%010.1d]\n", 3);
-	// a =	printf("[%010.1d]\n", 3);
+	// i = ft_printf("[%010d]\n", 3);
+	// a =	printf("[%010d]\n", 3);
 	// i = ft_printf("[%0#10.1f]\n", -958.125000);
 	// a =	printf("[%0#10.1f]\n", -958.125000);
 	// i = ft_printf("[%f]\n", 3.1);
 	// a =	printf("[%f]\n", 3.1);
 
-	// i = ft_printf("[%.f]\n", 0.876509);
-	// a =	printf("[%.f]\n", 0.876509);
+	// i = ft_printf("[%10f]\n", 0.876509);
+	// a =	printf("[%10f]\n", 0.876509);
 
 	// i = ft_printf("[%f]\n", -958.125000);
 	// a =	printf("[%f]\n", -958.125000);

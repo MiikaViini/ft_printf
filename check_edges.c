@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:12:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/21 22:43:20 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/04/27 14:48:17 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,12 @@ char	*check_edges(t_modifiers *mods, char *format, long long num)
 	else
 	{
 		ft_strdel(&temp);
-		return (format);
+		temp = ft_strdup(format);
+		ft_strdel(&format);
 	}
-	format = temp;
-	ft_strdel(&temp);
-	return (format);
+	// format = temp;
+	// ft_strdel(&temp);
+	return (temp);
 }
 
 char	*check_infinity(double num, t_modifiers *mods)
