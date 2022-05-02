@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:06:29 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/22 11:23:48 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/02 19:57:18 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	find_letter(char c, char *letters)
 	int	index;
 
 	index = 0;
-
 	while (letters[index])
 	{
 		if (letters[index] == c)
@@ -36,7 +35,6 @@ char	*check_modifiers(char *format, t_modifiers *mods, va_list args)
 	}
 	if (*format == 'x' || *format == 'U')
 		mods->capital = 1;
-
 	return (format);
 }
 
@@ -54,7 +52,7 @@ int	conversion(va_list args, char *format)
 			format++;
 			format = check_modifiers(format, modifiers, args);
 			ch_count += g_specif[find_letter(*format++, CONV)](args, modifiers);
-			ft_bzero(modifiers, sizeof(t_modifiers));
+			modifiers = init_struct(modifiers);
 		}
 		if (!*format)
 			break ;
@@ -79,7 +77,7 @@ int	ft_printf(char *format, ...)
 	va_start(list, format);
 	count += conversion(list, temp);
 	va_end(list);
-	free(temp);
+	ft_strdel(&temp);
 	//system("leaks a.out");
 	return (count);
 }

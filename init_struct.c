@@ -6,13 +6,13 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:31:30 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/11 11:19:14 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/02 19:57:44 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_modifiers		*init_struct(t_modifiers *mods)
+t_modifiers	*init_struct(t_modifiers *mods)
 {
 	mods->plus = 0;
 	mods->minus = 0;
@@ -21,10 +21,20 @@ t_modifiers		*init_struct(t_modifiers *mods)
 	mods->space = 0;
 	mods->zero = 0;
 	mods->star = 0;
+	mods->width = 0;
 	mods->l = 0;
 	mods->h = 0;
 	mods->ld = 0;
+	mods->j = 0;
+	mods->z = 0;
 	mods->capital = 0;
 	mods->precision = 0;
+	mods->cap_u = 0;
+	mods->o_zero = 0;
+	mods->d_space = 0;
+	mods->sign = 0;
+	mods->inv_spec = 0;
+	mods->p_spec = 0;
+	mods->d_zerominus = 0;
 	return (mods);
 }

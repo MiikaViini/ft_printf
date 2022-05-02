@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:12:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/21 22:43:20 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/02 14:54:22 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,16 @@ char	*check_edges(t_modifiers *mods, char *format, long long num)
 
 	i = 0;
 	temp = NULL;
-	if (mods->o_zero && !mods->precision && !num)
-		return ("0");
 	if (mods->dot && mods->precision == 0 && num == 0 && !mods->width && !mods->d_space)
-		return ("");
+	{
+		temp = ft_strnew(1);
+		return (temp);
+	}
+	if (mods->o_zero && !mods->precision && !num || !mods->width && mods->dot && mods->precision == 0 && !num)
+	{
+		temp = ft_strdup("0");
+		return (temp);
+	}
 	else if (mods->dot && mods->precision == 0 && num == 0)
 	{
 		while (format[i])
@@ -32,14 +38,19 @@ char	*check_edges(t_modifiers *mods, char *format, long long num)
 			i++;
 		}
 		if (mods->d_space && mods->width <= 1)
-			format++;
-		return (format);
+			temp = ft_strdup(format + mods->space);
+		else
+			temp = ft_strdup(format);
+			//format++;
+
+		return (temp);
 	}
 	temp = ft_strnew(ft_strlen(format));
 	if ((!mods->width && !mods->precision && !mods->zero) || !temp)
 	{
 		ft_strdel(&temp);
-		return (format);
+		temp = ft_strdup(format);
+		return (temp);
 	}
 	if (mods->zero && mods->width && mods->hash && mods->capital)
 		temp = ft_strjoin("0x", format + (mods->hash * 2));
@@ -48,11 +59,12 @@ char	*check_edges(t_modifiers *mods, char *format, long long num)
 	else
 	{
 		ft_strdel(&temp);
-		return (format);
+		temp = ft_strdup(format);
+		//ft_strdel(&format);
 	}
-	format = temp;
-	ft_strdel(&temp);
-	return (format);
+	// format = temp;
+	// ft_strdel(&temp);
+	return (temp);
 }
 
 char	*check_infinity(double num, t_modifiers *mods)
