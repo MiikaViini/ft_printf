@@ -1,53 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mods.c                                            :+:      :+:    :+:   */
+/*   other_mods.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/17 09:48:27 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/22 10:07:55 by mviinika         ###   ########.fr       */
+/*   Created: 2022/05/03 13:49:48 by mviinika          #+#    #+#             */
+/*   Updated: 2022/05/03 13:50:32 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*minus(va_list args, char *format, t_modifiers *mods)
+char	*j_flag(va_list args, char *format, t_modifiers *mods)
 {
 	(void)args;
-	if (*format++ == '-')
-		mods->minus = 1;
+	if (*format++ == 'j')
+		mods->j = 1;
 	return (format);
 }
 
-char	*plus(va_list args, char *format, t_modifiers *mods)
+char	*z_flag(va_list args, char *format, t_modifiers *mods)
 {
 	(void)args;
-	if (*format++ == '+')
-		mods->plus = 1;
+	if (*format++ == 'z')
+		mods->z = 1;
 	return (format);
 }
 
-char	*zero(va_list args, char *format, t_modifiers *mods)
+char	*do_nothing(va_list args, char *format, t_modifiers *mods)
 {
 	(void)args;
-	if (*format++ == '0')
-		mods->zero = 1;
+	(void)mods;
+	if (!ft_strrchr(CONV, *format))
+		format++;
 	return (format);
 }
 
-char	*space(va_list args, char *format, t_modifiers *mods)
+int	do_nothing_conv(va_list args, t_modifiers *mods)
 {
 	(void)args;
-	if (*format++ == ' ')
-		mods->space = 1;
-	return (format);
-}
-
-char	*hashtag(va_list args, char *format, t_modifiers *mods)
-{
-	(void)args;
-	if (*format++ == '#')
-		mods->hash = 1;
-	return (format);
+	(void)mods;
+	return (0);
 }

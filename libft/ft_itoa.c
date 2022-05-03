@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 09:39:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/18 21:32:11 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/02 21:43:16 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ static	long long	ft_ismin(long long n)
 
 char	*ft_itoa(long long n)
 {
-	char	*num;
-	size_t	i;
+	char			*num;
+	size_t			i;
 	long long		t;
 
 	t = n;

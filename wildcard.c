@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_abs.c                                           :+:      :+:    :+:   */
+/*   wildcard.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/10 09:57:54 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/03 22:10:28 by mviinika         ###   ########.fr       */
+/*   Created: 2022/05/03 13:46:14 by mviinika          #+#    #+#             */
+/*   Updated: 2022/05/03 13:46:30 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-size_t	ft_abs(int num)
+char	*star(va_list args, char *format, t_modifiers *mods)
 {
-	if (num < 0)
+	(void)args;
+	if (*format++ == '*' && !mods->dot)
+		mods->width = va_arg(args, long long);
+	if (mods->star || mods->dot)
+		mods->precision = va_arg(args, long long);
+	if (mods->width < 0)
 	{
-		num = ~num;
-		num++;
+		mods->width = ft_abs(mods->width);
+		mods->minus = 1;
 	}
-	return (num);
+	return (format);
 }

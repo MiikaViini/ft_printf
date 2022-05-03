@@ -6,43 +6,40 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 20:23:42 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/02 20:34:37 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/03 14:23:17 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	treat_null(char *str, t_modifiers *mods, int count)
+int	treat_null(char *str, t_modifiers *mods, int count, char c)
 {
-	char	*output
+	char	*output;
 
-	output = treat_width(str, mods, ft_strlen(str), c);
+	output = treat_width(str, mods, ft_strlen(str));
 	if (mods->minus)
 	{
 		ft_putchar(c);
-		ft_putstr(output + 1);
-		count = ft_strlen(output + 1);
+		count = ft_putstrlen(output + 1);
 		ft_strdel(&str);
 		ft_strdel(&output);
 		return (count + 1);
 	}
 	else if (mods->width)
 	{
-		ft_putstr(output + 1);
+		count = ft_putstrlen(output + 1);
 		ft_putchar(c);
-		count = ft_strlen(output);
 		ft_strdel(&str);
 		ft_strdel(&output);
-		return (count);
+		return (count + 1);
 	}
 	ft_putchar(c);
-	count = ft_strlen(output);
 	ft_strdel(&str);
 	ft_strdel(&output);
-	return (count + 1);
+	return (1);
 }
 
-int	c_converse(va_list args, t_modifiers *mods)
+int	c_specifier(va_list args, t_modifiers *mods)
 {
 	char	*str;
 	char	*output;
@@ -56,10 +53,8 @@ int	c_converse(va_list args, t_modifiers *mods)
 	c = va_arg(args, int );
 	str[0] = c;
 	if (!c)
-	{
-
-	}
-	output = treat_width(str, mods, ft_strlen(str), 0);
+		return (treat_null(str, mods, count, c));
+	output = treat_width(str, mods, ft_strlen(str));
 	ft_putstr(output);
 	count = ft_strlen(output);
 	ft_strdel(&str);

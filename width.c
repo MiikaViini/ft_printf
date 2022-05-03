@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_abs.c                                           :+:      :+:    :+:   */
+/*   width.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/10 09:57:54 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/03 22:10:28 by mviinika         ###   ########.fr       */
+/*   Created: 2022/05/03 13:47:46 by mviinika          #+#    #+#             */
+/*   Updated: 2022/05/03 13:48:17 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-size_t	ft_abs(int num)
+char	*width(va_list args, char *format, t_modifiers *mods)
 {
-	if (num < 0)
+	char	res[100];
+	int		i;
+
+	(void)args;
+	i = 0;
+	if (!ft_isdigit(*format))
+		return (format);
+	else if (*format == '0')
 	{
-		num = ~num;
-		num++;
+		mods->zero = 1;
+		format++;
 	}
-	return (num);
+	while (ft_isdigit(*format))
+		res[i++] = *format++;
+	res[i] = '\0';
+	mods->width = ft_atoi(res);
+	return (format);
 }

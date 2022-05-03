@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 14:13:57 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/18 21:01:19 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/02 21:47:00 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,6 @@ char	*ft_itoabase(unsigned long long int num, int base, int flag);
 char	*ft_ftoa(long double num, int afterpoint);
 char	*ft_ltoa(long long int n);
 char	*ft_utoa(unsigned long long n);
+size_t	ft_putstrlen(char const *s);
 
 #endif

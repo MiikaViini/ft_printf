@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:06:29 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/02 19:57:18 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/03 21:30:00 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	conversion(va_list args, char *format)
 
 	ch_count = 0;
 	modifiers = ft_memalloc(sizeof(t_modifiers));
+	if (!modifiers)
+		return (-1);
 	while (*format)
 	{
 		while (*format == '%')

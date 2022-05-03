@@ -6,87 +6,26 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 11:04:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/02 15:30:37 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/03 21:50:15 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*treat_precision(char *string, t_modifiers *mods, int length, long long num)
+static char	*apply_space(t_modifiers *mods, char *str)
 {
-	char	*res;
-	int		i;
-	int 	count;
-	char	*temp;
+	char	*output;
 
-	i = 0;
-	count = mods->precision;
-	temp = ft_strdup(string);
-	if (!mods->precision && !mods->plus)
+	if (mods->d_space > 0 && mods->zero)
 	{
-		//ft_strdel(&string);
-		return (temp);
+		if (*str != ' ')
+			output = ft_strjoin(" ", str);
+		else
+			output = ft_strdup(str);
 	}
-	res = ft_strnew(mods->precision + 1);
-	while (length + mods->sign < count + mods->sign)
-	{
-		res[i++] = '0';
-		count--;
-	}
-	if (mods->plus && num >= 0 && !mods->zero)
-	{
-		string = ft_strjoin("+", res);
-		ft_strdel(&res);
-		res = ft_strdup(string);
-		ft_strdel(&string);
-		mods->plus--;
-	}
-	else if (mods->sign && *string != '-')
-	{
-		string = ft_strjoin("-", res);
-		ft_strdel(&res);
-		res = ft_strdup(string);
-		ft_strdel(&string);
-	}
-	string = ft_strjoin(res, temp);
-	ft_strdel(&res);
-	res = ft_strdup(string);
-	ft_strdel(&temp);
-	ft_strdel(&string);
-	return (res);
-}
-
-char	*treat_width(char *string, t_modifiers *mods, int length, long long num)
-{
-	char	*temp;
-	char	*res;
-	int		i;
-	int		count;
-	char	c;
-	char	*temp2;
-
-	c = ' ';
-	count = mods->width - length + (mods->dot * mods->sign);
-	//count = ft_abs(count);
-	i = 0;
-	(void)num;
-	res = ft_strdup(string);
-	if (mods->width == 0 || count < 0)
-		return (res);
-	temp = ft_strnew(count);
-	if (mods->zero == 1 && mods->minus == 0 && !mods->dot || mods->zero == 1 && mods->minus == 0 && mods->precision < 0)
-		c = '0';
-	while (count-- > 0 && i < mods->width - (int)ft_strlen(string) - (mods->zero * mods->plus - mods->sign))
-		temp[i++] = c;
-	if (mods->minus == 1)
-		temp2 = ft_strjoin(res, temp);
 	else
-		temp2 = ft_strjoin(temp, res);
-	ft_strdel(&temp);
-	temp = ft_strdup(temp2);
-	ft_strdel(&res);
-	ft_strdel(&temp2);
-	return (temp);
+		output = ft_strdup(str);
+	return (output);
 }
 
 char	*treat_w_mods(char *str, t_modifiers *mods, int count, long long num)
@@ -95,10 +34,6 @@ char	*treat_w_mods(char *str, t_modifiers *mods, int count, long long num)
 	char	*temp;
 
 	res = ft_strdup(str);
-	//ft_strdel(&str);
-	temp = NULL;
-	// if (!mods->width && !mods->precision)
-	// 	return (res);
 	temp = treat_precision(res, mods, ft_strlen(res), num);
 	ft_strdel(&res);
 	if (mods->d_space > 0 && !mods->zero)
@@ -110,51 +45,16 @@ char	*treat_w_mods(char *str, t_modifiers *mods, int count, long long num)
 	}
 	if (count < mods->width + mods->sign)
 	{
-		res = treat_width(temp, mods, ft_strlen(temp), num);
+		res = treat_width(temp, mods, ft_strlen(temp));
 		ft_strdel(&temp);
 		temp = ft_strdup(res);
 		ft_strdel(&res);
 	}
-	if (mods->d_space > 0 && mods->zero)
-	{
-		if (*temp != ' ')
-			res = ft_strjoin(" ", temp);
-		else
-			res = ft_strdup(temp);
-		ft_strdel(&temp);
-		temp = ft_strdup(res);
-		ft_strdel(&res);
-	}
-	res = apply_sign(temp, mods, num);
-	// res = ft_strdup(temp);
+	res = apply_space(mods, temp);
 	ft_strdel(&temp);
-	//ft_strdel(&str);
-	return (res);
-}
-
-char	*treat_zerox(char *string, t_modifiers *mods, long long num)
-{
-	char	*res;
-	char	*temp;
-
-	temp = ft_strdup(string);
-	res = NULL;
-	if ((mods->hash == 1 && mods->capital == 1
-			&& num && !mods->zero) || (mods->minus && mods->hash == 1 && num && mods->capital == 1))
-	{
-		res = ft_strjoin("0x", temp);
-		mods->hash = 0;
-	}
-	else if ((mods->hash == 1 && mods->capital == 0
-			&& num && !mods->zero) || (mods->minus && mods->hash == 1 && num))
-	{
-		res = ft_strjoin("0X", temp);
-		mods->hash = 0;
-	}
-	else
-		res = ft_strdup(temp);
-	ft_strdel(&temp);
-	return (res);
+	temp = apply_sign(res, mods, num);
+	ft_strdel(&res);
+	return (temp);
 }
 
 char	*apply_sign(char *string, t_modifiers *mods, long long num)
@@ -178,37 +78,3 @@ char	*apply_sign(char *string, t_modifiers *mods, long long num)
 	}
 	return (res);
 }
-
-// char	*is_num_neg(char *string, char *fill, t_modifiers *mods, long long num)
-// {
-// 	int		i;
-// 	char	*temp;
-// 	int		sign;
-
-// 	i = 0;
-// 	sign = 0;
-// 	temp = ft_strnew(ft_strlen(fill) + 1);
-// 	// if (mods->plus && !mods->dot && num > 0)
-// 	// {
-// 	// 	temp[0] = '+';
-// 	// 	temp++;
-// 	// 	sign++;
-// 	// }
-// 	// else if (mods->sign)
-// 	// {
-// 	// 	temp[0] = '-';
-// 	// 	temp++;
-// 	// 	sign++;
-// 	// }
-// 	while (string[i] && sign)
-// 	{
-// 		string[i] = string[i + 1];
-// 		i++;
-// 		// printf("[%s]\n", string);
-// 		// exit(1);
-// 	}
-// 	temp = ft_strcpy(temp, fill);
-// 	string = ft_strjoin(temp - sign, string);
-
-// 	return (string);
-// }

@@ -1,5 +1,5 @@
-*** user_output_test_long_double	Mon May  2 19:54:19 2022
---- test_output_test_long_double	Mon May  2 19:54:19 2022
+*** user_output_test_long_double	Tue May  3 22:07:26 2022
+--- test_output_test_long_double	Tue May  3 22:07:26 2022
 *************** ret is 91
 *** 237,255 ****
   

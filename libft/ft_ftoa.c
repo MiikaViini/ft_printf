@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 09:07:21 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/27 12:58:28 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/03 21:15:43 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ void	rounding(char *str, int index)
 	}
 }
 
-static long double	fract_part(long double fract, int afterpoint, char *afterdot)
+static long double	fract_part(long double fract, int apoint, char *afterdot)
 {
 	int	remain;
 	int	i;
 
 	i = 1;
 	remain = 0;
-	while (afterpoint-- > 0)
+	while (apoint-- > 0)
 	{
 		fract = (long double)fract * 10.0;
 		remain = (long long)fract;
@@ -43,33 +43,20 @@ static long double	fract_part(long double fract, int afterpoint, char *afterdot)
 	return (fract);
 }
 
-static char	*rounded_fracts(long double fract, int afterpoint, char *afterdot, char **integer)
+static char	*rded_fracts(long double fract, int ap, char *afdot, char **integer)
 {
-	// int		remain;
 	char	*num;
 	int		int_i;
 	char	*temp;
 
-
 	int_i = 0;
-	
-	// i = 1;
-	// remain = 0;
-	// while (afterpoint-- > 0)
-	// {
-	// 	fract = (long double)fract * 10.0;
-	// 	remain = (long long)fract;
-	// 	afterdot[i++] = remain + '0';
-	// 	fract = fract - (long double)remain;
-	// }
-	//afterdot++;
-
-	fract = fract_part(fract, afterpoint, afterdot);
-	 if (((*integer[int_i] == '9' && afterdot[1] >= '5' ) && !afterpoint ) || (*integer[int_i] == '9' && afterpoint <= 1 && fract >= 0.5))
-	 	temp = ft_strjoin("0", *integer);
+	fract = fract_part(fract, ap, afdot);
+	if (((*integer[int_i] == '9' && afdot[1] >= '5' ) && !ap)
+		|| (*integer[int_i] == '9' && ap <= 1 && fract >= 0.5))
+		temp = ft_strjoin("0", *integer);
 	else
 		temp = ft_strdup(*integer);
-	num = ft_strjoin(temp, afterdot);
+	num = ft_strjoin(temp, afdot);
 	ft_strdel(integer);
 	ft_strdel(&temp);
 	if (1.0 - fract < 0 + fract || (1.0 - fract == 0 + fract
@@ -80,9 +67,7 @@ static char	*rounded_fracts(long double fract, int afterpoint, char *afterdot, c
 	return (num);
 }
 
-
-
-static char	*toarr(long double fract, unsigned long long inte, int afterpoint, int sign)
+static char	*toarr(long double fract, unsigned long long inte, int ap, int sign)
 {
 	char	*integer;
 	char	*fractions;
@@ -91,14 +76,13 @@ static char	*toarr(long double fract, unsigned long long inte, int afterpoint, i
 
 	i = 0;
 	integer = ft_itoa(inte);
-	if (afterpoint > 6)
-		fractions = ft_strnew(afterpoint + 2);
+	if (ap > 6)
+		fractions = ft_strnew(ap + 2);
 	else
 		fractions = ft_strnew(6 + 2);
-	if (afterpoint > 0)
+	if (ap > 0)
 		fractions[i++] = '.';
-	output = rounded_fracts(fract, afterpoint, fractions, &integer);
-	//ft_strdel(&fractions);
+	output = rded_fracts(fract, ap, fractions, &integer);
 	if (sign && fractions[0] != '-')
 		integer = ft_strjoin("-", output);
 	else
@@ -107,21 +91,6 @@ static char	*toarr(long double fract, unsigned long long inte, int afterpoint, i
 	ft_strdel(&fractions);
 	return (integer);
 }
-
-// static char	*minuszero(int afterpoint)
-// {
-// 	char	*res;
-// 	int		i;
-
-// 	i = 0;
-// 	res = ft_strnew(1 + afterpoint);
-// 	res[i++] = '-';
-// 	res[i++] = '0';
-// 	res[i++] = '.';
-// 	while (afterpoint-- > 0)
-// 		res[i++] = '0';
-// 	return (res);
-// }
 
 char	*ft_ftoa(long double num, int afterpoint)
 {

@@ -6,14 +6,21 @@
 #    By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/14 12:56:26 by mviinika          #+#    #+#              #
-#    Updated: 2022/04/25 12:31:04 by mviinika         ###   ########.fr        #
+#    Updated: 2022/05/03 14:36:28 by mviinika         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = ft_printf.c \
-	formats.c length.c \
+SRCS = ft_printf.c length.c \
 	flags.c treat_with_mods.c \
-	init_struct.c check_edges.c
+	treat_width.c width.c \
+	wildcard.c init_struct.c \
+	check_edges.c precision.c\
+	treat_precision.c \
+	d_specifier.c c_specifier.c \
+	p_specifier.c x_specifier.c \
+	f_specifier.c o_specifier.c \
+	s_specifier.c u_specifier.c \
+	per_specifier.c other_mods.c
 
 OBJS = $(SRCS:.c=.o)
 

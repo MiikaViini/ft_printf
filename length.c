@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 15:18:27 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/25 11:07:17 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/02 22:35:11 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ char	*l_length(va_list args, char *format, t_modifiers *mods)
 		mods->l += 1;
 		format++;
 	}
-
 	return (format);
 }
 
@@ -43,7 +42,6 @@ char	*ld_length(va_list args, char *format, t_modifiers *mods)
 		mods->ld = 1;
 		format++;
 	}
-
 	return (format);
 }
 
@@ -52,7 +50,6 @@ char	*type_cast(unsigned long long int num, t_modifiers *mods, int base)
 	char	*string;
 
 	string = NULL;
-
 	if (mods->h == 1 && !mods->cap_u)
 		string = ft_itoabase((unsigned short)num, base, mods->capital);
 	else if (mods->h == 2)
@@ -73,14 +70,12 @@ char	*type_cast_int(long long int num, t_modifiers *mods)
 	string = NULL;
 	if (mods->h == 1 && !mods->z && !mods->j)
 		string = ft_itoa((short)num);
-	else if (mods->h == 2 && !mods->l && !mods->z && !mods->j) 
+	else if (mods->h == 2 && !mods->l && !mods->z && !mods->j)
 		string = ft_itoa((char)num);
 	else if (mods->l == 1 || mods->z)
 		string = ft_ltoa((long)num);
 	else if (mods->l == 2 || mods->j)
 		string = ft_ltoa((long long)num);
-	// else if (mods->j)
-	// 	string = ft_itoabase((unsigned long long)num, 10, 1);
 	else
 		string = ft_ltoa((int)num);
 	return (string);

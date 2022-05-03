@@ -6,13 +6,13 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 20:16:25 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/02 20:23:00 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/03 11:31:13 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	neg_mods(t_modifiers *mods)
+static void	neg_mods(t_modifiers *mods)
 {
 	mods->sign = 1;
 	mods->plus = 0;
@@ -27,6 +27,20 @@ void	neg_mods(t_modifiers *mods)
 	}
 }
 
+static void	prep_mods(t_modifiers *mods)
+{
+	mods->d_space = mods->space - mods->plus;
+	if (mods->precision < 0)
+	{
+		mods->precision = 0;
+		mods->dot = 0;
+	}
+	if (mods->minus)
+		mods->zero = 0;
+	if (mods->d_space == 1 && mods->zero)
+		mods->width--;
+}
+
 int	d_specifier(va_list args, t_modifiers *mods)
 {
 	long long		num;
@@ -34,15 +48,11 @@ int	d_specifier(va_list args, t_modifiers *mods)
 	char			*string;
 	char			*output;
 
-	mods->d_space = mods->space - mods->plus;
-	if (mods->precision < 0)
-		mods->precision = 0;
+	prep_mods(mods);
 	num = va_arg(args, long long );
 	string = type_cast_int(num, mods);
 	if (string[0] == '-')
 		neg_mods(mods);
-	if (mods->minus)
-		mods->zero = 0;
 	output = treat_w_mods(string + mods->d_zerominus,
 			mods, ft_strlen(string) - mods->d_zerominus, num);
 	ft_strdel(&string);

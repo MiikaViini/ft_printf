@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 11:49:11 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/27 20:22:38 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/02 21:42:05 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ char	*ft_ltoa(long long n)
 		temp = (unsigned long)n;
 	len = intlen(temp);
 	res = ft_strnew(len + 1);
+	if (!res)
+		return (NULL);
 	if (n == 0)
 		res[0] = '0';
 	if (n < 0)
