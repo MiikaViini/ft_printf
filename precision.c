@@ -16,11 +16,9 @@ char	*dot(va_list args, char *format, t_modifiers *mods)
 {
 	char	*num;
 	int		i;
-	int		prec_int;
 
 	i = 0;
 	num = ft_strnew(25);
-	prec_int = 0;
 	(void)args;
 	format++;
 	while (*format >= '0' && *format <= '9')

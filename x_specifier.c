@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 11:33:32 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/03 14:31:13 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/04 12:45:23 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	x_specifier(va_list args, t_modifiers *mods)
 	x_prep_mods(mods);
 	num = va_arg(args, unsigned long long );
 	string = type_cast(num, mods, 16);
-	output = treat_precision(string, mods, ft_strlen(string), num);
+	output = treat_precis(string, mods, ft_strlen(string), num);
 	ft_strdel(&string);
 	if (mods->precision || !mods->precision && mods->width && mods->zero == 0)
 		string = treat_zerox(output, mods, num);

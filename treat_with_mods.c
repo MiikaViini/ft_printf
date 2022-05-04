@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 11:04:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/03 21:50:15 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/04 12:34:00 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ static char	*apply_space(t_modifiers *mods, char *str)
 	return (output);
 }
 
-char	*treat_w_mods(char *str, t_modifiers *mods, int count, long long num)
+char	*treat_mods(char *str, t_modifiers *mods, int count, long long num)
 {
 	char	*res;
 	char	*temp;
 
 	res = ft_strdup(str);
-	temp = treat_precision(res, mods, ft_strlen(res), num);
+	temp = treat_precis(res, mods, ft_strlen(res), num);
 	ft_strdel(&res);
 	if (mods->d_space > 0 && !mods->zero)
 	{

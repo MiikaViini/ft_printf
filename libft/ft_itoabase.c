@@ -6,12 +6,11 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 11:30:23 by mviinika          #+#    #+#             */
-/*   Updated: 2022/04/26 14:15:38 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/04 13:41:33 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 static char	*ft_over_sixteen(unsigned long long int num, int base, int flag)
 {

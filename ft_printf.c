@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 10:06:29 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/03 21:30:00 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/04 13:00:00 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,5 @@ int	ft_printf(char *format, ...)
 	count += conversion(list, temp);
 	va_end(list);
 	ft_strdel(&temp);
-	//system("leaks a.out");
 	return (count);
 }

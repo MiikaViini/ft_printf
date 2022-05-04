@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 20:16:25 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/03 11:31:13 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/04 12:47:24 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	d_specifier(va_list args, t_modifiers *mods)
 	string = type_cast_int(num, mods);
 	if (string[0] == '-')
 		neg_mods(mods);
-	output = treat_w_mods(string + mods->d_zerominus,
+	output = treat_mods(string + mods->d_zerominus,
 			mods, ft_strlen(string) - mods->d_zerominus, num);
 	ft_strdel(&string);
 	string = check_edges(mods, output, num);

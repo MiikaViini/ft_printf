@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 13:46:14 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/03 13:46:30 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/04 12:53:44 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 char	*star(va_list args, char *format, t_modifiers *mods)
 {
-	(void)args;
 	if (*format++ == '*' && !mods->dot)
 		mods->width = va_arg(args, long long);
 	if (mods->star || mods->dot)

@@ -6,11 +6,9 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 10:10:32 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/01 09:43:24 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/04 13:42:39 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdio.h>
 
 void	ft_swap(int *a, int *b)
 {

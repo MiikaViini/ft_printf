@@ -6,12 +6,11 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 09:07:21 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/03 21:15:43 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/04 13:41:17 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 void	rounding(char *str, int index)
 {
@@ -57,7 +56,6 @@ static char	*rded_fracts(long double fract, int ap, char *afdot, char **integer)
 	else
 		temp = ft_strdup(*integer);
 	num = ft_strjoin(temp, afdot);
-	ft_strdel(integer);
 	ft_strdel(&temp);
 	if (1.0 - fract < 0 + fract || (1.0 - fract == 0 + fract
 			&& (num[ft_strlen(num) - 1] + 1 - '0') % 2 == 0))
@@ -83,6 +81,7 @@ static char	*toarr(long double fract, unsigned long long inte, int ap, int sign)
 	if (ap > 0)
 		fractions[i++] = '.';
 	output = rded_fracts(fract, ap, fractions, &integer);
+	ft_strdel(&integer);
 	if (sign && fractions[0] != '-')
 		integer = ft_strjoin("-", output);
 	else
