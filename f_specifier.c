@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 11:29:41 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/04 13:55:04 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/05 15:27:07 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@ static void	f_neg_mods(t_modifiers *mods)
 {
 	mods->sign = 1;
 	mods->plus = 0;
+	if (mods->width && !mods->dot && !mods->zero)
+		mods->width++;
 	if (mods->width && mods->dot && !mods->precision)
 		mods->width--;
 	mods->d_space = 0;
-	if (mods->zero && mods->width && !mods->minus && !mods->dot
+	if ((mods->zero && mods->width && !mods->minus && !mods->dot)
 		|| mods->precision)
 	{
 		mods->d_zerominus++;
@@ -29,11 +31,14 @@ static void	f_neg_mods(t_modifiers *mods)
 
 static void	f_prep_mods(t_modifiers *mods, char *string, long double num)
 {
+	if (mods->minus)
+		mods->zero = 0;
 	if (*string == '-')
 		f_neg_mods(mods);
 	if (mods->zero)
 	{
-		mods->dot = 0;
+		//mods->dot = 0;
+		mods->f_prec = mods->precision;
 		mods->precision = mods->width;
 	}
 	if (mods->space && !mods->plus && 1 / num > 0)
@@ -41,14 +46,15 @@ static void	f_prep_mods(t_modifiers *mods, char *string, long double num)
 		mods->d_space = 1;
 		if (mods->precision)
 			mods->precision--;
-		if (mods->width)
-			mods->width--;
+		if (ft_strlen(string) < mods->width && mods->zero)
+			mods->width = mods->width - mods->space;
 	}
+	//mods->width = mods->width - mods->space;
 	if (mods->plus && mods->precision)
 		mods->precision--;
 }
 
-static int	inf_and_nan(char *str, t_modifiers *mods, int count, double num)
+static int	inf_nan(char *str, t_modifiers *mods, int count, long double num)
 {
 	char	*output;
 
@@ -82,19 +88,20 @@ int	f_specifier(va_list args, t_modifiers *mods)
 	char			*output;
 
 	if (mods->ld == 1)
-		num = va_arg(args, long double );
+		num = (long double)va_arg(args, long double );
 	else
-		num = va_arg(args, double );
+		num = (double)va_arg(args, double );
 	count = 0;
 	f_prec_prep(mods);
 	string = ft_ftoa(num, mods->precision);
 	f_prep_mods(mods, string, num);
-	if (mods->dot && mods->hash && !mods->precision)
+	if (num == 1.0 / 0 || num == -1.0 / 0 || num != num)
+		return (inf_nan(string, mods, count, (long double)num));
+	//mods->precision = 0;
+	if (mods->dot && mods->hash && !mods->f_prec)
 		output = ft_strjoin(string + mods->d_zerominus, ".");
 	else
 		output = ft_strdup(string + mods->d_zerominus);
-	if (num == 1.0 / 0 || num == -1.0 / 0 || num != num)
-		return (inf_and_nan(string, mods, count, num));
 	ft_strdel(&string);
 	string = treat_mods(output, mods, ft_strlen(output), num);
 	count = ft_putstrlen(string);

@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 11:04:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/04 12:34:00 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/05 14:54:48 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ char	*apply_sign(char *string, t_modifiers *mods, long long num)
 		res = ft_strjoin("+", string);
 	}
 	else if ((mods->sign && *string == '0')
-		|| (mods->width <= ft_strlen(string) && mods->sign)
-		&& *string != '-' && *string != ' ')
+		|| (mods->width <= ft_strlen(string) && mods->sign
+			&& *string != '-' && *string != ' '))
 	{
 		ft_strdel(&res);
 		res = ft_strjoin("-", string);

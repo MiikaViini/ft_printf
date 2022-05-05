@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 20:23:42 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/03 14:23:17 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/05 09:30:03 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,7 @@ int	c_specifier(va_list args, t_modifiers *mods)
 	if (!c)
 		return (treat_null(str, mods, count, c));
 	output = treat_width(str, mods, ft_strlen(str));
-	ft_putstr(output);
-	count = ft_strlen(output);
+	count = ft_putstrlen(output);
 	ft_strdel(&str);
 	ft_strdel(&output);
 	return (count);

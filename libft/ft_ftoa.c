@@ -6,11 +6,12 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 09:07:21 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/04 13:41:17 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/05 12:59:55 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 void	rounding(char *str, int index)
 {
@@ -35,7 +36,7 @@ static long double	fract_part(long double fract, int apoint, char *afterdot)
 	while (apoint-- > 0)
 	{
 		fract = (long double)fract * 10.0;
-		remain = (long long)fract;
+		remain = (unsigned long long)fract;
 		afterdot[i++] = remain + '0';
 		fract = fract - (long double)remain;
 	}
@@ -73,7 +74,7 @@ static char	*toarr(long double fract, unsigned long long inte, int ap, int sign)
 	char	*output;
 
 	i = 0;
-	integer = ft_itoa(inte);
+	integer = ft_ltoa(inte);
 	if (ap > 6)
 		fractions = ft_strnew(ap + 2);
 	else

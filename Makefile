@@ -6,9 +6,11 @@
 #    By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/14 12:56:26 by mviinika          #+#    #+#              #
-#    Updated: 2022/05/03 14:36:28 by mviinika         ###   ########.fr        #
+#    Updated: 2022/05/05 10:07:40 by mviinika         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+NAME = libftprintf.a
 
 SRCS = ft_printf.c length.c \
 	flags.c treat_with_mods.c \
@@ -24,11 +26,9 @@ SRCS = ft_printf.c length.c \
 
 OBJS = $(SRCS:.c=.o)
 
-NAME = libftprintf.a
-
 CC = clang
 
-FLAGS = -c -Wall -Werror -Wextra -g
+FLAGS = -Wall -Werror -Wextra 
 
 INCLUDES = "ft_printf.h"
 
@@ -37,7 +37,7 @@ all: $(NAME)
 $(NAME):
 		@make -C ./libft
 		cp libft/libft.a $(NAME)
-		@$(CC) -c $(SRCS) $(INCLUDES)
+		@$(CC) $(FlAGS) -c $(SRCS) $(INCLUDES)
 		@ar rcs $(NAME) $(OBJS)
 clean:
 		@make fclean -C ./libft
@@ -47,5 +47,5 @@ fclean: clean
 		@make fclean -C ./libft
 		@rm -f $(NAME)
 debug:
-	gcc $(SRCS) ./libft/*.c main2.c  -g
+	gcc $(SRCS) ./libft/*.c main.c  -g
 re: fclean all

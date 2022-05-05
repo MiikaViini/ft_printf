@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 20:16:25 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/04 12:47:24 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/05 12:52:27 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	neg_mods(t_modifiers *mods)
 	if (mods->width && mods->dot && !mods->precision)
 		mods->width--;
 	mods->d_space = 0;
-	if (mods->zero && mods->width && !mods->minus && !mods->dot
+	if ((mods->zero && mods->width && !mods->minus && !mods->dot)
 		|| mods->precision)
 	{
 		mods->d_zerominus++;
@@ -57,8 +57,7 @@ int	d_specifier(va_list args, t_modifiers *mods)
 			mods, ft_strlen(string) - mods->d_zerominus, num);
 	ft_strdel(&string);
 	string = check_edges(mods, output, num);
-	ft_putstr(string);
-	count = ft_strlen(string);
+	count = ft_putstrlen(string);
 	ft_strdel(&string);
 	ft_strdel(&output);
 	return (count);

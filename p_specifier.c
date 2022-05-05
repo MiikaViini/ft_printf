@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 11:37:09 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/04 12:46:16 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/05 09:29:23 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@ int	p_specifier(va_list args, t_modifiers *mods)
 	output = apply_prefix(string, mods);
 	ft_strdel(&string);
 	string = check_edges(mods, output, num);
-	count = ft_strlen(output);
-	ft_putstr(string);
+	count = ft_putstrlen(output);
 	ft_strdel(&string);
 	ft_strdel(&output);
 	return (count);

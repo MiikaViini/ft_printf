@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 12:39:52 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/03 14:24:01 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/05 09:28:56 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ int	s_specifier(va_list args, t_modifiers *mods)
 	ft_strdel(&temp);
 	temp = ft_strdup(output);
 	ft_strdel(&output);
-	count = ft_strlen(temp);
-	ft_putstr(temp);
+	count = ft_putstrlen(temp);
 	ft_strdel(&temp);
 	return (count);
 }
