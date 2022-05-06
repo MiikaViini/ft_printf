@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 11:04:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/05 14:54:48 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/06 12:03:02 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,28 @@ static char	*apply_space(t_modifiers *mods, char *str)
 	else
 		output = ft_strdup(str);
 	return (output);
+}
+
+char	*apply_sign(char *string, t_modifiers *mods, long long num)
+{
+	char	*res;
+	int		i;
+
+	i = 0;
+	res = ft_strdup(string);
+	if (num >= 0 && *string != ' ' && *string != '+' && mods->plus)
+	{
+		ft_strdel(&res);
+		res = ft_strjoin("+", string);
+	}
+	else if ((mods->sign && *string == '0')
+		|| (mods->width <= ft_strlen(string) && mods->sign
+			&& *string != '-' && *string != ' '))
+	{
+		ft_strdel(&res);
+		res = ft_strjoin("-", string);
+	}
+	return (res);
 }
 
 char	*treat_mods(char *str, t_modifiers *mods, int count, long long num)
@@ -57,24 +79,4 @@ char	*treat_mods(char *str, t_modifiers *mods, int count, long long num)
 	return (temp);
 }
 
-char	*apply_sign(char *string, t_modifiers *mods, long long num)
-{
-	char	*res;
-	int		i;
 
-	i = 0;
-	res = ft_strdup(string);
-	if (num >= 0 && *string != ' ' && *string != '+' && mods->plus)
-	{
-		ft_strdel(&res);
-		res = ft_strjoin("+", string);
-	}
-	else if ((mods->sign && *string == '0')
-		|| (mods->width <= ft_strlen(string) && mods->sign
-			&& *string != '-' && *string != ' '))
-	{
-		ft_strdel(&res);
-		res = ft_strjoin("-", string);
-	}
-	return (res);
-}

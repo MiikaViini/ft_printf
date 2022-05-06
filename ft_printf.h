@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 09:58:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/05 15:26:24 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/06 09:41:39 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_modifiers
 	int		p_spec;
 	int		d_zerominus;
 	int		f_prec;
+	int		f_zero;
 }			t_modifiers;
 
 int			ft_printf(char *format, ...);

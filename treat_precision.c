@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 14:29:50 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/04 13:00:43 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/06 12:02:13 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static char	*treat_sign(char *str, char *res, t_modifiers *mods, long long num)
 		ft_strdel(&temp);
 		mods->plus--;
 	}
-	else if (mods->sign && *str != '-')
+	else if (mods->sign && *str != '-' && !mods->f_zero)
 	{
 		temp = ft_strjoin("-", res);
 		ft_strdel(&res);

@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 14:10:43 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/03 14:28:50 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/06 09:43:25 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ char	*treat_width(char *str, t_modifiers *mods, int len)
 		return (res);
 	ft_strdel(&res);
 	temp = ft_strnew(count);
-	if (mods->zero == 1 && mods->minus == 0 && !mods->dot)
+	if ((mods->zero == 1 && mods->minus == 0 && !mods->dot)
+		|| (mods->zero == 1 && mods->minus == 0 && mods->f_zero))
 		c = '0';
 	while (count-- > 0 && i < mods->width - (int)ft_strlen(str)
 		- (mods->zero * mods->plus - mods->sign))
