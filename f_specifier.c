@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 11:29:41 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/05 15:27:07 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/05 15:49:12 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static void	f_prep_mods(t_modifiers *mods, char *string, long double num)
 		mods->zero = 0;
 	if (*string == '-')
 		f_neg_mods(mods);
+		//f_neg_mods(mods);
 	if (mods->zero)
 	{
 		//mods->dot = 0;
@@ -97,7 +98,6 @@ int	f_specifier(va_list args, t_modifiers *mods)
 	f_prep_mods(mods, string, num);
 	if (num == 1.0 / 0 || num == -1.0 / 0 || num != num)
 		return (inf_nan(string, mods, count, (long double)num));
-	//mods->precision = 0;
 	if (mods->dot && mods->hash && !mods->f_prec)
 		output = ft_strjoin(string + mods->d_zerominus, ".");
 	else
