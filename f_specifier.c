@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 11:29:41 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/06 12:25:56 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/06 13:22:41 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,16 @@ static void	f_neg_mods(t_modifiers *mods)
 {
 	mods->sign = 1;
 	mods->plus = 0;
-	if (mods->width && mods->dot == 1)
-		mods->width--;
+	// if (mods->width && mods->dot == 1 || mods->width && mods->zero)
+	// 	mods->width--;
+	// if (mods->width && mods->space == 1)
+	mods->width--;
 	if (mods->width && !mods->dot && !mods->zero)
 		mods->width++;
 	// if (mods->zero && mods->width)
 	// 	mods->width--;
-	if (mods->zero == 1 && mods->width)
+	if (mods->zero == 1 && mods->width && mods->f_prec 
+		||mods->zero == 1 && mods->dot && !mods->f_prec)
 		mods->width--;
 	// if (mods->f_zero && mods->f_prec > 0)
 	// 	mods->width--;
@@ -33,6 +36,8 @@ static void	f_neg_mods(t_modifiers *mods)
 		mods->d_zerominus++;
 		//mods->width--;
 	}
+	if (mods->width < 0)
+		mods->width = 0;
 }
 
 static void	f_prep_mods(t_modifiers *mods, char *string, long double num)
@@ -71,7 +76,6 @@ static int	inf_nan(char *str, t_modifiers *mods, int count, long double num)
 	ft_strdel(&str);
 	mods->dot = 0;
 	mods->zero = 0;
-	mods->precision = 0;
 	if (num == -1.0 / 0 && mods->width++)
 		mods->sign++;
 	str = check_infinity(num, mods);
