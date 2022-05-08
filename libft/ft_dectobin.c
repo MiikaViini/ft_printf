@@ -6,29 +6,37 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 13:48:10 by mviinika          #+#    #+#             */
-/*   Updated: 2022/03/01 09:52:34 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/08 21:56:40 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_dectobin(int dec)
+char	*ft_dectobin(long long num)
 {
-	int		res;
-	int		bin[16];
-	size_t	i;
+	char				*bin;
+	size_t				i;
+	unsigned long long	min;
 
-	res = 0;
 	i = 0;
-	while (dec > 0)
+	bin = ft_strnew(64);
+	min = num;
+	if (num < 0)
 	{
-		bin[i] = dec % 2;
-		dec /= 2;
-		i++;
+		if (num == -32768)
+			num++;
+		else if (num == -2147483648)
+			num++;
+		else if (num == -9223372036854775807 - 1)
+			num++;
+		min = num * -1;
 	}
-	while (i--)
+	while (min > 0)
 	{
-		ft_putnbr(bin[i]);
+		bin[i++] = min % 2 + '0';
+		min /= 2;
 	}
-	ft_putchar('\n');
+	if (num < 0)
+		bin[i++] = '-';
+	return (ft_strrev(bin));
 }

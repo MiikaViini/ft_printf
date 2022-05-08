@@ -6,7 +6,7 @@
 #    By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/14 12:56:26 by mviinika          #+#    #+#              #
-#    Updated: 2022/05/08 13:05:00 by mviinika         ###   ########.fr        #
+#    Updated: 2022/05/08 20:09:14 by mviinika         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRCS = ft_printf.c length.c \
 	p_specifier.c x_specifier.c \
 	f_specifier.c o_specifier.c \
 	s_specifier.c u_specifier.c \
+	b_specifier.c \
 	per_specifier.c other_mods.c
 
 OBJS = $(SRCS:.c=.o)

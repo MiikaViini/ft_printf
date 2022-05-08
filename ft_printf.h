@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 09:58:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/06 09:41:39 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/08 20:14:39 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdarg.h>
 # include <stdio.h>
 
-# define CONV "discoxXfpuU%"
+# define CONV "discoxXfpuU%b"
 # define MODS "* #-.+lhLjz"
 # define CAPITAL 32
 
@@ -62,7 +62,7 @@ int			s_specifier(va_list args, t_modifiers *mods);
 int			o_specifier(va_list args, t_modifiers *mods);
 int			x_specifier(va_list args, t_modifiers *mods);
 int			per_specifier(va_list args, t_modifiers *mods);
-
+int			b_specifier(va_list args, t_modifiers *mods);
 char		*l_length(va_list args, char *format, t_modifiers *mods);
 char		*h_length(va_list args, char *format, t_modifiers *mods);
 char		*ld_length(va_list args, char *format, t_modifiers *mods);
@@ -128,6 +128,7 @@ static const t_spec	g_specif[15] = {
 	u_specifier,
 	u_specifier,
 	per_specifier,
+	b_specifier,
 	do_nothing_conv
 };
 #endif
