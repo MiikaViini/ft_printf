@@ -6,7 +6,7 @@
 #    By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/14 12:56:26 by mviinika          #+#    #+#              #
-#    Updated: 2022/05/05 10:07:40 by mviinika         ###   ########.fr        #
+#    Updated: 2022/05/08 13:05:00 by mviinika         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ OBJS = $(SRCS:.c=.o)
 
 CC = clang
 
-FLAGS = -Wall -Werror -Wextra 
+FLAGS = -Wall -Werror -Wextra
 
 INCLUDES = "ft_printf.h"
 
@@ -37,7 +37,7 @@ all: $(NAME)
 $(NAME):
 		@make -C ./libft
 		cp libft/libft.a $(NAME)
-		@$(CC) $(FlAGS) -c $(SRCS) $(INCLUDES)
+		@$(CC) $(FLAGS) -c $(SRCS) $(INCLUDES)
 		@ar rcs $(NAME) $(OBJS)
 clean:
 		@make fclean -C ./libft
@@ -47,5 +47,5 @@ fclean: clean
 		@make fclean -C ./libft
 		@rm -f $(NAME)
 debug:
-	gcc $(SRCS) ./libft/*.c main.c  -g
+	gcc $(SRCS) $(FLAGS) ./libft/*.c main.c  -g
 re: fclean all

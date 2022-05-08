@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 20:23:42 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/05 09:30:03 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/08 13:09:52 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,13 @@ int	c_specifier(va_list args, t_modifiers *mods)
 	int		c;
 	int		count;
 
+	count = 0;
 	if (mods->width)
 		str = ft_strnew(mods->width);
 	else
 		str = ft_strnew(1);
+	mods->precision = 0;
+	mods->dot = 0;
 	c = va_arg(args, int );
 	str[0] = c;
 	if (!c)

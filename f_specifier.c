@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 11:29:41 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/06 13:22:41 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/08 13:11:38 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,16 @@ static void	f_neg_mods(t_modifiers *mods)
 {
 	mods->sign = 1;
 	mods->plus = 0;
-	// if (mods->width && mods->dot == 1 || mods->width && mods->zero)
-	// 	mods->width--;
-	// if (mods->width && mods->space == 1)
 	mods->width--;
 	if (mods->width && !mods->dot && !mods->zero)
 		mods->width++;
-	// if (mods->zero && mods->width)
-	// 	mods->width--;
-	if (mods->zero == 1 && mods->width && mods->f_prec 
-		||mods->zero == 1 && mods->dot && !mods->f_prec)
+	if ((mods->zero == 1 && mods->width && mods->f_prec)
+		|| (mods->zero == 1 && mods->dot && !mods->f_prec))
 		mods->width--;
-	// if (mods->f_zero && mods->f_prec > 0)
-	// 	mods->width--;
 	mods->d_space = 0;
 	if ((mods->zero && mods->width > 0 && !mods->minus)
-		|| mods->dot && mods->f_prec > 0)
-	{
+		|| (mods->dot && mods->f_prec > 0))
 		mods->d_zerominus++;
-		//mods->width--;
-	}
 	if (mods->width < 0)
 		mods->width = 0;
 }
@@ -47,26 +37,15 @@ static void	f_prep_mods(t_modifiers *mods, char *string, long double num)
 	if (*string == '-')
 		f_neg_mods(mods);
 	if (mods->zero)
-	{
 		mods->f_zero++;
-		//mods->width--;
-	}
-	// if (mods->hash & !mods->f_prec & !mods->zero)
-	// 	mods->width--;
 	if (mods->space && !mods->plus && 1 / num > 0)
 	{
 		mods->d_space = 1;
 		if (mods->precision)
 			mods->precision--;
-		if (ft_strlen(string) < mods->width && mods->zero)
+		if ((int)ft_strlen(string) < mods->width && mods->zero)
 			mods->width = mods->width - mods->space;
 	}
-	// if (mods->width < 0)
-	// 	mods->width = 0;
-	
-	//mods->width = mods->width - mods->space;
-	// if (mods->plus && mods->precision)
-	// 	mods->precision--;
 }
 
 static int	inf_nan(char *str, t_modifiers *mods, int count, long double num)
@@ -74,6 +53,8 @@ static int	inf_nan(char *str, t_modifiers *mods, int count, long double num)
 	char	*output;
 
 	ft_strdel(&str);
+	if (mods->hash && mods->f_prec && mods->sign)
+		mods->width++;
 	mods->dot = 0;
 	mods->zero = 0;
 	if (num == -1.0 / 0 && mods->width++)

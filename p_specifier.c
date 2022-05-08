@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 11:37:09 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/05 09:29:23 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/08 12:36:23 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,11 @@ int	p_specifier(va_list args, t_modifiers *mods)
 
 	num = va_arg(args, long long );
 	mods->p_spec++;
+	string = ft_itoabase(num, 16, 1);
+	if (num == 0 && mods->dot && !mods->precision)
+		string[0] = '\0';
 	mods->precision = 0;
 	mods->dot = 0;
-	string = ft_itoabase(num, 16, 1);
 	output = apply_prefix(string, mods);
 	ft_strdel(&string);
 	string = treat_mods(output, mods, ft_strlen(output), num);

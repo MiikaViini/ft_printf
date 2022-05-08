@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 11:33:32 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/06 14:08:46 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/08 13:10:21 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 static void	x_prep_mods(t_modifiers *mods)
 {
 	mods->plus = 0;
-	// if (mods->width)
-	// 	mods->width = mods->width - (mods->hash * 2);
+	if (mods->minus || (mods->dot && mods->hash))
+		mods->zero = 0;
+	if (mods->width && mods->zero)
+		mods->width = mods->width - (mods->hash * 2);
 }
 
 char	*treat_zerox(char *string, t_modifiers *mods, long long num)
@@ -56,7 +58,7 @@ int	x_specifier(va_list args, t_modifiers *mods)
 	string = type_cast(num, mods, 16);
 	output = treat_precis(string, mods, ft_strlen(string), num);
 	ft_strdel(&string);
-	if (mods->precision || (!mods->precision && mods->width))
+	if (mods->precision || (mods->precision == 0 && mods->width && !mods->zero))
 		string = treat_zerox(output, mods, num);
 	else
 		string = ft_strdup(output);
