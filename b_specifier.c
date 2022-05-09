@@ -6,38 +6,54 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 20:00:58 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/08 21:50:01 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/09 14:16:28 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	set_mods(t_modifiers *mods)
+static void	set_mods(t_modifiers *mods)
 {
 	mods->zero = 0;
 	mods->precision = 0;
 	mods->hash = 0;
 }
 
+static long long	set_num(va_list args, t_modifiers *mods, long long num)
+{
+	if (mods->l == 2)
+		num = va_arg(args, long long);
+	else if (mods->l == 1)
+		num = va_arg(args, long);
+	else if (mods->h == 1)
+		num = va_arg(args, int);
+	else if (mods->h == 2)
+		num = va_arg(args, int);
+	else
+		num = va_arg(args, int);
+	return (num);
+}
+
 int	b_specifier(va_list args, t_modifiers *mods)
 {
 	char		*str;
-	char		*output;
+	char		*temp;
 	int			count;
 	long long	num;
 
 	set_mods(mods);
-	num = va_arg(args, long long);
-	if (mods->l == 2)
-		str = ft_dectobin((long long)num);
-	else if (mods->l == 1)
-		str = ft_dectobin((long)num);
-	else
-		str = ft_dectobin((int)num);
 	count = 0;
-	output = treat_mods(str, mods, ft_strlen(str), num);
-	count = ft_putstrlen(output);
-	ft_strdel(&output);
+	num = 0;
+	num = set_num(args, mods, num);
+	str = ft_dectobin(num);
+	if (str[0] == '-')
+		temp = ft_strjoin("-0b", str + 1);
+	else
+		temp = ft_strjoin("0b", str);
+	ft_strdel(&str);
+	str = treat_mods(temp, mods, ft_strlen(temp), num);
+	count = ft_putstrlen(str);
+	ft_strdel(&temp);
 	ft_strdel(&str);
 	return (count);
 }

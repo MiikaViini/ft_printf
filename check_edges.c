@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:12:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/08 18:53:21 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/09 14:05:39 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*check_edges(t_modifiers *mods, char *format, long long num)
 
 	i = -1;
 	if ((!mods->o_zero && mods->dot && mods->precision == 0
-			&& num == 0 && !mods->width && !mods->d_space)
+			&& num == 0 && !mods->width)
 		|| (!mods->o_zero && mods->dot && mods->precision == 0
 			&& num < 0 && !mods->width && !mods->d_space && *format == '0'))
 		temp = ft_strnew(1);
