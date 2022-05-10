@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:31:30 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/02 19:57:44 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/09 18:33:29 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ t_modifiers	*init_struct(t_modifiers *mods)
 	mods->o_zero = 0;
 	mods->d_space = 0;
 	mods->sign = 0;
-	mods->inv_spec = 0;
 	mods->p_spec = 0;
 	mods->d_zerominus = 0;
+	mods->f_prec = 0;
+	mods->f_zero = 0;
 	return (mods);
 }

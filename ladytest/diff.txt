@@ -1,0 +1,302 @@
+771c771
+< format string is %.1Lf, value is 0.350000: |0.3| 3
+---
+> format string is %.1Lf, value is 0.350000: |0.4| 3
+776,777c776,777
+< format string is %.1Lf, value is 0.850000: |0.9| 3
+< format string is %.1Lf, value is 0.950000: |0.9| 3
+---
+> format string is %.1Lf, value is 0.850000: |0.8| 3
+> format string is %.1Lf, value is 0.950000: |1.0| 3
+1359,1363c1359,1363
+< format string is %010.0s, value is hello: |0000000000| 10
+< format string is %010.0s, value is : |0000000000| 10
+< format string is %010.0s, value is   : |0000000000| 10
+< format string is %010.0s, value is  hey hey : |0000000000| 10
+< format string is %010.0s, value is (null): |0000000000| 10
+---
+> format string is %010.0s, value is hello: |          | 10
+> format string is %010.0s, value is : |          | 10
+> format string is %010.0s, value is   : |          | 10
+> format string is %010.0s, value is  hey hey : |          | 10
+> format string is %010.0s, value is (null): |          | 10
+1404,1408c1404,1408
+< format string is %#010.0s, value is hello: |0000000000| 10
+< format string is %#010.0s, value is : |0000000000| 10
+< format string is %#010.0s, value is   : |0000000000| 10
+< format string is %#010.0s, value is  hey hey : |0000000000| 10
+< format string is %#010.0s, value is (null): |0000000000| 10
+---
+> format string is %#010.0s, value is hello: |          | 10
+> format string is %#010.0s, value is : |          | 10
+> format string is %#010.0s, value is   : |          | 10
+> format string is %#010.0s, value is  hey hey : |          | 10
+> format string is %#010.0s, value is (null): |          | 10
+1413c1413
+< format string is %010p, value is 0x0: |0x00000000| 10
+---
+> format string is %010p, value is 0x0: |00000000x0| 10
+1419,1421c1419,1421
+< format string is %+p, value is 0x0: |0x0| 3
+< format string is %.19p, value is 0x0: |0x0000000000000000000| 21
+< format string is %010.0p, value is 0x0: |        0x| 10
+---
+> format string is %+p, value is 0x0: |+0x0| 4
+> format string is %.19p, value is 0x0: |0x0| 3
+> format string is %010.0p, value is 0x0: |000000000x| 10
+1424,1426c1424,1426
+< format string is %10.10p, value is 0x0: |0x0000000000| 12
+< format string is %+7p, value is 0x0: |    0x0| 7
+< format string is %+-.18p, value is 0x0: |0x000000000000000000| 20
+---
+> format string is %10.10p, value is 0x0: |       0x0| 10
+> format string is %+7p, value is 0x0: |   +0x0| 7
+> format string is %+-.18p, value is 0x0: |+0x0| 4
+1428c1428
+< format string is %+.7p, value is 0x0: |0x0000000| 9
+---
+> format string is %+.7p, value is 0x0: |+0x0| 4
+1430c1430
+< format string is %#010.0p, value is 0x0: |        0x| 10
+---
+> format string is %#010.0p, value is 0x0: |000000000x| 10
+1546c1546
+< format string is %010.0d, value is 0: |          | 10
+---
+> format string is %010.0d, value is 0: |         0| 10
+1627c1627
+< format string is %#010.0d, value is 0: |          | 10
+---
+> format string is %#010.0d, value is 0: |         0| 10
+1740c1740
+< format string is %010.0hd, value is -2147483648: |          | 10
+---
+> format string is %010.0hd, value is -2147483648: |         0| 10
+1744c1744
+< format string is %010.0hd, value is 0: |          | 10
+---
+> format string is %010.0hd, value is 0: |         0| 10
+1821c1821
+< format string is %#010.0hd, value is -2147483648: |          | 10
+---
+> format string is %#010.0hd, value is -2147483648: |         0| 10
+1825c1825
+< format string is %#010.0hd, value is 0: |          | 10
+---
+> format string is %#010.0hd, value is 0: |         0| 10
+1938c1938
+< format string is %010.0hhd, value is -2147483648: |          | 10
+---
+> format string is %010.0hhd, value is -2147483648: |         0| 10
+1942c1942
+< format string is %010.0hhd, value is 0: |          | 10
+---
+> format string is %010.0hhd, value is 0: |         0| 10
+2019c2019
+< format string is %#010.0hhd, value is -2147483648: |          | 10
+---
+> format string is %#010.0hhd, value is -2147483648: |         0| 10
+2023c2023
+< format string is %#010.0hhd, value is 0: |          | 10
+---
+> format string is %#010.0hhd, value is 0: |         0| 10
+2536c2536
+< format string is %010.0i, value is 0: |          | 10
+---
+> format string is %010.0i, value is 0: |         0| 10
+2617c2617
+< format string is %#010.0i, value is 0: |          | 10
+---
+> format string is %#010.0i, value is 0: |         0| 10
+2730c2730
+< format string is %010.0hi, value is -2147483648: |          | 10
+---
+> format string is %010.0hi, value is -2147483648: |         0| 10
+2734c2734
+< format string is %010.0hi, value is 0: |          | 10
+---
+> format string is %010.0hi, value is 0: |         0| 10
+2811c2811
+< format string is %#010.0hi, value is -2147483648: |          | 10
+---
+> format string is %#010.0hi, value is -2147483648: |         0| 10
+2815c2815
+< format string is %#010.0hi, value is 0: |          | 10
+---
+> format string is %#010.0hi, value is 0: |         0| 10
+2928c2928
+< format string is %010.0hhi, value is -2147483648: |          | 10
+---
+> format string is %010.0hhi, value is -2147483648: |         0| 10
+2932c2932
+< format string is %010.0hhi, value is 0: |          | 10
+---
+> format string is %010.0hhi, value is 0: |         0| 10
+3009c3009
+< format string is %#010.0hhi, value is -2147483648: |          | 10
+---
+> format string is %#010.0hhi, value is -2147483648: |         0| 10
+3013c3013
+< format string is %#010.0hhi, value is 0: |          | 10
+---
+> format string is %#010.0hhi, value is 0: |         0| 10
+3684c3684
+< format string is %.0ho, value is 2147483648: || 0
+---
+> format string is %.0ho, value is 2147483648: |0| 1
+3720c3720
+< format string is %010.0ho, value is 2147483648: |          | 10
+---
+> format string is %010.0ho, value is 2147483648: |         0| 10
+3792c3792
+< format string is %.ho, value is 2147483648: || 0
+---
+> format string is %.ho, value is 2147483648: |0| 1
+3882c3882
+< format string is %.0hho, value is 2147483648: || 0
+---
+> format string is %.0hho, value is 2147483648: |0| 1
+3918c3918
+< format string is %010.0hho, value is 2147483648: |          | 10
+---
+> format string is %010.0hho, value is 2147483648: |         0| 10
+3990c3990
+< format string is %.hho, value is 2147483648: || 0
+---
+> format string is %.hho, value is 2147483648: |0| 1
+4665c4665
+< format string is %#.0hu, value is 2147483648: || 0
+---
+> format string is %#.0hu, value is 2147483648: |0| 1
+4674c4674
+< format string is %.0hu, value is 2147483648: || 0
+---
+> format string is %.0hu, value is 2147483648: |0| 1
+4710c4710
+< format string is %010.0hu, value is 2147483648: |          | 10
+---
+> format string is %010.0hu, value is 2147483648: |         0| 10
+4782c4782
+< format string is %.hu, value is 2147483648: || 0
+---
+> format string is %.hu, value is 2147483648: |0| 1
+4791c4791
+< format string is %#010.0hu, value is 2147483648: |          | 10
+---
+> format string is %#010.0hu, value is 2147483648: |         0| 10
+4863c4863
+< format string is %#.0hhu, value is 2147483648: || 0
+---
+> format string is %#.0hhu, value is 2147483648: |0| 1
+4872c4872
+< format string is %.0hhu, value is 2147483648: || 0
+---
+> format string is %.0hhu, value is 2147483648: |0| 1
+4908c4908
+< format string is %010.0hhu, value is 2147483648: |          | 10
+---
+> format string is %010.0hhu, value is 2147483648: |         0| 10
+4980c4980
+< format string is %.hhu, value is 2147483648: || 0
+---
+> format string is %.hhu, value is 2147483648: |0| 1
+4989c4989
+< format string is %#010.0hhu, value is 2147483648: |          | 10
+---
+> format string is %#010.0hhu, value is 2147483648: |         0| 10
+5646c5646
+< format string is %#hx, value is 2147483648: |0| 1
+---
+> format string is %#hx, value is 2147483648: |0x0| 3
+5655c5655
+< format string is %#.0hx, value is 2147483648: || 0
+---
+> format string is %#.0hx, value is 2147483648: |0x0| 3
+5664c5664
+< format string is %.0hx, value is 2147483648: || 0
+---
+> format string is %.0hx, value is 2147483648: |0| 1
+5700c5700
+< format string is %010.0hx, value is 2147483648: |          | 10
+---
+> format string is %010.0hx, value is 2147483648: |         0| 10
+5772c5772
+< format string is %.hx, value is 2147483648: || 0
+---
+> format string is %.hx, value is 2147483648: |0| 1
+5781c5781
+< format string is %#010.0hx, value is 2147483648: |          | 10
+---
+> format string is %#010.0hx, value is 2147483648: |       0x0| 10
+5844c5844
+< format string is %#hhx, value is 2147483648: |0| 1
+---
+> format string is %#hhx, value is 2147483648: |0x0| 3
+5853c5853
+< format string is %#.0hhx, value is 2147483648: || 0
+---
+> format string is %#.0hhx, value is 2147483648: |0x0| 3
+5862c5862
+< format string is %.0hhx, value is 2147483648: || 0
+---
+> format string is %.0hhx, value is 2147483648: |0| 1
+5898c5898
+< format string is %010.0hhx, value is 2147483648: |          | 10
+---
+> format string is %010.0hhx, value is 2147483648: |         0| 10
+5970c5970
+< format string is %.hhx, value is 2147483648: || 0
+---
+> format string is %.hhx, value is 2147483648: |0| 1
+5979c5979
+< format string is %#010.0hhx, value is 2147483648: |          | 10
+---
+> format string is %#010.0hhx, value is 2147483648: |       0x0| 10
+6636c6636
+< format string is %#hX, value is 2147483648: |0| 1
+---
+> format string is %#hX, value is 2147483648: |0X0| 3
+6645c6645
+< format string is %#.0hX, value is 2147483648: || 0
+---
+> format string is %#.0hX, value is 2147483648: |0X0| 3
+6654c6654
+< format string is %.0hX, value is 2147483648: || 0
+---
+> format string is %.0hX, value is 2147483648: |0| 1
+6690c6690
+< format string is %010.0hX, value is 2147483648: |          | 10
+---
+> format string is %010.0hX, value is 2147483648: |         0| 10
+6762c6762
+< format string is %.hX, value is 2147483648: || 0
+---
+> format string is %.hX, value is 2147483648: |0| 1
+6771c6771
+< format string is %#010.0hX, value is 2147483648: |          | 10
+---
+> format string is %#010.0hX, value is 2147483648: |       0X0| 10
+6834c6834
+< format string is %#hhX, value is 2147483648: |0| 1
+---
+> format string is %#hhX, value is 2147483648: |0X0| 3
+6843c6843
+< format string is %#.0hhX, value is 2147483648: || 0
+---
+> format string is %#.0hhX, value is 2147483648: |0X0| 3
+6852c6852
+< format string is %.0hhX, value is 2147483648: || 0
+---
+> format string is %.0hhX, value is 2147483648: |0| 1
+6888c6888
+< format string is %010.0hhX, value is 2147483648: |          | 10
+---
+> format string is %010.0hhX, value is 2147483648: |         0| 10
+6960c6960
+< format string is %.hhX, value is 2147483648: || 0
+---
+> format string is %.hhX, value is 2147483648: |0| 1
+6969c6969
+< format string is %#010.0hhX, value is 2147483648: |          | 10
+---
+> format string is %#010.0hhX, value is 2147483648: |       0X0| 10

@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/02 20:16:25 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/09 14:12:14 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/10 11:37:45 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	prep_mods(t_modifiers *mods)
 	}
 	if (mods->minus)
 		mods->zero = 0;
-	if (mods->d_space == 1 && mods->zero)
+	if (mods->d_space == 1 && mods->zero && !mods->precision && !mods->dot)
 		mods->width--;
 }
 

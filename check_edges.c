@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:12:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/09 14:05:39 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/09 18:58:05 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ char	*check_infinity(double num, t_modifiers *mods)
 
 	i = 0;
 	res = ft_strnew(4);
+	if (!res)
+		return (NULL);
 	posinf = 1.0 / 0;
 	neginf = -1.0 / 0;
 	if (num == posinf && !mods->plus && !mods->space)

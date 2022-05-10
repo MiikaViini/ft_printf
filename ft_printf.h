@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 09:58:49 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/08 20:14:39 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/09 18:34:22 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "libft/libft.h"
 # include <stdarg.h>
-# include <stdio.h>
 
 # define CONV "discoxXfpuU%b"
 # define MODS "* #-.+lhLjz"
@@ -42,7 +41,6 @@ typedef struct s_modifiers
 	int		o_zero;
 	int		d_space;
 	long	sign;
-	int		inv_spec;
 	int		p_spec;
 	int		d_zerominus;
 	int		f_prec;
@@ -52,7 +50,6 @@ typedef struct s_modifiers
 int			ft_printf(char *format, ...);
 int			conversion(va_list args, char *format);
 int			find_letter(char c, char *letters);
-
 int			f_specifier(va_list args, t_modifiers *mods);
 int			p_specifier(va_list args, t_modifiers *mods);
 int			u_specifier(va_list args, t_modifiers *mods);
@@ -66,9 +63,7 @@ int			b_specifier(va_list args, t_modifiers *mods);
 char		*l_length(va_list args, char *format, t_modifiers *mods);
 char		*h_length(va_list args, char *format, t_modifiers *mods);
 char		*ld_length(va_list args, char *format, t_modifiers *mods);
-
 char		*check_modifiers(char *format, t_modifiers *mods, va_list args);
-
 char		*dot(va_list args, char *format, t_modifiers *mods);
 char		*star(va_list args, char *format, t_modifiers *mods);
 char		*minus(va_list args, char *format, t_modifiers *mods);
@@ -80,11 +75,9 @@ char		*cap_x(va_list args, char *format, t_modifiers *mods);
 char		*width(va_list args, char *format, t_modifiers *mods);
 char		*j_flag(va_list args, char *format, t_modifiers *mods);
 char		*z_flag(va_list args, char *format, t_modifiers *mods);
-
 char		*type_cast(unsigned long long num, t_modifiers *mods, int base);
 char		*type_cast_int(long long int num, t_modifiers *mods);
 char		*type_cast_double(long double num, t_modifiers *mods);
-
 char		*treat_precis(char *str, t_modifiers *mods, int len, long long num);
 char		*treat_width(char *str, t_modifiers *mods, int len);
 char		*check_infinity(double num, t_modifiers *mods);
@@ -92,7 +85,6 @@ char		*apply_sign(char *string, t_modifiers *mods, long long num);
 char		*treat_mods(char *str, t_modifiers *mods, int count, long long num);
 t_modifiers	*init_struct(t_modifiers *mods);
 char		*check_edges(t_modifiers *mods, char *format, long long num);
-
 char		*treat_zerox(char *string, t_modifiers *mods, long long num);
 char		*do_nothing(va_list args, char *format, t_modifiers *mods);
 int			do_nothing_conv(va_list args, t_modifiers *mods);

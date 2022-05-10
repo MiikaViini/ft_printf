@@ -6,11 +6,12 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 12:42:02 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/05 09:27:59 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/09 21:28:10 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 int	u_specifier(va_list args, t_modifiers *mods)
 {
