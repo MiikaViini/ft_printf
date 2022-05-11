@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 13:10:04 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/10 11:43:04 by mviinika         ###   ########.fr       */
+/*   Updated: 2022/05/11 13:47:28 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@ int main()
 		unsigned long  guu = ULONG_MAX;
 	
 	/* Binary tests*/
+
+	ft_printf("MY :[% .1Lf]\n",  -999.999999999);
+	printf("OG :[% .1Lf]\n",  -999.999999999);
+	return (0);
 	ft_printf("MY :[%hb]\n" ,SHRT_MIN);
 	printf("OG :[%010.0b]\n", 0);
 	ft_printf("MY :[%hb]\n" ,SHRT_MAX);
@@ -175,8 +179,8 @@ int main()
 	ft_printf("MY :[%10f]\n",  -6.393847);
 	printf("OG :[%10f]\n",  -6.393847);
 
-	ft_printf("MY :[% 10f]\n",  -6.393847);
-	printf("OG :[% 10f]\n",  -6.393847);
+	ft_printf("MY :[% f]\n",  -999.99);
+	printf("OG :[% 10f]\n",  -999.99);
 
 	ft_printf("MY :[%10f]\n", -1.000000);
 	printf("OG :[%10f]\n",-1.000000);
