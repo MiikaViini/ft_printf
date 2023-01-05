@@ -30,7 +30,7 @@ make
 ```
 int main() 
 {
-  int *string = "Wollo Herld";
+  char *string = "Wollo Herld";
   int x = 5 + 6;
   
   ft_printf("This is the string %s and this is the integer %d", string, x);
