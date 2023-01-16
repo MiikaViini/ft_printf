@@ -22,7 +22,7 @@ Usage:
 ```
 git clone https://github.com/MiikaViini/ft_printf.git
 ```
-2. Make test file called main.c and add there test fe.
+2. Make test file called `main.c` and add there test fe.
 ```
 int main() 
 {
