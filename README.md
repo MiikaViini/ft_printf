@@ -22,11 +22,7 @@ Usage:
 ```
 git clone https://github.com/MiikaViini/ft_printf.git
 ```
-2. Compile the project (run command in project directory)
-```
-make
-```
-3. Call the function in your .c file fe.
+2. Make test file called main.c and add there test fe.
 ```
 int main() 
 {
@@ -38,7 +34,12 @@ int main()
   return 0;
 }
 ```
-4. You have static library and you can compile it with your main.c fe.
+3. Compile the project (run command in project directory)
 ```
-gcc libftprintf.a main.c
+make debug
 ```
+4. Run executable to see results
+```
+./a.out
+```
+
