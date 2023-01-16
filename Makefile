@@ -47,7 +47,7 @@ clean:
 fclean: clean
 #@make fclean -C ./libft
 		@rm -f $(NAME)
-debug:
+debug: $(NAME)
 	@gcc main.c libftprintf.a
 
 re: fclean all
