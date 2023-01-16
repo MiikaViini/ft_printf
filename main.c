@@ -6,7 +6,7 @@
 /*   By: mviinika <mviinika@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 13:10:04 by mviinika          #+#    #+#             */
-/*   Updated: 2022/05/11 13:47:28 by mviinika         ###   ########.fr       */
+/*   Updated: 2023/01/16 20:22:25 by mviinika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int main()
 
 	ft_printf("MY :[% .1Lf]\n",  -999.999999999);
 	printf("OG :[% .1Lf]\n",  -999.999999999);
-	return (0);
+
 	ft_printf("MY :[%hb]\n" ,SHRT_MIN);
 	printf("OG :[%010.0b]\n", 0);
 	ft_printf("MY :[%hb]\n" ,SHRT_MAX);
